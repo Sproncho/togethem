@@ -1,8 +1,12 @@
+
 import './App.css';
+import Registration from './components/RegistrationPage';
 
 function App() {
   return (
-    <div className="App">Hello World</div>
+    <div className="App">
+      <Registration/>
+    </div>
   );
 }
 
