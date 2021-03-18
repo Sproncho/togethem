@@ -1,5 +1,5 @@
 
 
 export default function Registration(){
-    return <div>registration</div>
+    return <div>registration test 2</div>
 }
