@@ -1,0 +1,29 @@
+.RegistrationPage{
+    width:500px;
+    border:1px solid black;
+    margin: 100px auto;
+    padding:30px;
+}
+
+.RegistrationPage input{
+    width:100%;
+    margin-top:5px;
+    height:50px;
+    font-size:1.5rem;
+}
+
+.RegistrationPage button{
+    margin-top: 5px;
+    height:40px;
+    width:200px;
+    background-color:rgb(255, 255, 255);
+    font-size:1.5rem;
+}
+
+.RegistrationPage select{
+    margin-top:5px;
+    height:40px;
+    width:200px;
+    background-color:white;
+    font-size:1.5rem;
+}
