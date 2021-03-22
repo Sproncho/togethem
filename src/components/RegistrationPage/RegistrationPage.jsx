@@ -12,19 +12,27 @@ export default function RegistrationPage() {
           confirmPassword: "",
           userChoise: "",
         }}
-        onSubmit={(values) => {}}
         validate={(values) => {
           console.log("validate");
           const errors = {};
+          if (values.userName === "") {
+            errors.userName = "Fill the username line";
+          } else if (values.userName.length < 3) {
+            errors.userName = "Username is too short";
+          }
           if (values.password.length < 6) {
             errors.password = "Your password must be at least 6 characters";
           }
+          if(values.password.checkValidity)
           if (values.password !== values.confirmPassword) {
             errors.confirmPassword =
               "The passwords you entered did not match, please try again";
           }
-          if (values.userChoise === "" || "Choose your role" === values.userChoise){
-            errors.userChoise = "You have not chosen a role"
+          if (
+            values.userChoise === "" ||
+            "Choose your role" === values.userChoise
+          ) {
+            errors.userChoise = "You have not chosen a role";
           }
           return errors;
         }}
@@ -41,7 +49,7 @@ export default function RegistrationPage() {
                 value={props.values.email}
                 onChange={props.handleChange}
               />
-              {props.touched.email && props.errors.email && (
+              {props.errors.email && (
                 <span style={{ color: "red" }}>{props.errors.email}</span>
               )}
               <input
@@ -49,10 +57,11 @@ export default function RegistrationPage() {
                 type="text"
                 name="userName"
                 placeholder="type username"
+                maxLength="20"
                 value={props.values.userName}
                 onChange={props.handleChange}
               />
-              {props.touched.userName && props.errors.userName && (
+              {props.errors.userName && (
                 <span style={{ color: "red" }}>{props.errors.userName}</span>
               )}
               <input
@@ -60,10 +69,12 @@ export default function RegistrationPage() {
                 type="password"
                 name="password"
                 placeholder="type password"
+                maxLength="25"
+                pattern="[A-Za-z]{1,}[0-9]{1,}"
                 value={props.values.password}
                 onChange={props.handleChange}
               />
-              {props.touched.password && props.errors.password && (
+              {props.errors.password && (
                 <span style={{ color: "red" }}>{props.errors.password}</span>
               )}
               <input
@@ -71,15 +82,15 @@ export default function RegistrationPage() {
                 type="password"
                 name="confirmPassword"
                 placeholder="confirm password"
+                maxlength="25"
                 value={props.values.confirmPassword}
                 onChange={props.handleChange}
               />
-              {props.touched.confirmPassword &&
-                props.errors.confirmPassword && (
-                  <span style={{ color: "red" }}>
-                    {props.errors.confirmPassword}
-                  </span>
-                )}
+              {props.errors.confirmPassword && (
+                <span style={{ color: "red" }}>
+                  {props.errors.confirmPassword}
+                </span>
+              )}
               <select
                 name="userChoise"
                 id=""
@@ -91,11 +102,13 @@ export default function RegistrationPage() {
                 <option value="consumer">Consumer</option>
                 <option value="seller">Seller</option>
               </select>
-              {props.touched.userChoise && props.errors.userChoise && (
-                <span style={{ color: "red" , marginLeft:"5px" }}>{props.errors.userChoise}</span>
+              {props.errors.userChoise && (
+                <span style={{ color: "red", marginLeft: "5px" }}>
+                  {props.errors.userChoise}
+                </span>
               )}
               <br />
-              <button type="" id="registerButton">
+              <button type="" id="registerButton" disabled={!props.isValid}>
                 Register
               </button>
             </form>
