@@ -23,7 +23,13 @@
 .RegistrationPage select{
     margin-top:5px;
     height:40px;
-    width:200px;
+    width:250px;
     background-color:white;
     font-size:1.5rem;
+}
+
+.is-invalid:focus{
+    outline: none;
+    box-shadow: 0 0 4px 0 rgb(173, 41, 41);
+    border: rgb(241, 139, 139);
 }
