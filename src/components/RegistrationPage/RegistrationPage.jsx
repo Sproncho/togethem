@@ -1,5 +1,5 @@
 import "./RegistrationPage.css";
-import {login, register,logout} from '../../services/auth-service';
+import {login, register,logout,setRoleandNickName} from '../../services/auth-service';
 import { Formik } from "formik";
 
 export default function RegistrationPage() {
@@ -15,13 +15,19 @@ export default function RegistrationPage() {
         }}
 
         onSubmit={(values) => {
-          register(values.email,values.password).then(() =>{
-             logout();
+          logout();
+          register(values.email,values.password)
+          .then(() =>{
              login(values.email,values.password);
-          }).catch((error)=>{
+          })
+          .then(() => {
+            setRoleandNickName(values.userChoise,values.userName)
+          })
+          .catch((error)=>{
             console.log(error.message);
           })
         }}
+        
         validate={(values) => {
           console.log("validate");
           const errors = {};
