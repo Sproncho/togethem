@@ -1,4 +1,5 @@
 import "./RegistrationPage.css";
+import {login, register,logout} from '../../services/auth-service';
 import { Formik } from "formik";
 
 export default function RegistrationPage() {
@@ -13,17 +14,22 @@ export default function RegistrationPage() {
           userChoise: "",
         }}
         onSubmit={(values) => {
-          
+          register(values.email,values.password).then(() =>{
+             logout();
+             login(values.email,values.password);
+          }).catch((error)=>{
+            console.log(error.message);
+          })
         }}
 
         validate={values => {
-          console.log("validate")
+          //console.log("validate")
           const errors = {}
           return errors
         }}
       >
         {(props) => {
-          console.log(props)
+          //console.log(props)
           return (
             <form
               method="post"
