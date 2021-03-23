@@ -1,6 +1,34 @@
 import "./RegistrationPage.css";
-import {login, register,logout,setRoleandNickName} from '../../services/auth-service';
+import {
+  login,
+  register,
+  logout,
+  setRoleandNickName,
+} from "../../services/auth-service";
 import { Formik } from "formik";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required("Required field"),
+  userName: yup
+    .string()
+    .min(3, "Username is too short")
+    .required("Required field"),
+  password: yup
+    .string()
+    .matches(
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?!.*[\/\\@$!%*#?&]).{6,}$/,
+      "Must Contain 6 Characters, One Uppercase, One Lowercase, and One number"
+    )
+    .required("Required field"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
+  userChoise: yup
+    .string()
+    .matches(/^(Seller)|(Consumer)$/, "You have not chosen a role")
+    .required("Required field"),
+});
 
 export default function RegistrationPage() {
   return (
@@ -13,45 +41,20 @@ export default function RegistrationPage() {
           confirmPassword: "",
           userChoise: "",
         }}
-
-
         onSubmit={(values) => {
           logout();
-          register(values.email,values.password)
-          .then(() =>{
-             login(values.email,values.password);
-          })
-          .then(() => {
-            setRoleandNickName(values.userChoise,values.userName)
-          })
-          .catch((error)=>{
-            console.log(error.message);
-          })
+          register(values.email, values.password)
+            .then(() => {
+              login(values.email, values.password);
+            })
+            .then(() => {
+              setRoleandNickName(values.userChoise, values.userName);
+            })
+            .catch((error) => {
+              console.log(error.message);
+            });
         }}
-        validate={(values) => {
-          console.log("validate");
-          const errors = {};
-          if (values.userName === "") {
-            errors.userName = "Fill the username line";
-          } else if (values.userName.length < 3) {
-            errors.userName = "Username is too short";
-          }
-          if (values.password.length < 6) {
-            errors.password = "Your password must be at least 6 characters";
-          }
-          if(values.password.checkValidity)
-          if (values.password !== values.confirmPassword) {
-            errors.confirmPassword =
-              "The passwords you entered did not match, please try again";
-          }
-          if (
-            values.userChoise === "" ||
-            "Choose your role" === values.userChoise
-          ) {
-            errors.userChoise = "You have not chosen a role";
-          }
-          return errors;
-        }}
+        validationSchema={schema}
       >
         {(props) => {
           console.log(props);
@@ -108,6 +111,7 @@ export default function RegistrationPage() {
                   {props.errors.confirmPassword}
                 </span>
               )}
+              <br />
               <select
                 name="userChoise"
                 id=""
@@ -116,8 +120,8 @@ export default function RegistrationPage() {
                 required
               >
                 <option select="selected">Choose your role</option>
-                <option value="consumer">Consumer</option>
-                <option value="seller">Seller</option>
+                <option value="Consumer">Consumer</option>
+                <option value="Seller">Seller</option>
               </select>
               {props.errors.userChoise && (
                 <span style={{ color: "red", marginLeft: "5px" }}>
