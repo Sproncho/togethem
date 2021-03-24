@@ -1,14 +1,16 @@
 
 import './App.css';
-import MainPage from './components/MainPage';
-import Registration from './components/RegistrationPage';
-
+import LoginPage from './components/LoginPage/LoginPage';
+import RegistrationPage from './components/RegistrationPage/RegistrationPage'
+import {Switch,Route} from 'react-router-dom';
 function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+  return<div className="App">
+     <Switch>
+         <Route path="/login" component={LoginPage}/>
+         <Route path="/register" component={RegistrationPage}/>
+     </Switch>
+   </div>
+
 }
 
 export default App;
