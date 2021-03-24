@@ -62,18 +62,18 @@ export default function RegistrationPage() {
           return (
             <form action="#" method="post" onSubmit={props.handleSubmit}>
               <input
-                className={props.errors.email ? "is-invalid" : ""}
+                className={props.errors.email && props.touched.email ? "is-invalid" : ""}
                 type="text"
                 name="email"
                 placeholder="type E-mail"
                 value={props.values.email}
                 onChange={props.handleChange}
               />
-              {props.errors.email && (
+              {props.errors.email && props.touched.email && (
                 <span style={{ color: "red" }}>{props.errors.email}</span>
               )}
               <input
-                className={props.errors.userName ? "is-invalid" : ""}
+                className={props.errors.userName && props.touched.userName ? "is-invalid" : ""}
                 type="text"
                 name="userName"
                 placeholder="type username"
@@ -81,32 +81,31 @@ export default function RegistrationPage() {
                 value={props.values.userName}
                 onChange={props.handleChange}
               />
-              {props.errors.userName && (
+              {props.errors.userName &&  props.touched.userName && (
                 <span style={{ color: "red" }}>{props.errors.userName}</span>
               )}
               <input
-                className={props.errors.password ? "is-invalid" : ""}
+                className={props.errors.password && props.touched.password? "is-invalid" : ""}
                 type="password"
                 name="password"
                 placeholder="type password"
                 maxLength="25"
-                pattern="[A-Za-z]{1,}[0-9]{1,}"
                 value={props.values.password}
                 onChange={props.handleChange}
               />
-              {props.errors.password && (
+              {props.errors.password && props.touched.password && (
                 <span style={{ color: "red" }}>{props.errors.password}</span>
               )}
               <input
-                className={props.errors.confirmPassword ? "is-invalid" : ""}
+                className={props.errors.confirmPassword && props.touched.confirmPassword ? "is-invalid" : ""}
                 type="password"
                 name="confirmPassword"
                 placeholder="confirm password"
-                maxlength="25"
+                maxLength="25"
                 value={props.values.confirmPassword}
                 onChange={props.handleChange}
               />
-              {props.errors.confirmPassword && (
+              {props.errors.confirmPassword && props.touched.confirmPassword && (
                 <span style={{ color: "red" }}>
                   {props.errors.confirmPassword}
                 </span>
@@ -116,20 +115,20 @@ export default function RegistrationPage() {
                 name="userChoise"
                 id=""
                 onChange={props.handleChange}
-                className={props.errors.userChoise ? "is-invalid" : ""}
+                className={props.errors.userChoise && props.touched.userChoise ? "is-invalid" : ""}
                 required
               >
                 <option select="selected">Choose your role</option>
                 <option value="Consumer">Consumer</option>
                 <option value="Seller">Seller</option>
               </select>
-              {props.errors.userChoise && (
+              {props.errors.userChoise && props.touched.userChoise && (
                 <span style={{ color: "red", marginLeft: "5px" }}>
                   {props.errors.userChoise}
                 </span>
               )}
               <br />
-              <button type="" id="registerButton" disabled={!props.isValid}>
+              <button type="" id="registerButton" >
                 Register
               </button>
             </form>
