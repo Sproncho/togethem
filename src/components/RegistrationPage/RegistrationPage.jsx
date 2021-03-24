@@ -12,25 +12,25 @@ import {useState} from "react"
 
 
 const schema = yup.object().shape({
-  email: yup.string().required("Required field"),
+  email: yup.string().email("The email address is badle formatted.").required("Required field."),
   userName: yup
     .string()
-    .min(3, "Username is too short")
-    .required("Required field"),
+    .min(3, "Username is too short.")
+    .required("Required field."),
   password: yup
     .string()
     .matches(
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?!.*[\/\\@$!%*#?&]).{6,}$/,
-      "Must Contain 6 Characters, One Uppercase, One Lowercase, and One number"
+      "Must Contain 6 Characters, One Uppercase and One number."
     )
-    .required("Required field"),
+    .required("Required field."),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
+    .oneOf([yup.ref("password"), null], "Passwords must match."),
   userChoise: yup
     .string()
-    .matches(/^(Seller)|(Consumer)$/, "You have not chosen a role")
-    .required("Required field"),
+    .matches(/^(Seller)|(Consumer)$/, "You have not chosen a role.")
+    .required("Required field."),
 });
 
 export default function RegistrationPage() {
