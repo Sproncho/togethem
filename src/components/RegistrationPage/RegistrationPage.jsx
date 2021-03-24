@@ -8,8 +8,8 @@ import {
 import { Formik } from "formik";
 import * as yup from "yup";
 import {useState} from "react"
-
-
+import {connect} from "react-redux"
+import * as Actions from '../../redux/userInfoStore/actionCreators'
 
 const schema = yup.object().shape({
   email: yup.string().email("The email address is badle formatted.").required("Required field."),
@@ -33,7 +33,7 @@ const schema = yup.object().shape({
     .required("Required field."),
 });
 
-export default function RegistrationPage() {
+function RegistrationPage({setUID,setRole,UID,role}) {
   const [state,setState] = useState({});
   return (
     <div className="RegistrationPage">
@@ -48,14 +48,17 @@ export default function RegistrationPage() {
         onSubmit={(values) => {
           logout();
           register(values.email, values.password)
-            .then(() => {
-              console.log("logging in");
-              login(values.email, values.password);
+            .then((response) => {
+              return login(values.email, values.password);
             })
-            .then(() => {
+            .then((response) => {
+              setUID(response.user.uid);
+              setRole(values.userChoise);
               setRoleandNickName(values.userChoise, values.userName);
+              console.log("role and uid:",role," ",UID);
             })
             .catch((error) => {
+              console.log(error);
               setState({error: error})
             });
         }}
@@ -74,7 +77,7 @@ export default function RegistrationPage() {
                 value={props.values.email}
                 onChange={props.handleChange}
               />
-              {state.error && state.error.code === "auth/invalid-email" && props.touched.email && (
+              {state.error && (state.error.code === "auth/invalid-email" || state.error.code === "auth/email-already-in-use") && props.touched.email && (
                 <span style={{ color: "red" }}>{state.error.message}</span>
               )}
               {!state.error && props.errors.email && props.touched.email && (
@@ -146,3 +149,19 @@ export default function RegistrationPage() {
     </div>
   );
 }
+
+const mapStateToProps  = (state)=>{
+  return {
+    UID:state.UID,
+    role:state.role
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    setUID:(uid)=>dispatch(Actions.setUID(uid)),
+    setRole:(role)=>dispatch(Actions.setRole(role))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(RegistrationPage);
