@@ -1,3 +1,4 @@
+
 import './App.css';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage'
@@ -9,6 +10,7 @@ function App() {
          <Route path="/register" component={RegistrationPage}/>
      </Switch>
    </div>
+
 }
 
 export default App;
