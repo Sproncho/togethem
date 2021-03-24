@@ -7,9 +7,12 @@ import {
 } from "../../services/auth-service";
 import { Formik } from "formik";
 import * as yup from "yup";
+import {useState} from "react"
+
+
 
 const schema = yup.object().shape({
-  email: yup.string().email().required("Required field"),
+  email: yup.string().required("Required field"),
   userName: yup
     .string()
     .min(3, "Username is too short")
@@ -31,6 +34,7 @@ const schema = yup.object().shape({
 });
 
 export default function RegistrationPage() {
+  const [state,setState] = useState({});
   return (
     <div className="RegistrationPage">
       <Formik
@@ -45,13 +49,14 @@ export default function RegistrationPage() {
           logout();
           register(values.email, values.password)
             .then(() => {
+              console.log("logging in");
               login(values.email, values.password);
             })
             .then(() => {
               setRoleandNickName(values.userChoise, values.userName);
             })
             .catch((error) => {
-              console.log(error.message);
+              setState({error: error})
             });
         }}
         validationSchema={schema}
@@ -69,7 +74,10 @@ export default function RegistrationPage() {
                 value={props.values.email}
                 onChange={props.handleChange}
               />
-              {props.errors.email && props.touched.email && (
+              {state.error && state.error.code === "auth/invalid-email" && props.touched.email && (
+                <span style={{ color: "red" }}>{state.error.message}</span>
+              )}
+              {!state.error && props.errors.email && props.touched.email && (
                 <span style={{ color: "red" }}>{props.errors.email}</span>
               )}
               <input
