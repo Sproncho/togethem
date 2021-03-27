@@ -1,0 +1,28 @@
+.Good {
+  border: 1px solid black;
+  width: 24%;
+  height: 24%;
+}
+
+.Good span {
+  width: 50%;
+}
+
+.Good span h3 {
+  padding: 5px;
+}
+
+.Good img {
+  width: 100%;
+}
+
+.Good span button {
+  margin: 25px 50px 25px 180px;
+  height: 35px;
+  width: 100px;
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 1.5rem;
+  background-color: #111111;
+  color: #fff1f1;
+}

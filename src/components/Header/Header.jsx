@@ -1,11 +1,10 @@
 import "./Header.css";
-import bigLogo from "./bigLogo.png";
+import bigLogo from "./LOGO2.png";
 import { connect } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import { fb } from "../../config/firebase-config";
 
 function Header({ role, location }) {
-  // console.log(props);
   const history = useHistory();
   return (
     <div className="Header">

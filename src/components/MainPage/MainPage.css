@@ -1,0 +1,12 @@
+.MainPage {
+    width: 80%;
+    border: 3px solid #204660;
+    border-radius: 40px solid #204660;
+    margin: 15px auto 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Good{
+    margin: 15px auto 15px auto;
+}

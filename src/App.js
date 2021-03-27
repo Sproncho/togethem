@@ -3,11 +3,15 @@ import LoginPage from './components/LoginPage/LoginPage';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import {Switch,Route} from 'react-router-dom';
 import Header from './components/Header/Header';
+import MainPage from './components/MainPage/MainPage';
+
+
 function App() {
   return<div className="App">
-    {/* <Header/> */}
     <Route path="/" component={Header}/>
+    <hr/>
      <Switch>
+         <Route path="/" exact component={MainPage}/>
          <Route path="/login" component={LoginPage}/>
          <Route path="/register" component={RegistrationPage}/>
      </Switch>
