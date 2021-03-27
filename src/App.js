@@ -5,7 +5,8 @@ import {Switch,Route} from 'react-router-dom';
 import Header from './components/Header/Header';
 function App() {
   return<div className="App">
-    <Header/>
+    {/* <Header/> */}
+    <Route path="/" component={Header}/>
      <Switch>
          <Route path="/login" component={LoginPage}/>
          <Route path="/register" component={RegistrationPage}/>

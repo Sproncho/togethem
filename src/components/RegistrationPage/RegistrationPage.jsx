@@ -12,7 +12,7 @@ import {connect} from "react-redux"
 import * as Actions from '../../redux/userInfoStore/actionCreators'
 
 const schema = yup.object().shape({
-  email: yup.string().email("The email address is badle formatted.").required("Required field."),
+  email: yup.string().email("The email address is badly formatted.").required("Required field."),
   userName: yup
     .string()
     .min(3, "Username is too short.")
@@ -152,8 +152,8 @@ function RegistrationPage({setUID,setRole,UID,role}) {
 
 const mapStateToProps  = (state)=>{
   return {
-    UID:state.UID,
-    role:state.role
+    UID:state.userInfo.UID,
+    role:state.userInfo.role
   }
 }
 
