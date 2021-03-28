@@ -1,28 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
 .Good {
-  border: 1px solid black;
-  width: 24%;
-  height: 24%;
+  box-shadow: 0 4px 8px 0 #204660;
+  max-width: 300px;
+  margin: 15px auto;
+  text-align: center;
+  font-family: arial;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #ffffff;
 }
 
-.Good span {
-  width: 50%;
+.price {
+  color: grey;
+  font-size: 22px;
 }
 
-.Good span h3 {
-  padding: 5px;
+.Good button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: #ffffff;
+  background-color: #060e14;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.Good button:hover {
+  opacity: 0.7;
 }
 
 .Good img {
   width: 100%;
 }
 
-.Good span button {
-  margin: 25px 50px 25px 180px;
-  height: 35px;
-  width: 100px;
-  border: 1px solid rgb(58, 55, 55);
-  border-radius: 30px;
-  font-size: 1.5rem;
-  background-color: #111111;
-  color: #fff1f1;
+.Good p:last-child {
+  margin-bottom: 0;
 }

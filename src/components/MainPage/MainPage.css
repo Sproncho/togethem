@@ -1,10 +1,11 @@
 .MainPage {
     width: 80%;
     border: 3px solid #204660;
-    border-radius: 40px solid #204660;
+    border-radius: 10px;
     margin: 15px auto 30px auto;
     display: flex;
     flex-wrap: wrap;
+    background-color: rgb(231, 238, 238);
 }
 
 .Good{

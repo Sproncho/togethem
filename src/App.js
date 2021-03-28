@@ -9,7 +9,6 @@ import MainPage from './components/MainPage/MainPage';
 function App() {
   return<div className="App">
     <Route path="/" component={Header}/>
-    <hr/>
      <Switch>
          <Route path="/" exact component={MainPage}/>
          <Route path="/login" component={LoginPage}/>

@@ -1,5 +1,5 @@
 import "./Header.css";
-import bigLogo from "./LOGO2.png";
+import bigLogo from "./LogoNew.svg";
 import { connect } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import { fb } from "../../config/firebase-config";

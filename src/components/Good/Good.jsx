@@ -7,15 +7,11 @@ export default function Good() {
   return (
     <div className="Good">
       <img src={bigLogo} alt="Photo of good" />
-      <br />
-      <hr />
-      <span>
-        <h3>Normal price: 100$</h3>
-        <h3>Tandem price: 80$</h3>
-      </span>
-      <span>
-        <button>BUY</button>
-      </span>
+      <h1>Title</h1>
+      <p className="price">Normal price: $100</p>
+      <p className="price">Tandem price: $80</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat explicabo obcaecati voluptatibus sequi minus totam error maiores saepe magnam quidem.</p>
+        <p><button>Buy</button></p>
     </div>
-  );
+  )
 }
