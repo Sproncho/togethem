@@ -4,8 +4,20 @@ import { connect } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import { fb } from "../../config/firebase-config";
 
-function Header({ role, location }) {
+import {getUserInfo,getUser} from '../../services/auth-service';
+import {useEffect} from 'react';
+import * as Actions from '../../redux/userInfoStore/actionCreators'
+function Header({ setRole,role, location }) {
   const history = useHistory();
+  useEffect(() =>{
+    fb.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        getUserInfo(user.uid).then(response =>{
+          setRole(response.role);
+        })
+      }
+    });
+  },[]);
   return (
     <div className="Header">
       <img
@@ -17,11 +29,11 @@ function Header({ role, location }) {
       />
       {console.log("my role is :", role)}
       <span>
-        {role === "Consumer" &&
+        { fb.auth().currentUser && role === "Consumer" &&
           (location !== "/register" || location !== "/login") && (
             <button>Groups</button>
           )}
-        {role === "Seller" &&
+        {fb.auth().currentUser && role === "Seller" &&
           (location !== "/register" || location !== "/login") && (
             <button>Lots</button>
           )}
@@ -51,8 +63,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return {};
-};
-
+const mapDispatchToProps = (dispatch) => {
+  return{
+    setRole:(role)=>dispatch(Actions.setRole(role))
+  }
+}
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

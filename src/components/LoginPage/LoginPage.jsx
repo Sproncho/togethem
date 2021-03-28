@@ -1,9 +1,10 @@
 import "./LoginPage.css";
 import { useState } from "react";
-import { login } from "../../services/auth-service";
+import { login,getUserInfo} from "../../services/auth-service";
 import { useHistory } from "react-router-dom";
-
-export default function LoginPage() {
+import * as Actions from '../../redux/userInfoStore/actionCreators'
+import  { connect } from "react-redux";
+function LoginPage({setUID,setRole}) {
   const history = useHistory();
   const [state, setState] = useState({ email: "", password: "" });
   return (
@@ -32,7 +33,17 @@ export default function LoginPage() {
       <button
         id="loginButton"
         onClick={() => {
-          login(state.email, state.password);
+          login(state.email, state.password)
+          .then((response) =>{
+            setUID(response.user.uid);
+            return getUserInfo(response.user.uid);
+          })
+          .then(response =>{
+            setRole(response.role);
+          })
+          .catch(error =>{
+            console.log(error.message);
+          })
         }}
       >
         Login
@@ -40,3 +51,14 @@ export default function LoginPage() {
     </div>
   );
 }
+const mapStateToProps =  (state) =>{
+  return{}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    setUID:(uid)=>dispatch(Actions.setUID(uid)),
+    setRole:(role)=>dispatch(Actions.setRole(role))
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(LoginPage);

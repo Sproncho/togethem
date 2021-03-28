@@ -46,3 +46,11 @@ export async function setRoleandNickName(role,nickname){
         return Promise.reject(error);
     }
 }
+export async function getUserInfo(uid){
+    try{
+        const doc = await fb.firestore().collection("users").doc(uid).get();
+        return doc.data();
+    }catch(error){
+        return Promise.reject(error);
+    }
+}
