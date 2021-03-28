@@ -1,35 +1,42 @@
-.RegistrationPage{
-    width:500px;
-    border:1px solid black;
-    margin: 100px auto;
-    padding:30px;
+.RegistrationPage {
+  width: 500px;
+  margin: 100px auto;
+  padding: 30px;
+  border: 3px solid #204660;
+  border-radius: 10px;
+  background-color: rgb(231, 238, 238);
 }
 
-.RegistrationPage input{
-    width:100%;
-    margin-top:5px;
-    height:50px;
-    font-size:1.5rem;
+.RegistrationPage input {
+  width: 100%;
+  margin-top: 5px;
+  height: 50px;
+  font-size: 1.5rem;
+  border-radius: 10px;
 }
 
-.RegistrationPage button{
-    margin-top: 5px;
-    height:40px;
-    width:200px;
-    background-color:rgb(255, 255, 255);
-    font-size:1.5rem;
+.RegistrationPage button {
+  margin: 25px 50px 25px 15px;
+  height: 50px;
+  width: 150px;
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 1.5rem;
+  background-color: #111111;
+  color: #fff1f1;
 }
 
-.RegistrationPage select{
-    margin-top:5px;
-    height:40px;
-    width:250px;
-    background-color:white;
-    font-size:1.5rem;
+.RegistrationPage select {
+  margin-top: 5px;
+  height: 40px;
+  width: 250px;
+  background-color: white;
+  font-size: 1.5rem;
+  border-radius: 10px;
 }
 
-.is-invalid:focus{
-    outline: none;
-    box-shadow: 0 0 4px 0 rgb(173, 41, 41);
-    border: rgb(241, 139, 139);
+.is-invalid:focus {
+  outline: none;
+  box-shadow: 0 0 4px 0 rgb(173, 41, 41);
+  border: rgb(241, 139, 139);
 }

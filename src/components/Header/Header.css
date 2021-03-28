@@ -1,16 +1,20 @@
 .Header {
-  background-color: #ffd2d2;
-  border: 1px solid black;
+  background-color: #10d48fe0; 
   width: 100%;
   display: flex;
+  border-radius: 0 0 10px 10px;
 }
 
 .Header img {
-  width: 300px;
+  width: 120px;
+  margin-left: 150px;
 }
 
 .Header span {
     margin-left: auto;
+    margin-right: 80px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .Header button {
@@ -18,7 +22,8 @@
   height: 50px;
   width: 150px;
   border: 1px solid rgb(58, 55, 55);
-  border-radius: 10px;
+  border-radius: 30px;
   font-size: 1.5rem;
-  background-color: white;
+  background-color: #111111;
+  color: #fff1f1;
 }

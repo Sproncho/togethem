@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+.Good {
+  box-shadow: 0 4px 8px 0 #204660;
+  max-width: 300px;
+  margin: 15px auto;
+  text-align: center;
+  font-family: arial;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.Good button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: #ffffff;
+  background-color: #060e14;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.Good button:hover {
+  opacity: 0.7;
+}
+
+.Good img {
+  width: 100%;
+}
+
+.Good p:last-child {
+  margin-bottom: 0;
+}
