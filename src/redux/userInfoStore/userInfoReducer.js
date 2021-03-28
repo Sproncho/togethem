@@ -2,7 +2,8 @@ import Types from './actionTypes'
 
 const init = {
     UID:'',
-    role:''
+    role:'',
+    init: false
 }
 
 export default function userInfoReducer(state = init,{type,payload}){
@@ -16,6 +17,11 @@ export default function userInfoReducer(state = init,{type,payload}){
             return{
                 ...state,
                 UID:payload.UID
+            }
+        case Types.setInit:
+            return{
+                ...state,
+                init:true
             }
         default: return state;
     }

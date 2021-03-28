@@ -33,7 +33,7 @@ const schema = yup.object().shape({
     .required("Required field."),
 });
 
-function RegistrationPage({setUID,setRole,UID,role}) {
+function RegistrationPage({setUID,setRole,UID,role,setInit}) {
   const [state,setState] = useState({});
   return (
     <div className="RegistrationPage">
@@ -55,6 +55,7 @@ function RegistrationPage({setUID,setRole,UID,role}) {
               setUID(response.user.uid);
               setRole(values.userChoise);
               setRoleandNickName(values.userChoise, values.userName);
+              setInit();
               console.log("role and uid:",role," ",UID);
             })
             .catch((error) => {
@@ -160,7 +161,8 @@ const mapStateToProps  = (state)=>{
 const mapDispatchToProps = (dispatch) =>{
   return {
     setUID:(uid)=>dispatch(Actions.setUID(uid)),
-    setRole:(role)=>dispatch(Actions.setRole(role))
+    setRole:(role)=>dispatch(Actions.setRole(role)),
+    setInit: () => dispatch(Actions.setInit()),
   }
 }
 

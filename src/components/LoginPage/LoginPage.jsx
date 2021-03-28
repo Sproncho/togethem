@@ -4,7 +4,7 @@ import { login,getUserInfo} from "../../services/auth-service";
 import { useHistory } from "react-router-dom";
 import * as Actions from '../../redux/userInfoStore/actionCreators'
 import  { connect } from "react-redux";
-function LoginPage({setUID,setRole}) {
+function LoginPage({setUID,setRole,setInit}) {
   const history = useHistory();
   const [state, setState] = useState({ email: "", password: "" });
   return (
@@ -40,6 +40,7 @@ function LoginPage({setUID,setRole}) {
           })
           .then(response =>{
             setRole(response.role);
+            setInit();
           })
           .catch(error =>{
             console.log(error.message);
@@ -58,7 +59,8 @@ const mapStateToProps =  (state) =>{
 const mapDispatchToProps = (dispatch) => {
   return{
     setUID:(uid)=>dispatch(Actions.setUID(uid)),
-    setRole:(role)=>dispatch(Actions.setRole(role))
+    setRole:(role)=>dispatch(Actions.setRole(role)),
+    setInit: () => dispatch(Actions.setInit()),
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(LoginPage);

@@ -4,20 +4,35 @@ import { connect } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import { fb } from "../../config/firebase-config";
 
-import {getUserInfo,getUser} from '../../services/auth-service';
+import {getUserInfo} from '../../services/auth-service';
 import {useEffect} from 'react';
 import * as Actions from '../../redux/userInfoStore/actionCreators'
+import { useAuthState } from 'react-firebase-hooks/auth';
 function Header({ setRole,role, location }) {
+
+
+  // const [user, loading, error] = useAuthState(fb.auth());
+  // console.log("header reloaded");
+  // if(user){
+  //   getUserInfo(user.uid).then(response =>{
+  //     setRole(response.role);
+  //   })
+  // }
   const history = useHistory();
-  useEffect(() =>{
-    fb.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        getUserInfo(user.uid).then(response =>{
-          setRole(response.role);
-        })
-      }
-    });
-  },[]);
+  // useEffect(() =>{
+    
+  //   // fb.auth().onAuthStateChanged(function(user) {
+  //   //   if (user) {
+        
+  //   //   }
+  //   // });
+  //   if(loading){
+  //     console.log("loading:loading",loading);
+  //   }else if(user){
+  //     console.log(user);
+  //   }
+
+  // },[]);
   return (
     <div className="Header">
       <img

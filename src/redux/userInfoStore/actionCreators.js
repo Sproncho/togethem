@@ -17,3 +17,9 @@ export function setRole(role){
         }
     }
 }
+
+export function setInit(){
+    return{
+        type:Types.setInit,
+    }
+}

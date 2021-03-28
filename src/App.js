@@ -4,9 +4,24 @@ import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import {Switch,Route} from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage';
+import * as Actions from './redux/userInfoStore/actionCreators';
+import {connect} from 'react-redux';
+import { fb } from "./config/firebase-config";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import {getUserInfo} from './services/auth-service'
+function App({setRole, setUID, setInit,init}) {
 
+  const [user, loading, error] = useAuthState(fb.auth());
 
-function App() {
+  if(!init){
+    if(user){
+      getUserInfo(user.uid).then(response =>{
+        setRole(response.role);
+        setUID(response.uid); 
+        setInit();
+      })
+    }
+  }
   return<div className="App">
     <Route path="/" component={Header}/>
      <Switch>
@@ -18,4 +33,20 @@ function App() {
 
 }
 
-export default App;
+const mapStateToProps = (state) =>{
+  return {
+    init:state.userInfo.init
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    setRole: (role) => dispatch(Actions.setRole(role)),
+    setUID: (uid) => dispatch(Actions.setUID(uid)), 
+    setInit: () => dispatch(Actions.setInit()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
