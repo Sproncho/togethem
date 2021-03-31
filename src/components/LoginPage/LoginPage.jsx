@@ -7,8 +7,12 @@ import  { connect } from "react-redux";
 function LoginPage({setUID,setRole,setInit}) {
   const history = useHistory();
   const [state, setState] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({});
   return (
     <div className="loginPage">
+      {errors.error &&  (
+        <span style={{ color: "red" }}>{"Inavlid email or password. Please try again."}</span>
+      )}
       <input
         type="text"
         value={state.email}
@@ -44,6 +48,7 @@ function LoginPage({setUID,setRole,setInit}) {
           })
           .catch(error =>{
             console.log(error.message);
+            setErrors({error:error})
           })
         }}
       >

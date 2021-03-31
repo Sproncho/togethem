@@ -1,7 +1,7 @@
 import './App.css';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
-import {Switch,Route} from 'react-router-dom';
+import {Switch,Route,Redirect} from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage';
 import * as Actions from './redux/userInfoStore/actionCreators';
@@ -26,8 +26,13 @@ function App({setRole, setUID, setInit,init}) {
     <Route path="/" component={Header}/>
      <Switch>
          <Route path="/" exact component={MainPage}/>
-         <Route path="/login" component={LoginPage}/>
-         <Route path="/register" component={RegistrationPage}/>
+         <Route path="/login" component={LoginPage}>
+            {user && <Redirect from="/login"to="/"/>}
+         </Route>
+         <Route path="/register" component={RegistrationPage}>
+            {user && <Redirect from="/register"to="/"/>}
+         </Route>
+       
      </Switch>
    </div>
 
