@@ -4,12 +4,15 @@ import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage';
+
 import * as Actions from './redux/userInfoStore/actionCreators';
+import CardAdder from './components/CardAdder/CardAdder';
 import {connect} from 'react-redux';
 import { fb } from "./config/firebase-config";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {getUserInfo} from './services/auth-service'
 function App({setRole, setUID, setInit,init}) {
+
 
   const [user, loading, error] = useAuthState(fb.auth());
 
@@ -26,13 +29,16 @@ function App({setRole, setUID, setInit,init}) {
     <Route path="/" component={Header}/>
      <Switch>
          <Route path="/" exact component={MainPage}/>
+
          <Route path="/login" component={LoginPage}>
             {user && <Redirect from="/login"to="/"/>}
          </Route>
          <Route path="/register" component={RegistrationPage}>
             {user && <Redirect from="/register"to="/"/>}
          </Route>
+          <Route path="/addCard" component={CardAdder}/>
        
+
      </Switch>
    </div>
 
