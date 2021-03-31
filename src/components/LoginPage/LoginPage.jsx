@@ -4,11 +4,15 @@ import { login,getUserInfo} from "../../services/auth-service";
 import { useHistory } from "react-router-dom";
 import * as Actions from '../../redux/userInfoStore/actionCreators'
 import  { connect } from "react-redux";
-function LoginPage({setUID,setRole}) {
+function LoginPage({setUID,setRole,setInit}) {
   const history = useHistory();
   const [state, setState] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({});
   return (
     <div className="loginPage">
+      {errors.error &&  (
+        <span style={{ color: "red" }}>{"Inavlid email or password. Please try again."}</span>
+      )}
       <input
         type="text"
         value={state.email}
@@ -40,9 +44,11 @@ function LoginPage({setUID,setRole}) {
           })
           .then(response =>{
             setRole(response.role);
+            setInit();
           })
           .catch(error =>{
             console.log(error.message);
+            setErrors({error:error})
           })
         }}
       >
@@ -58,7 +64,8 @@ const mapStateToProps =  (state) =>{
 const mapDispatchToProps = (dispatch) => {
   return{
     setUID:(uid)=>dispatch(Actions.setUID(uid)),
-    setRole:(role)=>dispatch(Actions.setRole(role))
+    setRole:(role)=>dispatch(Actions.setRole(role)),
+    setInit: () => dispatch(Actions.setInit()),
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(LoginPage);

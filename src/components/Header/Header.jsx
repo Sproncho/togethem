@@ -6,18 +6,9 @@ import { fb } from "../../config/firebase-config";
 import { getUserInfo, getUser } from "../../services/auth-service";
 import { useEffect } from "react";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
-
-function Header({ setRole, role, location }) {
+import * as Actions from '../../redux/userInfoStore/actionCreators';
+function Header({ setRole,role, location }) {
   const history = useHistory();
-  useEffect(() => {
-    fb.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        getUserInfo(user.uid).then((response) => {
-          setRole(response.role);
-        });
-      }
-    });
-  }, []);
   return (
     <div className="Header">
       <img
