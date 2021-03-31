@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import { fb } from "./config/firebase-config";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {getUserInfo} from './services/auth-service'
+import Slider from "./components/CardAdder/sliderTest"
 function App({setRole, setUID, setInit,init}) {
 
 
@@ -28,15 +29,15 @@ function App({setRole, setUID, setInit,init}) {
   return<div className="App">
     <Route path="/" component={Header}/>
      <Switch>
-         <Route path="/" exact component={MainPage}/>
-
-         <Route path="/login" component={LoginPage}>
+        <Route path="/" exact component={MainPage}/>
+        <Route path = "/test" component={Slider}/>
+        <Route path="/login" component={LoginPage}>
             {user && <Redirect from="/login"to="/"/>}
-         </Route>
-         <Route path="/register" component={RegistrationPage}>
+        </Route>
+        <Route path="/register" component={RegistrationPage}>
             {user && <Redirect from="/register"to="/"/>}
-         </Route>
-          <Route path="/addCard" component={CardAdder}/>
+        </Route>
+        <Route path="/addCard" component={CardAdder}/>
        
 
      </Switch>
