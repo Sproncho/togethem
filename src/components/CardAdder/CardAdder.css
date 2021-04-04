@@ -28,6 +28,13 @@
   border-radius: 10px;
 }
 
+.CardAdder textarea {
+  width: 100%;
+  height: 80%;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+
 .CardAdder div span:first-child {
   margin: 0 auto 0 10px;
 }

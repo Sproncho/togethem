@@ -7,18 +7,18 @@
 
 .Header img {
   width: 120px;
-  margin-left: 150px;
+  margin-left: 10%;
 }
 
 .Header span {
     margin-left: auto;
-    margin-right: 80px;
+    margin-right: 10%;
     margin-top: auto;
     margin-bottom: auto;
 }
 
 .Header button {
-  margin: 25px 50px 25px 15px;
+  margin: 25px 0 25px 15px;
   height: 50px;
   width: 150px;
   border: 1px solid rgb(58, 55, 55);

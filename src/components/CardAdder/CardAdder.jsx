@@ -18,7 +18,7 @@ export default function CardAdder() {
     <div className="CardAdder">
       <Formik
         initialValues={{
-          tittle: "",
+          title: "",
           description: "",
           soloPrice: "",
           amount: "",
@@ -29,7 +29,7 @@ export default function CardAdder() {
         {(props) => {
           console.log(props);
           return (
-            <form action="#" method="post" onSubmit={props.handleSubmit}>
+            <form onSubmit={props.handleSubmit}>
               <div>
                 <span>
                   <img src={miniPhoto} alt="Photo" />
@@ -38,27 +38,29 @@ export default function CardAdder() {
                 <span>
                   <input
                     className={
-                      props.errors.tittle && props.touched.tittle
+                      props.errors.title && props.touched.title
                         ? "is-invalid"
                         : ""
                     }
+                    name="title"
                     type="text"
-                    placeholder="Type tittle"
-                    value={props.values.tittle}
+                    placeholder="Type title"
+                    value={props.values.title}
                     onChange={props.handleChange}
                   />
-                  {props.errors.tittle && props.touched.tittle && (
+                  {props.errors.title && props.touched.title && (
                     <span style={{ color: "red" }}>
                       {props.errors.userName}
                     </span>
                   )}
                   <br />
-                  <input
+                  <textarea
                     className={
                       props.errors.description && props.touched.description
                         ? "is-invalid"
                         : ""
                     }
+                    name="description"
                     type="textarea"
                     placeholder="Type description"
                     value={props.values.description}
@@ -79,6 +81,7 @@ export default function CardAdder() {
                         ? "is-invalid"
                         : ""
                     }
+                    name="soloPrice"
                     type="text"
                     placeholder="Type price for one"
                     value={props.values.soloPrice}
@@ -97,6 +100,7 @@ export default function CardAdder() {
                         ? "is-invalid"
                         : ""
                     }
+                    name="amount"
                     type="number"
                     min="0"
                     placeholder="amount"
@@ -116,6 +120,7 @@ export default function CardAdder() {
                         ? "is-invalid"
                         : ""
                     }
+                    name="hashtags"
                     type="text"
                     placeholder="Type hashtags"
                     value={props.values.hashtags}
@@ -129,7 +134,9 @@ export default function CardAdder() {
                 </span>
                 <span>###Hashtags</span>
               </div>
-              <button type="button">Submit</button>
+              <button id="submitButton">
+                Submit
+              </button>
             </form>
           );
         }}
