@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
 import miniPhoto from "./cartoonPhoto.jpg";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 const schema = yup.object().shape({
   tittle: yup.string().required("Required field."),
@@ -33,11 +35,24 @@ export default function CardAdder() {
           console.log(props);
           return (
             <form onSubmit={props.handleSubmit}>
-              <div>
-                <span>
-                  <img src={miniPhoto} alt="Photo" />
-                  <input type="file" name="file" />
-                </span>
+              <div className="mainDiv">
+                <div className="gallery">
+                  <Carousel>
+                    <div>
+                      <img src={miniPhoto} />
+                      <p className="legend">Legend 1</p>
+                    </div>
+                    <div>
+                      <img src={miniPhoto} />
+                      <p className="legend">Legend 2</p>
+                    </div>
+                    <div>
+                      <img src={miniPhoto} />
+                      <p className="legend">Legend 3</p>
+                    </div>
+                  </Carousel>
+                  <input type="file" />
+                </div>
                 <span>
                   <input
                     className={
@@ -74,7 +89,7 @@ export default function CardAdder() {
                   )}
                 </span>
               </div>
-              <div>
+              <div className="mainDiv">
                 <span>
                   <input
                     className={
@@ -113,7 +128,7 @@ export default function CardAdder() {
                   )}
                 </span>
               </div>
-              <div>
+              <div className="mainDiv">
                 <span>
                   <input
                     name="hashtags"
@@ -123,20 +138,28 @@ export default function CardAdder() {
                     onChange={(e) => setHashtag(e.target.value)}
                   />
                 </span>
-                <div>Hashatags: {hashtags.map(h => <span className ="hashtag">{h}</span>)}</div>
+                <div>
+                  Hashatags:{" "}
+                  {hashtags.map((h) => (
+                    <span className="hashtag">{h}</span>
+                  ))}
+                </div>
               </div>
-              <div>
+              <div className="mainDiv">
                 <span>
                   <button
+                    className="mainButton"
                     type="button"
                     id="addButton"
-                    onClick={() => setHashtags([...hashtags,hashtag])}
+                    onClick={() => setHashtags([...hashtags, hashtag])}
                   >
                     Add hashtag
                   </button>
                 </span>
                 <span>
-                  <button id="submitButton">Submit</button>
+                  <button className="mainButton" id="submitButton">
+                    Submit
+                  </button>
                 </span>
               </div>
             </form>

@@ -4,7 +4,7 @@ import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage';
-
+import Test from './components/testComponent/testComponent';
 import * as Actions from './redux/userInfoStore/actionCreators';
 import CardAdder from './components/CardAdder/CardAdder';
 import {connect} from 'react-redux';
@@ -28,15 +28,15 @@ function App({setRole, setUID, setInit,init}) {
   return<div className="App">
     <Route path="/" component={Header}/>
      <Switch>
-         <Route path="/" exact component={MainPage}/>
-
-         <Route path="/login" component={LoginPage}>
+        <Route path="/" exact component={MainPage}/>
+        <Route path="/test" exact component={Test}/>
+        <Route path="/login" component={LoginPage}>
             {user && <Redirect from="/login"to="/"/>}
-         </Route>
-         <Route path="/register" component={RegistrationPage}>
+        </Route>
+        <Route path="/register" component={RegistrationPage}>
             {user && <Redirect from="/register"to="/"/>}
-         </Route>
-          <Route path="/addCard" component={CardAdder}/>
+        </Route>
+        <Route path="/addCard" component={CardAdder}/>
        
 
      </Switch>
