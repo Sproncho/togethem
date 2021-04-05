@@ -15,7 +15,10 @@ export default function CardAdder() {
 
   return (
     <div className="CardAdder">
-      <Carousel>
+      
+      <div className="mainDiv">
+        <div className="gallery">
+        <Carousel>
         <div>
           <img src={miniPhoto} />
           <p className="legend">Legend 1</p>
@@ -29,9 +32,6 @@ export default function CardAdder() {
           <p className="legend">Legend 3</p>
         </div>
       </Carousel>
-      <div>
-        <div className="gallery">
-          {/* <img src={miniPhoto} alt="Photo" /> */}
           <input type="file" />
         </div>
         <span>
@@ -40,7 +40,7 @@ export default function CardAdder() {
           <input type="textarea" placeholder="Type description" />
         </span>
       </div>
-      <div>
+      <div className="mainDiv">
         <span>
           <input type="text" placeholder="Type price for one" />
         </span>
@@ -48,13 +48,13 @@ export default function CardAdder() {
           <input type="number" min="0" placeholder="" />
         </span>
       </div>
-      <div>
+      <div className="mainDiv">
         <span>
           <input type="text" placeholder="Type hashtags" />
         </span>
         <span>###Hashtags</span>
       </div>
-      <button type="button">Submit</button>
+      <button className="mainButton" type="button">Submit</button>
     </div>
   );
 }
