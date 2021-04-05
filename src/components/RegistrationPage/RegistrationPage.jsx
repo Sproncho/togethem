@@ -69,7 +69,7 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
           console.log(props);
 
           return (
-            <form action="#" method="post" onSubmit={props.handleSubmit}>
+            <form onSubmit={props.handleSubmit}>
               <input
                 className={props.errors.email && props.touched.email ? "is-invalid" : ""}
                 type="text"

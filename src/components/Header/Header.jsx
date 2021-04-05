@@ -7,7 +7,7 @@ import { getUserInfo, getUser } from "../../services/auth-service";
 import { useEffect } from "react";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 
-function Header({ setRole,role, location }) {
+function Header({ setRole, role, location }) {
   const history = useHistory();
   return (
     <div className="Header">

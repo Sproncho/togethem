@@ -1,7 +1,3 @@
-/* * {
-  border: 1px solid #123;
-} */
-
 .CardAdder {
   width: 80%;
   border: 3px solid #204660;
@@ -31,12 +27,23 @@
   border-radius: 10px;
 }
 
-.CardAdder div span:first-child {
-  margin: 0 auto 0 10px;
+.CardAdder textarea {
+  width: 100%;
+  height: 80%;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  min-width: 20%;
+  max-width: 100%;
+  min-height: 10%;
+  max-height: 80%;
 }
 
-.CardAdder div span:last-child {
-  margin: 0 10px 0 auto;
+.CardAdder span:first-child {
+  margin: 0 auto 0 20px;
+}
+
+.CardAdder span:last-child {
+  margin: 0 20px 0 auto;
 }
 
 .CardAdder div:first-child span:last-child input:first-child {
@@ -49,18 +56,26 @@
 
 .CardAdder .mainButton {
     margin: 25px 60px 25px 25px;
+    padding-left: 40px;
+    padding-right: 40px;
     height: 50px;
-    width: 150px;
+    min-width: 50px;
     border: 1px solid rgb(58, 55, 55);
     border-radius: 30px;
     font-size: 1.5rem;
     background-color: #111111;
     color: #fff1f1;
-    margin: 15px 15px 0 auto;
+    margin: 15px 0 0 auto;
     display: block;
+    
 }
 
 .CardAdder img{
     width: 100%;
 }
   
+.is-invalid:focus {
+  outline: none;
+  box-shadow: 0 0 4px 0 rgb(173, 41, 41);
+  border: rgb(241, 139, 139);
+}
