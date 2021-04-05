@@ -4,14 +4,13 @@ import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage';
-
+import Test from './components/testComponent/testComponent';
 import * as Actions from './redux/userInfoStore/actionCreators';
 import CardAdder from './components/CardAdder/CardAdder';
 import {connect} from 'react-redux';
 import { fb } from "./config/firebase-config";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {getUserInfo} from './services/auth-service'
-import Slider from "./components/CardAdder/sliderTest"
 function App({setRole, setUID, setInit,init}) {
 
 
@@ -30,7 +29,7 @@ function App({setRole, setUID, setInit,init}) {
     <Route path="/" component={Header}/>
      <Switch>
         <Route path="/" exact component={MainPage}/>
-        <Route path = "/test" component={Slider}/>
+        <Route path="/test" exact component={Test}/>
         <Route path="/login" component={LoginPage}>
             {user && <Redirect from="/login"to="/"/>}
         </Route>

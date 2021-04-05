@@ -1,9 +1,8 @@
 import "./CardAdder.css";
 import { useHistory } from "react-router-dom";
-import miniPhoto from "./cartoonPhoto.jpg"
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import miniPhoto from "./cartoonPhoto.jpg";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 export default function CardAdder() {
   const history = useHistory();
   const settings = {
@@ -11,39 +10,33 @@ export default function CardAdder() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
 
   return (
     <div className="CardAdder">
-      <Slider style={{display:"block"}} {...settings}>
-              <div>
-                <h3>1</h3>
-              </div>
-              <div>
-                <h3>2</h3>
-              </div>
-              <div>
-                <h3>3</h3>
-              </div>
-              <div>
-                <h3>4</h3>
-              </div>
-              <div>
-                <h3>5</h3>
-              </div>
-              <div>
-                <h3>6</h3>
-              </div>
-            </Slider>
+      <Carousel>
+        <div>
+          <img src={miniPhoto} />
+          <p className="legend">Legend 1</p>
+        </div>
+        <div>
+          <img src={miniPhoto} />
+          <p className="legend">Legend 2</p>
+        </div>
+        <div>
+          <img src={miniPhoto} />
+          <p className="legend">Legend 3</p>
+        </div>
+      </Carousel>
       <div>
-        <span>
+        <div className="gallery">
           {/* <img src={miniPhoto} alt="Photo" /> */}
-          <input type="file"/>
-        </span>
+          <input type="file" />
+        </div>
         <span>
           <input type="text" placeholder="Type tittle" />
-          <br/>
+          <br />
           <input type="textarea" placeholder="Type description" />
         </span>
       </div>
@@ -59,9 +52,7 @@ export default function CardAdder() {
         <span>
           <input type="text" placeholder="Type hashtags" />
         </span>
-        <span>
-            ###Hashtags
-        </span>
+        <span>###Hashtags</span>
       </div>
       <button type="button">Submit</button>
     </div>
