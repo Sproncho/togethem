@@ -1,4 +1,5 @@
 import "./CardAdder.css";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -14,6 +15,8 @@ const schema = yup.object().shape({
 
 export default function CardAdder() {
   const history = useHistory();
+  const [hashtags, setHashtags] = useState([]);
+  const [hashtag, setHashtag] = useState("");
   return (
     <div className="CardAdder">
       <Formik
@@ -22,7 +25,7 @@ export default function CardAdder() {
           description: "",
           soloPrice: "",
           amount: "",
-          hashtags: "",
+          hashtag: "",
         }}
         validationSchema={schema}
       >
@@ -49,9 +52,7 @@ export default function CardAdder() {
                     onChange={props.handleChange}
                   />
                   {props.errors.title && props.touched.title && (
-                    <span style={{ color: "red" }}>
-                      {props.errors.userName}
-                    </span>
+                    <span style={{ color: "red" }}>{props.errors.title}</span>
                   )}
                   <br />
                   <textarea
@@ -115,28 +116,29 @@ export default function CardAdder() {
               <div>
                 <span>
                   <input
-                    className={
-                      props.errors.hashtags && props.touched.hashtags
-                        ? "is-invalid"
-                        : ""
-                    }
                     name="hashtags"
                     type="text"
                     placeholder="Type hashtags"
-                    value={props.values.hashtags}
-                    onChange={props.handleChange}
+                    value={hashtag}
+                    onChange={(e) => setHashtag(e.target.value)}
                   />
-                  {props.errors.hashtags && props.touched.hashtags && (
-                    <span style={{ color: "red" }}>
-                      {props.errors.hashtags}
-                    </span>
-                  )}
                 </span>
-                <span>###Hashtags</span>
+                <div>Hashatags: {hashtags.map(h => <span className ="hashtag">{h}</span>)}</div>
               </div>
-              <button id="submitButton">
-                Submit
-              </button>
+              <div>
+                <span>
+                  <button
+                    type="button"
+                    id="addButton"
+                    onClick={() => setHashtags([...hashtags,hashtag])}
+                  >
+                    Add hashtag
+                  </button>
+                </span>
+                <span>
+                  <button id="submitButton">Submit</button>
+                </span>
+              </div>
             </form>
           );
         }}
