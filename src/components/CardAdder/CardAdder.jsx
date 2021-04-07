@@ -6,13 +6,13 @@ import * as yup from "yup";
 import miniPhoto from "./cartoonPhoto.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import InputBox from "./InputBox";
 
 const schema = yup.object().shape({
-  tittle: yup.string().required("Required field."),
+  title: yup.string().required("Required field."),
   description: yup.string().required("Required field."),
   soloPrice: yup.string().required("Required field."),
   amount: yup.string().required("Required field."),
-  hashtags: yup.string().required("Required field."),
 });
 
 export default function CardAdder() {
@@ -27,7 +27,6 @@ export default function CardAdder() {
           description: "",
           soloPrice: "",
           amount: "",
-          hashtag: "",
         }}
         validationSchema={schema}
       >
@@ -39,19 +38,19 @@ export default function CardAdder() {
                 <div className="gallery">
                   <Carousel>
                     <div>
-                      <img src={miniPhoto} />
+                      <img src={miniPhoto} alt="pic" />
                       <p className="legend">Legend 1</p>
                     </div>
                     <div>
-                      <img src={miniPhoto} />
+                      <img src={miniPhoto} alt="pic" />
                       <p className="legend">Legend 2</p>
                     </div>
                     <div>
-                      <img src={miniPhoto} />
+                      <img src={miniPhoto} alt="pic" />
                       <p className="legend">Legend 3</p>
                     </div>
                   </Carousel>
-                  <input type="file" />
+                  <InputBox />
                 </div>
                 <span>
                   <input
@@ -140,8 +139,10 @@ export default function CardAdder() {
                 </span>
                 <div>
                   Hashatags:{" "}
-                  {hashtags.map((h) => (
-                    <span className="hashtag">{h}</span>
+                  {hashtags.map((h, i) => (
+                    <span className="hashtag" key={i}>
+                      {h}
+                    </span>
                   ))}
                 </div>
               </div>
