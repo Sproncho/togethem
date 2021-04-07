@@ -6,19 +6,64 @@ import * as yup from "yup";
 import miniPhoto from "./cartoonPhoto.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import {fb} from '../../config/firebase-config'
+import {connect} from 'react-redux'
+import * as Actions from '../../redux/userInfoStore/actionCreators'
+
+
+
 
 const schema = yup.object().shape({
-  tittle: yup.string().required("Required field."),
+  title: yup.string().required("Required field."),
   description: yup.string().required("Required field."),
   soloPrice: yup.string().required("Required field."),
   amount: yup.string().required("Required field."),
-  hashtags: yup.string().required("Required field."),
+  // hashtags: yup.string().required("Required field."),
 });
 
-export default function CardAdder() {
+ function CardAdder({UID}) {
   const history = useHistory();
   const [hashtags, setHashtags] = useState([]);
   const [hashtag, setHashtag] = useState("");
+  const [image, setImage] = useState(null);
+  const [URL, setURL] = useState("");
+
+  const handleChange = async (e) =>{
+    console.log("e.target.files:",e.target.files[0]);
+    if(e.target.files[0]){
+      // setImage(e.target.files[0])
+
+      // setImage(img);
+    
+      handleUpload(e.target.files[0]);
+    }
+  }
+
+  const handleUpload = (image) =>{
+    console.log("UPLOADING for", UID);
+    const uploadTask = fb.storage().ref(`images/${UID}/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot =>{},
+      error =>{
+       console.log(error);
+      },
+      () =>{
+        fb.storage()
+        .ref("images")
+        .child(UID)
+        .child(image.name)
+        .getDownloadURL()
+        .then(url =>{
+          console.log(url);
+          setURL(url)
+        })
+
+      }
+    );
+  };
+  
+  // console.log("Image: ",image);
   return (
     <div className="CardAdder">
       <Formik
@@ -29,17 +74,22 @@ export default function CardAdder() {
           amount: "",
           hashtag: "",
         }}
+        onSubmit={(values) => {
+          console.log("SUBMITTING");
+          // handleUpload();
+        }}
         validationSchema={schema}
       >
         {(props) => {
-          console.log(props);
+          //  console.log(props);
           return (
             <form onSubmit={props.handleSubmit}>
               <div className="mainDiv">
                 <div className="gallery">
                   <Carousel>
                     <div>
-                      <img src={miniPhoto} />
+                      {!URL && <img src={miniPhoto} />}
+                      {URL &&<img src={URL} />}
                       <p className="legend">Legend 1</p>
                     </div>
                     <div>
@@ -51,7 +101,7 @@ export default function CardAdder() {
                       <p className="legend">Legend 3</p>
                     </div>
                   </Carousel>
-                  <input type="file" />
+                  <input type="file"  onChange={handleChange}/>
                 </div>
                 <span>
                   <input
@@ -157,7 +207,7 @@ export default function CardAdder() {
                   </button>
                 </span>
                 <span>
-                  <button className="mainButton" id="submitButton">
+                  <button type="submit" className="mainButton" id="submitButton">
                     Submit
                   </button>
                 </span>
@@ -169,3 +219,18 @@ export default function CardAdder() {
     </div>
   );
 }
+const mapStateToProps  = (state)=>{
+  return {
+    UID:state.userInfo.UID,
+    role:state.userInfo.role
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    // setUID:(uid)=>dispatch(Actions.setUID(uid)),
+    // setRole:(role)=>dispatch(Actions.setRole(role)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardAdder)

@@ -49,7 +49,7 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
           logout();
           register(values.email, values.password)
             .then((response) => {
-              return login(values.email, values.password);
+               return login(values.email, values.password);
             })
             .then((response) => {
               setUID(response.user.uid);
@@ -61,7 +61,7 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
             .catch((error) => {
               console.log(error);
               setState({error: error})
-            });
+            })
         }}
         validationSchema={schema}
       >
