@@ -1,13 +1,13 @@
-import './App.css';
-import LoginPage from './components/LoginPage/LoginPage';
-import RegistrationPage from './components/RegistrationPage/RegistrationPage';
-import {Switch,Route,Redirect} from 'react-router-dom';
-import Header from './components/Header/Header';
-import MainPage from './components/MainPage/MainPage';
-import Test from './components/testComponent/testComponent';
-import * as Actions from './redux/userInfoStore/actionCreators';
-import CardAdder from './components/CardAdder/CardAdder';
-import {connect} from 'react-redux';
+import "./App.css";
+import LoginPage from "./components/LoginPage/LoginPage";
+import RegistrationPage from "./components/RegistrationPage/RegistrationPage";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Header from "./components/Header/Header";
+import MainPage from "./components/MainPage/MainPage";
+import Test from "./components/testComponent/testComponent";
+import * as Actions from "./redux/userInfoStore/actionCreators";
+import CardAdder from "./components/CardAdder/CardAdder";
+import { connect } from "react-redux";
 import { fb } from "./config/firebase-config";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {getUserInfo} from './services/auth-service';
@@ -82,9 +82,10 @@ function App({setRole, setUID, setInit,init,UID,role}) {
     
    </div>
 
+
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
   return {
     init:state.userInfo.init,
     UID:state.userInfo.UID,
@@ -92,14 +93,13 @@ const mapStateToProps = (state) =>{
   }
 }
 
-const mapDispatchToProps = (dispatch) =>{
+
+const mapDispatchToProps = (dispatch) => {
   return {
     setRole: (role) => dispatch(Actions.setRole(role)),
-    setUID: (uid) => dispatch(Actions.setUID(uid)), 
+    setUID: (uid) => dispatch(Actions.setUID(uid)),
     setInit: () => dispatch(Actions.setInit()),
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-

@@ -16,9 +16,10 @@
   display: flex;
   justify-content: space-between;
 }
-.gallery{
+.gallery {
   display: block;
-  width: 44%
+  margin-left: 20px;
+  width: 44%;
 }
 .CardAdder input {
   width: 100%;
@@ -47,34 +48,32 @@
 }
 
 .CardAdder div:first-child span:last-child input:first-child {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .CardAdder div:first-child span:last-child input:last-child {
-    height: 80%;
-    width: 100%;
+  height: 80%;
+  width: 100%;
 }
 
 .CardAdder .mainButton {
-    margin: 25px 60px 25px 25px;
-    padding-left: 40px;
-    padding-right: 40px;
-    height: 50px;
-    min-width: 50px;
-    border: 1px solid rgb(58, 55, 55);
-    border-radius: 30px;
-    font-size: 1.5rem;
-    background-color: #111111;
-    color: #fff1f1;
-    margin: 15px 0 0 auto;
-    display: block;
-    
+  margin: 25px 60px 25px 25px;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 50px;
+  min-width: 50px;
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 1.5rem;
+  background-color: #111111;
+  color: #fff1f1;
+  margin: 15px 0 0 auto;
+  display: block;
 }
 
-.CardAdder img{
-    width: 100%;
-    height: 100%;
+.CardAdder img {
+  width: 100%;
 }
-  
+
 .is-invalid:focus {
   outline: none;
   box-shadow: 0 0 4px 0 rgb(173, 41, 41);
