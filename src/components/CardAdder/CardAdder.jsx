@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import {fb} from '../../config/firebase-config'
+import {connect} from 'react-redux'
+import * as Actions from '../../redux/userInfoStore/actionCreators'
 import InputBox from "./InputBox";
+
 
 const schema = yup.object().shape({
   title: yup.string().required("Required field."),
@@ -12,10 +17,49 @@ const schema = yup.object().shape({
   amount: yup.string().required("Required field."),
 });
 
-export default function CardAdder() {
+ function CardAdder({UID}) {
   const history = useHistory();
   const [hashtags, setHashtags] = useState([]);
   const [hashtag, setHashtag] = useState("");
+  const [image, setImage] = useState(null);
+  const [URL, setURL] = useState("");
+
+  const handleChange = async (e) =>{
+    console.log("e.target.files:",e.target.files[0]);
+    if(e.target.files[0]){
+      // setImage(e.target.files[0])
+
+      // setImage(img);
+    
+      handleUpload(e.target.files[0]);
+    }
+  }
+
+  const handleUpload = (image) =>{
+    console.log("UPLOADING for", UID);
+    const uploadTask = fb.storage().ref(`images/${UID}/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot =>{},
+      error =>{
+       console.log(error);
+      },
+      () =>{
+        fb.storage()
+        .ref("images")
+        .child(UID)
+        .child(image.name)
+        .getDownloadURL()
+        .then(url =>{
+          console.log(url);
+          setURL(url)
+        })
+
+      }
+    );
+  };
+  
+  // console.log("Image: ",image);
   return (
     <div className="CardAdder">
       <Formik
@@ -25,10 +69,14 @@ export default function CardAdder() {
           soloPrice: "",
           amount: "",
         }}
+        onSubmit={(values) => {
+          console.log("SUBMITTING");
+          // handleUpload();
+        }}
         validationSchema={schema}
       >
         {(props) => {
-          console.log(props);
+          //  console.log(props);
           return (
             <form onSubmit={props.handleSubmit}>
               <div className="mainDiv">
@@ -141,7 +189,7 @@ export default function CardAdder() {
                   </button>
                 </span>
                 <span>
-                  <button className="mainButton" id="submitButton">
+                  <button type="submit" className="mainButton" id="submitButton">
                     Submit
                   </button>
                 </span>
@@ -153,3 +201,18 @@ export default function CardAdder() {
     </div>
   );
 }
+const mapStateToProps  = (state)=>{
+  return {
+    UID:state.userInfo.UID,
+    role:state.userInfo.role
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    // setUID:(uid)=>dispatch(Actions.setUID(uid)),
+    // setRole:(role)=>dispatch(Actions.setRole(role)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardAdder)
