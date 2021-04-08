@@ -3,9 +3,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
-import miniPhoto from "./cartoonPhoto.jpg";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import InputBox from "./InputBox";
 
 const schema = yup.object().shape({
@@ -36,20 +33,6 @@ export default function CardAdder() {
             <form onSubmit={props.handleSubmit}>
               <div className="mainDiv">
                 <div className="gallery">
-                  <Carousel>
-                    <div>
-                      <img src={miniPhoto} alt="pic" />
-                      <p className="legend">Legend 1</p>
-                    </div>
-                    <div>
-                      <img src={miniPhoto} alt="pic" />
-                      <p className="legend">Legend 2</p>
-                    </div>
-                    <div>
-                      <img src={miniPhoto} alt="pic" />
-                      <p className="legend">Legend 3</p>
-                    </div>
-                  </Carousel>
                   <InputBox />
                 </div>
                 <span>

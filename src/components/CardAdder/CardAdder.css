@@ -48,7 +48,7 @@
 }
 
 .CardAdder div:first-child span:last-child input:first-child {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .CardAdder div:first-child span:last-child input:last-child {
   height: 80%;
