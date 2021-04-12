@@ -8,7 +8,7 @@ import {fb} from '../../config/firebase-config'
 import {connect} from 'react-redux'
 import * as Actions from '../../redux/userInfoStore/actionCreators'
 import InputBox from "./InputBox";
-
+import{uploadLot} from '../../services/card-data-servcie'
 
 const schema = yup.object().shape({
   title: yup.string().required("Required field."),
@@ -21,9 +21,15 @@ const schema = yup.object().shape({
   const history = useHistory();
   const [hashtags, setHashtags] = useState([]);
   const [hashtag, setHashtag] = useState("");
+  const [photos, setPhotos] = useState([]);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (!hashtag.includes('#')) {
     setHashtag('#' + hashtag)
+  }
+
+  const handlePhotosCallback = (photos) =>{
+    setPhotos(photos);
+    console.log("photos from carder",photos);
   }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
@@ -36,7 +42,13 @@ const schema = yup.object().shape({
           amount: "",
         }}
         onSubmit={(values) => {
-          console.log("SUBMITTING");
+           console.log("SUBMITTING");
+          uploadLot(values.title, values.description,values.soloPrice,values.amount,photos,hashtags,UID).then(response =>{
+            console.log(response)
+          }).
+          catch(error =>{
+            console.log(error);
+          })
         }}
         validationSchema={schema}
       >
@@ -45,7 +57,7 @@ const schema = yup.object().shape({
             <form onSubmit={props.handleSubmit}>
               <div className="mainDiv">
                 <div className="gallery">
-                  <InputBox />
+                  <InputBox photosCallback={handlePhotosCallback}/>
                 </div>
                 <span>
                   <input
