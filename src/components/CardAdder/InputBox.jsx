@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./Dropzone.css";
 
-export default function InputBox({photosCallback}) {
+export default function InputBox({ photosCallback }) {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState("");
   //  1. запрос на выборку чтобы отправить эти данные на URL, поэтому нам надо сделать запросы асинхронными чтобы они могли быть извлечены
@@ -29,11 +29,11 @@ export default function InputBox({photosCallback}) {
       });
       // 6. принимаем ответ от севрера в формате json
       const data = await response.json();
-      
-      photosCallback([...uploadedFiles,data]);
-      setUploadedFiles((old) =>{
-        const newState =  [...old, data];
-        photosCallback(newState.map(file => file.public_id));
+
+      photosCallback([...uploadedFiles, data]);
+      setUploadedFiles((old) => {
+        const newState = [...old, data];
+        photosCallback(newState.map((file) => file.public_id));
         return newState;
       });
     });
@@ -55,6 +55,21 @@ export default function InputBox({photosCallback}) {
   };
   return (
     <div>
+      <button
+        onClick={() =>
+          setUploadedFiles((old) => {
+            const newState = uploadedFiles.filter(
+              (file, index) => index !== currentPhotoIndex
+            );
+            photosCallback(newState.map((file) => file.public_id));
+            return newState;
+          })
+        }
+        className="xButton"
+        type="button"
+      >
+        X
+      </button>
       <div>
         <Carousel renderThumbs={renderCustomThumbs} onChange={getCurrentPhoto}>
           {uploadedFiles.map((file) => (
