@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./Dropzone.css";
 
-export default function InputBox() {
+export default function InputBox({photosCallback}) {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState("");
   //  1. запрос на выборку чтобы отправить эти данные на URL, поэтому нам надо сделать запросы асинхронными чтобы они могли быть извлечены
@@ -29,8 +29,13 @@ export default function InputBox() {
       });
       // 6. принимаем ответ от севрера в формате json
       const data = await response.json();
-      setUploadedFiles((old) => [...old, data]);
-      console.log(data);
+      
+      photosCallback([...uploadedFiles,data]);
+      setUploadedFiles((old) =>{
+        const newState =  [...old, data];
+        photosCallback(newState.map(file => file.public_id));
+        return newState;
+      });
     });
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
