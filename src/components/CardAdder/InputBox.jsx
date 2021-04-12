@@ -7,6 +7,7 @@ import "./Dropzone.css";
 
 export default function InputBox() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState("");
   //  1. запрос на выборку чтобы отправить эти данные на URL, поэтому нам надо сделать запросы асинхронными чтобы они могли быть извлечены
   const onDrop = useCallback((acceptedFiles) => {
     console.log(acceptedFiles);
@@ -43,22 +44,34 @@ export default function InputBox() {
     ));
     return thumblist;
   };
+  const getCurrentPhoto = (index) => {
+    console.log("НАШИ ПРОПСЕКИ", index);
+    setCurrentPhotoIndex(index);
+  };
   return (
     <div>
-      <Carousel renderThumbs={renderCustomThumbs}>
-        {uploadedFiles.map((file) => (
-          <div key={file.public_id}>
-            <Image
-              cloudName={
-                process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME
-              }
-              publicId={file.public_id}
-            >
-              <Transformation height="720" width="1280" x="0" crop="scale" />
-            </Image>
-          </div>
-        ))}
-      </Carousel>
+      <div>
+        <Carousel renderThumbs={renderCustomThumbs} onChange={getCurrentPhoto}>
+          {uploadedFiles.map((file) => (
+            <div key={file.public_id}>
+              <Image
+                cloudName={
+                  process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME
+                }
+                publicId={file.public_id}
+              >
+                <Transformation
+                  height="480"
+                  width="720"
+                  background="#f0f1ef"
+                  crop="pad"
+                  format="PNG"
+                />
+              </Image>
+            </div>
+          ))}
+        </Carousel>
+      </div>
       <div
         {...getRootProps()}
         className={`${"dropzone"} ${isDragActive ? "active" : null}`}

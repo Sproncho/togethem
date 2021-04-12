@@ -3,7 +3,7 @@
   border: 1px solid #204660;
   border-radius: 10px;
   margin: 15px auto 30px auto;
-  background-color: rgb(231, 238, 238);
+  background-color: #f0f1ef;
   padding: 30px;
 }
 
@@ -71,6 +71,20 @@
   color: #fff1f1;
   margin: 15px 0 0 auto;
   display: block;
+}
+
+.CardAdder .xButton {
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 1.5rem;
+  background-color: #111111;
+  color: #fff1f1;
+  padding: 5px 10px 5px 10px;
+  z-index: 2;
+}
+
+.CardAdder .xButton:hover {
+  background-color: #424141;
 }
 
 .CardAdder img {
