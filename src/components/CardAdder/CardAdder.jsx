@@ -21,45 +21,11 @@ const schema = yup.object().shape({
   const history = useHistory();
   const [hashtags, setHashtags] = useState([]);
   const [hashtag, setHashtag] = useState("");
-  const [image, setImage] = useState(null);
-  const [URL, setURL] = useState("");
-
-  const handleChange = async (e) =>{
-    console.log("e.target.files:",e.target.files[0]);
-    if(e.target.files[0]){
-      // setImage(e.target.files[0])
-
-      // setImage(img);
-    
-      handleUpload(e.target.files[0]);
-    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  if (!hashtag.includes('#')) {
+    setHashtag('#' + hashtag)
   }
-
-  const handleUpload = (image) =>{
-    console.log("UPLOADING for", UID);
-    const uploadTask = fb.storage().ref(`images/${UID}/${image.name}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      snapshot =>{},
-      error =>{
-       console.log(error);
-      },
-      () =>{
-        fb.storage()
-        .ref("images")
-        .child(UID)
-        .child(image.name)
-        .getDownloadURL()
-        .then(url =>{
-          console.log(url);
-          setURL(url)
-        })
-
-      }
-    );
-  };
-  
-  // console.log("Image: ",image);
+////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <div className="CardAdder">
       <Formik
@@ -71,12 +37,10 @@ const schema = yup.object().shape({
         }}
         onSubmit={(values) => {
           console.log("SUBMITTING");
-          // handleUpload();
         }}
         validationSchema={schema}
       >
         {(props) => {
-          //  console.log(props);
           return (
             <form onSubmit={props.handleSubmit}>
               <div className="mainDiv">
@@ -163,19 +127,20 @@ const schema = yup.object().shape({
                   <input
                     name="hashtags"
                     type="text"
-                    placeholder="Type hashtags"
+                    placeholder="Type tags"
                     value={hashtag}
-                    onChange={(e) => setHashtag(e.target.value)}
+                    onChange={(e) => 
+                      setHashtag(e.target.value)}
                   />
                 </span>
-                <div>
+                <span style={{display: "flex", flexWrap: "wrap"}}>
                   Hashatags:{" "}
                   {hashtags.map((h, i) => (
-                    <span className="hashtag" key={i}>
+                    <span className="hashtag" key={i} style={{margin: "2px 2px", width: "auto"}}>
                       {h}
                     </span>
                   ))}
-                </div>
+                </span>
               </div>
               <div className="mainDiv">
                 <span>
