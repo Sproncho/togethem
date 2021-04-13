@@ -4,11 +4,11 @@ import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import {fb} from '../../config/firebase-config'
-import {connect} from 'react-redux'
-import * as Actions from '../../redux/userInfoStore/actionCreators'
+import { fb } from "../../config/firebase-config";
+import { connect } from "react-redux";
+import * as Actions from "../../redux/userInfoStore/actionCreators";
 import InputBox from "./InputBox";
-import{uploadLot} from '../../services/card-data-servcie'
+import { uploadLot } from "../../services/card-data-servcie";
 
 const schema = yup.object().shape({
   title: yup.string().required("Required field."),
@@ -17,21 +17,22 @@ const schema = yup.object().shape({
   amount: yup.string().required("Required field."),
 });
 
- function CardAdder({UID}) {
+function CardAdder({ UID }) {
   const history = useHistory();
   const [hashtags, setHashtags] = useState([]);
   const [hashtag, setHashtag] = useState("");
   const [photos, setPhotos] = useState([]);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  if (!hashtag.includes('#')) {
-    setHashtag('#' + hashtag)
-  }
-
-  const handlePhotosCallback = (photos) =>{
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // if(hashtag.includes('#')){
+  //   setHashtag(hashtag.replace('#',''))
+  // } else {
+  //   setHashtag("#" + hashtag);
+  // }
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const handlePhotosCallback = (photos) => {
     setPhotos(photos);
-    console.log("photos from carder",photos);
-  }
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+    console.log("photos from carder", photos);
+  };
   return (
     <div className="CardAdder">
       <Formik
@@ -42,13 +43,22 @@ const schema = yup.object().shape({
           amount: "",
         }}
         onSubmit={(values) => {
-           console.log("SUBMITTING");
-          uploadLot(values.title, values.description,values.soloPrice,values.amount,photos,hashtags,UID).then(response =>{
-            console.log(response)
-          }).
-          catch(error =>{
-            console.log(error);
-          })
+          console.log("SUBMITTING");
+          uploadLot(
+            values.title,
+            values.description,
+            values.soloPrice,
+            values.amount,
+            photos,
+            hashtags,
+            UID
+          )
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }}
         validationSchema={schema}
       >
@@ -57,7 +67,7 @@ const schema = yup.object().shape({
             <form onSubmit={props.handleSubmit}>
               <div className="mainDiv">
                 <div className="gallery">
-                  <InputBox photosCallback={handlePhotosCallback}/>
+                  <InputBox photosCallback={handlePhotosCallback} />
                 </div>
                 <span>
                   <input
@@ -104,7 +114,7 @@ const schema = yup.object().shape({
                         : ""
                     }
                     name="soloPrice"
-                    type="text"
+                    type="number"
                     placeholder="Type price for one"
                     value={props.values.soloPrice}
                     onChange={props.handleChange}
@@ -139,18 +149,21 @@ const schema = yup.object().shape({
                   <input
                     name="hashtags"
                     type="text"
-                    placeholder="Type tags"
-                    value={hashtag}
-                    onChange={(e) => 
-                      setHashtag(e.target.value)}
+                    placeholder="Type key-words"
+                    onChange={(e) => setHashtag(e.target.value)}
                   />
                 </span>
-                <span style={{display: "flex", flexWrap: "wrap"}}>
-                  Hashatags:{" "}
+                <span className="hashtagHolder">
                   {hashtags.map((h, i) => (
-                    <span className="hashtag" key={i} style={{margin: "2px 2px", width: "auto"}}>
+                    <div className="hashtag" key={i}>
                       {h}
-                    </span>
+                      <button className="xButton_2" type="button" 
+                      // onClick={() => setHashtags(hastags.filter((h, i) => i !== index )
+                      // )}
+                      >
+                        x
+                      </button>
+                    </div>
                   ))}
                 </span>
               </div>
@@ -162,11 +175,15 @@ const schema = yup.object().shape({
                     id="addButton"
                     onClick={() => setHashtags([...hashtags, hashtag])}
                   >
-                    Add hashtag
+                    Add key-word
                   </button>
                 </span>
                 <span>
-                  <button type="submit" className="mainButton" id="submitButton">
+                  <button
+                    type="submit"
+                    className="mainButton"
+                    id="submitButton"
+                  >
                     Submit
                   </button>
                 </span>
@@ -178,18 +195,18 @@ const schema = yup.object().shape({
     </div>
   );
 }
-const mapStateToProps  = (state)=>{
+const mapStateToProps = (state) => {
   return {
-    UID:state.userInfo.UID,
-    role:state.userInfo.role
-  }
-}
+    UID: state.userInfo.UID,
+    role: state.userInfo.role,
+  };
+};
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
   return {
     // setUID:(uid)=>dispatch(Actions.setUID(uid)),
     // setRole:(role)=>dispatch(Actions.setRole(role)),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardAdder)
+export default connect(mapStateToProps, mapDispatchToProps)(CardAdder);
