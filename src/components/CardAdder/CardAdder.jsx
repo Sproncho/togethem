@@ -22,13 +22,6 @@ function CardAdder({ UID }) {
   const [hashtags, setHashtags] = useState([]);
   const [hashtag, setHashtag] = useState("");
   const [photos, setPhotos] = useState([]);
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // if(hashtag.includes('#')){
-  //   setHashtag(hashtag.replace('#',''))
-  // } else {
-  //   setHashtag("#" + hashtag);
-  // }
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////
   const handlePhotosCallback = (photos) => {
     setPhotos(photos);
     console.log("photos from carder", photos);
@@ -154,12 +147,12 @@ function CardAdder({ UID }) {
                   />
                 </span>
                 <span className="hashtagHolder">
-                  {hashtags.map((h, i) => (
-                    <div className="hashtag" key={i}>
+                  {hashtags.map((h, index) => (
+                    <div className="hashtag" key={index}>
                       {h}
                       <button className="xButton_2" type="button" 
-                      // onClick={() => setHashtags(hastags.filter((h, i) => i !== index )
-                      // )}
+                      onClick={() => setHashtags(hashtags.filter((h, i) => i !== index )
+                      )}
                       >
                         x
                       </button>

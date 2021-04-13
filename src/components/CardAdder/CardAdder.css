@@ -79,12 +79,19 @@
   font-size: 1.5rem;
   background-color: #111111;
   color: #fff1f1;
-  padding: 5px 10px 5px 10px;
-  z-index: 2;
+  padding: 4px 10px 4px 10px;
+  position: absolute;
+  right:6%;
+  z-index: 1;
+  top:5%;
 }
 
 .CardAdder .xButton:hover {
   background-color: #424141;
+}
+
+.CardAdder .isGalleryEmpty {
+  display: none;
 }
 
 .CardAdder img {
