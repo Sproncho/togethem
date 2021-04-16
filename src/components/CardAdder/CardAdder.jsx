@@ -164,6 +164,7 @@ function CardAdder({ UID }) {
                 <span>
                   <button
                     className="mainButton"
+                    disabled={hashtag.length === 0 || hashtags.length === 5 ? "true" : ""}
                     type="button"
                     id="addButton"
                     onClick={() => setHashtags([...hashtags, hashtag])}

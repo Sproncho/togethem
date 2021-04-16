@@ -2,3 +2,11 @@
   margin: 5px auto 5px auto;
   width: 80%;
 }
+
+input {
+  outline: none;
+}
+
+button{
+  outline: none;
+}
