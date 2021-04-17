@@ -1,14 +1,12 @@
 .MainPage {
     width: 80%;
+    padding:25px 50px;
     border: 1px solid #204660;
     border-radius: 10px;
     margin: 15px auto 30px auto;
     display: flex;
     flex-wrap: wrap;
     background-color: rgb(231, 238, 238);
-}
+    justify-content: space-between;
 
-.Good{
-    margin: 15px auto 15px auto;
-    width:calc(100% /3 - 15px);
 }

@@ -5,8 +5,8 @@
 .Good {
   box-shadow: 0 4px 8px 0 #204660;
   max-width: 300px;
-  margin: 15px auto;
-  padding: 20px;
+  margin: 15px;
+  width:calc(100% /3 - 30px);
   text-align: center;
   font-family: arial;
   border-radius: 5px;
@@ -20,6 +20,7 @@
 }
 
 .Good button {
+  margin-top: auto;
   border: none;
   outline: 0;
   padding: 12px;
