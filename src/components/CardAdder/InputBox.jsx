@@ -83,7 +83,7 @@ export default function InputBox({ photosCallback }) {
                 <Transformation
                   height="480"
                   width="720"
-                  background="#f0f1ef"
+                  background=""
                   crop="pad"
                   format="PNG"
                 />
