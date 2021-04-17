@@ -143,6 +143,7 @@ function CardAdder({ UID }) {
                     name="hashtags"
                     type="text"
                     placeholder="Type key-words"
+                    value={hashtag}
                     onChange={(e) => setHashtag(e.target.value)}
                   />
                 </span>
@@ -150,9 +151,12 @@ function CardAdder({ UID }) {
                   {hashtags.map((h, index) => (
                     <div className="hashtag" key={index}>
                       {h}
-                      <button className="xButton_2" type="button" 
-                      onClick={() => setHashtags(hashtags.filter((h, i) => i !== index )
-                      )}
+                      <button
+                        className="xButton_2"
+                        type="button"
+                        onClick={() =>
+                          setHashtags(hashtags.filter((h, i) => i !== index))
+                        }
                       >
                         x
                       </button>
@@ -164,10 +168,17 @@ function CardAdder({ UID }) {
                 <span>
                   <button
                     className="mainButton"
-                    disabled={hashtag.length === 0 || hashtags.length === 5 ? "true" : ""}
+                    disabled={
+                      hashtag.length === 0 || hashtags.length === 5
+                        ? "true"
+                        : ""
+                    }
                     type="button"
                     id="addButton"
-                    onClick={() => setHashtags([...hashtags, hashtag])}
+                    onClick={() => {
+                      setHashtags([...hashtags, hashtag]);
+                      setHashtag("");
+                    }}
                   >
                     Add key-word
                   </button>
