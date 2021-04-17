@@ -7,7 +7,7 @@
   padding: 30px;
 }
 
-.CardAdder span {
+.CardAdder .mainDiv span {
   width: 44%;
 }
 
@@ -15,6 +15,7 @@
   margin: 30px 0;
   display: flex;
   justify-content: space-between;
+  padding: 10px 0;
 }
 .gallery {
   display: block;
@@ -73,18 +74,29 @@
   display: block;
 }
 
+.CardAdder .mainButton:disabled{
+  background-color: #717171;
+}
+
 .CardAdder .xButton {
   border: 1px solid rgb(58, 55, 55);
   border-radius: 30px;
   font-size: 1.5rem;
   background-color: #111111;
   color: #fff1f1;
-  padding: 5px 10px 5px 10px;
-  z-index: 2;
+  padding: 4px 10px 4px 10px;
+  position: absolute;
+  right:6%;
+  z-index: 1;
+  top:5%;
 }
 
 .CardAdder .xButton:hover {
   background-color: #424141;
+}
+
+.CardAdder .isGalleryEmpty {
+  display: none;
 }
 
 .CardAdder img {
@@ -97,6 +109,30 @@
   border: rgb(241, 139, 139);
 }
 
-/* .CardAdder .hashtag{
-  display: block;
-} */
+.CardAdder .hashtagHolder{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.CardAdder .hashtag{
+  background-color: #aba8a8;
+  text-align: left;
+  margin: 2px 2px 2px 2px;
+  border-radius: 13px;
+  border: 1 solid #204660;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+}
+
+.CardAdder .xButton_2{
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 7px;
+  background-color: #111111;
+  color: #fff1f1;
+  padding: 0px 5px 3px 5px;
+  margin: 2px 2px 2px 3px;
+}
+.CardAdder .xButton_2:hover {
+  background-color: #424141;
+}

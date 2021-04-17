@@ -54,7 +54,7 @@ export default function InputBox({ photosCallback }) {
     setCurrentPhotoIndex(index);
   };
   return (
-    <div>
+    <div style={{position:"relative"}}>
       <button
         onClick={() =>
           setUploadedFiles((old) => {
@@ -65,7 +65,7 @@ export default function InputBox({ photosCallback }) {
             return newState;
           })
         }
-        className="xButton"
+        className={uploadedFiles.length === 0 ? "isGalleryEmpty" : "xButton"}
         type="button"
       >
         X
