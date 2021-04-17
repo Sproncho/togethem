@@ -8,7 +8,7 @@ import { fb } from "../../config/firebase-config";
 import { connect } from "react-redux";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 import InputBox from "./InputBox";
-import { uploadLot } from "../../services/card-data-servcie";
+import { uploadLot, getLots,getMyLots} from "../../services/card-data-servcie";
 
 const schema = yup.object().shape({
   title: yup.string().required("Required field."),
@@ -58,6 +58,12 @@ function CardAdder({ UID }) {
         {(props) => {
           return (
             <form onSubmit={props.handleSubmit}>
+
+
+               <button type="button" onClick={() =>{getLots()}}>get lots</button>
+
+
+
               <div className="mainDiv">
                 <div className="gallery">
                   <InputBox photosCallback={handlePhotosCallback} />

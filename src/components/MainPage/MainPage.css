@@ -10,4 +10,5 @@
 
 .Good{
     margin: 15px auto 15px auto;
+    width:calc(100% /3 - 15px);
 }
