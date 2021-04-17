@@ -1,5 +1,5 @@
 import Types from './actionTypes'
-
+import {fb} from '../../config/firebase-config'
 export  function setUID(UID){
     return{
         type:Types.setUID,
@@ -8,6 +8,20 @@ export  function setUID(UID){
         }
     };
 }
+
+
+// export function setUID(){
+//     return dispatch =>{
+//         fb.auth().then(response => {
+//             dispatch({
+//                 type:Types.setUID,
+//                 payload:{
+//                     UID: response.currentUser.U
+//                 }
+//             })
+//         })
+//     }
+// }
 
 export function setRole(role){
     return{

@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   padding: 30px 30px 0 30px;
   justify-content: space-between;
-  border: 3px solid #204660;
+  border: 1px solid #204660;
   border-radius: 10px;
   background-color: rgb(231, 238, 238);
 }
@@ -19,7 +19,7 @@
 }
 
 .loginPage button {
-  margin: 25px 50px 25px 15px;
+  margin: 25px auto 25px auto;
   height: 50px;
   width: 150px;
   border: 1px solid rgb(58, 55, 55);
@@ -27,7 +27,4 @@
   font-size: 1.5rem;
   background-color: #111111;
   color: #fff1f1;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 
 }
