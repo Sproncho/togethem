@@ -1,6 +1,7 @@
 /* .Lots * {
-  border-top: 1px solid #010102;
+  border-top: 1px solid black;
 } */
+
 .Lots {
   margin: 20px 40px 20px 40px;
   display: flex;
@@ -13,40 +14,54 @@
   height: 200px;
 }
 
+.Lots .mainDiv{
+  display: flex;
+  height: 100%;
+  width: 60%
+}
+
 .Lots .img {
   margin: 0 auto 0 15px;
-  max-height: 200px;
   width: 200px;
   width: fit-content;
 }
 
 .Lots .textInf {
-  margin: auto;
+  margin: 25px auto auto auto;
   width: 400px;
+  height: 100%;
+  text-align: left;
 }
 
 .Lots .title {
   text-align: left;
-  font-size: 2.3rem;
+  font-size: 2.5rem;
   margin-bottom: auto;
+  text-overflow: ellipsis;
 }
 
 .Lots .description {
   margin-top: auto;
+  font-size: 1.8rem;
+  text-overflow: ellipsis;
+  overflow:hidden;
 }
 
 .Lots .digitInf {
-  margin: auto;
+  margin: 25px auto auto auto;
+  width: 150px;
+  height: 100%;
+  text-align: left;
 }
 
-.price {
+.Lots .price {
   color: grey;
-  font-size: 22px;
+  font-size: 2.5rem;
 }
 
-.count {
+.Lots .count {
   color: grey;
-  font-size: 22px;
+  font-size: 1.8rem;
 }
 
 .Lots .buttons {
