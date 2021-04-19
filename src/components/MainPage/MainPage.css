@@ -4,9 +4,16 @@
     border: 1px solid #204660;
     border-radius: 10px;
     margin: 15px auto 30px auto;
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* justify-content:space-around; */
     background-color: rgb(231, 238, 238);
-    justify-content: space-between;
-
+    /* justify-content: safe center; */
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: space-between; */
 }
+/* .MainPage .grow{
+    flex-grow: 1;
+    margin-left: 15px;
+} */

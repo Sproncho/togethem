@@ -15,8 +15,8 @@ export default function MainPage() {
     setLoading(false);
   }, []);
   const cutDescription = (description) => {
-    if(description.length > 50){
-      description.slice(0, 50)
+    if(description.length > 70){
+      description = description.substring(0, 70)+'...';
     }
     return description;
   }
@@ -33,6 +33,7 @@ export default function MainPage() {
             imageId={lot.photoIDs[0]}
           />
         ))}
+        {/* <div className="grow"></div> */}
     </div>
   );
 }
