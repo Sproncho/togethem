@@ -78,7 +78,9 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
           <Route path="/addCard" component={CardAdder}>
             {role !== "Seller" && <Redirect from="/addCard" to="/" />}
           </Route>
-          <Route path="/sellerLots" component={SellerLots}></Route>
+          <Route path="/sellerLots" component={SellerLots}>
+            {role !== "Seller" && <Redirect from="/sellerLots" to="/" />}
+          </Route>
         </Switch>
       )}
     </div>
