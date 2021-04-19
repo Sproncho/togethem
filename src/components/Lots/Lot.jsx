@@ -2,13 +2,13 @@ import "./Lot.css";
 import { useHistory } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
 
-export default function Lot() {
+export default function Lot({soloPrice,title,description,amount,totalAmount}) {
   const history = useHistory();
 
   return (
     <div className="Lots">
       <div className="img">
-        <Image
+         <Image
           cloudName={process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME}
           public_id="fvkskq5fuba7zxdr5dit"
         >
@@ -19,16 +19,16 @@ export default function Lot() {
             crop="pad"
             format="PNG"
             />
-        </Image>
+        </Image> 
       </div>
       <div className="textInf">
-        <div className="title">Дохуя крутой титульник для чего то там</div>
+        <div className="title">{title}</div>
         <hr/>
-        <div className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet consequatur possimus voluptatum eius cum voluptatem, quasi blanditiis voluptate veritatis adipisci!</div>
+        <div className="description">{description}</div>
       </div>
       <div className="digitInf">
-        <div className="price">Price</div>
-        <div className="count">Count</div>
+        <div className="price">{soloPrice}</div>
+        <div className="count">{amount}/{totalAmount}</div>
       </div>
       <div className="buttons">
         <button className="button">exit or close</button>
