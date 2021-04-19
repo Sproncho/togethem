@@ -17,7 +17,6 @@ export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs
             sellerId:uid
         })
         console.log("response is",response.id);
-        const doc = await ref.get();
         await ref.update({
             lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
         })
@@ -29,7 +28,7 @@ export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs
 export async function getLots(){
     try{
         const collection = await fb.firestore().collection("lots").get();
-        const lots = collection.docs.map(doc => { return doc.data()})
+        const lots = collection.docs.map(doc => { return{ ...doc.data(),id:doc.id}})
         console.log(lots);
         return lots; 
     }catch(error){
@@ -49,8 +48,9 @@ export async function getMyLots(uid){
         
         for(let i = 0; i < lotsIds.length; i++){
             var lot = (await fb.firestore().collection("lots").doc(lotsIds[i]).get()).data();
-            lots.push(lot);
+            lots.push({...lot,id:lotsIds[i]});
         }
+        console.log(lots);
         return lots;
         // return lotsIds;
     }catch(error){
@@ -65,5 +65,17 @@ export async function getLotById(id){
         console.log({...lot.data(),id:id});
     }catch(error){
         Promise.reject(error);
+    }
+}
+export async function deleteLotByid(uid,id){
+    try{
+        const deleted = await fb.firestore().collection("lots").doc(id).delete();
+        const ref = fb.firestore().collection("users").doc(uid);
+        await ref.update({
+            lotsIds:firebase.firestore.FieldValue.arrayRemove(id)
+        })
+        return deleted;
+    }catch(error){
+        return Promise.reject(error);
     }
 }
