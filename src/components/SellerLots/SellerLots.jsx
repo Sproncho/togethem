@@ -27,7 +27,7 @@ function SellerLots({UID}) {
        {loading && <h2>Loading...</h2>}
        
        {!loading && lots.map((lot,i) => <Lot key={i} soloPric
-          e={lot.soloPrice} title={lot.title} description={lot.description} amount = {lot.amount} totalAmount={lot.totalAmount}/>
+          e={lot.soloPrice} title={lot.title} description={lot.description} amount = {lot.amount} totalAmount={lot.totalAmount} imageId={lot.photoIDs[0]}/>
         
        )}
        {!loading &&<img className="addLotsButton" src={plusIcon} />}

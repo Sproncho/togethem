@@ -28,7 +28,9 @@ function Header({ setRole, role, location }) {
         {fb.auth().currentUser &&
           role === "Seller" &&
           (location !== "/register" || location !== "/login") && (
-            <button>Lots</button>
+            <button onClick={()=>{
+              history.push("/sellerLots")
+            }}>Lots</button>
           )}
         {!fb.auth().currentUser && location.pathname === "/" && (
           <button
