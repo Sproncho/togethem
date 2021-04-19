@@ -1,7 +1,7 @@
 import {fb} from '../config/firebase-config';
 import firebase from "firebase";
 import { func } from 'prop-types';
-export async function uploadLot(title,description,soloPrice,amount,photoIDs,hashtags,uid){
+export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs,hashtags,uid){
     try{
         const ref = fb.firestore().collection("users").doc(uid);
         const collection = fb.firestore().collection("lots")
@@ -9,7 +9,8 @@ export async function uploadLot(title,description,soloPrice,amount,photoIDs,hash
             title,
             description,
             soloPrice,
-            amount,
+            totalAmount,
+            amount:0,
             photoIDs,
             hashtags,
             sellerId:uid
@@ -39,13 +40,20 @@ export async function getMyLots(uid){
     try{
         const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().lotsIds
         var lots = [];
-        lotsIds.forEach(async id =>{
-            var lot = (await fb.firestore().collection("lots").doc(id).get()).data();
+        // lotsIds.forEach(async id =>{
+        //     var lot = (await fb.firestore().collection("lots").doc(id).get()).data();
+           
+        //     lots.push(lot);
+        // })
+        
+        for(let i = 0; i < lotsIds.length; i++){
+            var lot = (await fb.firestore().collection("lots").doc(lotsIds[i]).get()).data();
             lots.push(lot);
-        })
-        return lots
+        }
+        return lots;
+        // return lotsIds;
     }catch(error){
-
+        Promise.reject(error);
     }
 }
 
