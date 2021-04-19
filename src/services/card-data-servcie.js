@@ -1,6 +1,7 @@
 import {fb} from '../config/firebase-config';
 import firebase from "firebase";
 import { func } from 'prop-types';
+
 export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs,hashtags,uid){
     try{
         const ref = fb.firestore().collection("users").doc(uid);
