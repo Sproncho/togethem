@@ -60,7 +60,7 @@ function CardAdder({ UID }) {
             <form onSubmit={props.handleSubmit}>
 
 
-               <button type="button" onClick={() =>{getLots()}}>get lots</button>
+               <button type="button" onClick={() =>{getMyLots(UID)}}>get lots</button>
 
 
 

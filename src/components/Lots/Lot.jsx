@@ -2,14 +2,8 @@ import "./Lot.css";
 import { useHistory } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
 
-export default function Lot({
-  soloPrice,
-  title,
-  description,
-  amount,
-  totalAmount,
-  imageId,
-}) {
+import {deleteLotByid} from "../../services/card-data-servcie"
+export default function Lot({soloPrice,title,description,amount,totalAmount,imageId,id,sellerId,deleteCallback}) {
   const history = useHistory();
   const cutTitle = (title) => {
     if (title.length > 40) {
@@ -52,10 +46,11 @@ export default function Lot({
             Amount: {amount}/{totalAmount}
           </div>
         </div>
+
       </div>
 
       <div className="buttons">
-        <button className="button">exit or close</button>
+        <button className="button" onClick={() =>{deleteCallback(sellerId,id)}}>exit or close</button>
       </div>
     </div>
   );
