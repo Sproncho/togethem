@@ -5,6 +5,7 @@
 .Good {
   box-shadow: 0 4px 8px 0 #204660;
   max-width: 300px;
+  height: 395px;
   margin: 15px;
   width:calc(100% /3 - 30px);
   text-align: center;
@@ -12,15 +13,29 @@
   border-radius: 5px;
   overflow: hidden;
   background-color: #ffffff;
+  position: relative;
+
 }
 
-.price {
+.Good .title{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 2rem;
+  overflow:hidden;
+}
+
+.Good .price {
   color: grey;
   font-size: 22px;
 }
 
+.Good .description {
+  text-overflow: ellipsis;
+  overflow:hidden;
+}
+
 .Good button {
-  margin-top: auto;
+  vertical-align: bottom;
   border: none;
   outline: 0;
   padding: 12px;
@@ -30,6 +45,7 @@
   cursor: pointer;
   width: 100%;
   font-size: 18px;
+  margin-bottom: 0;
 }
 
 .Good button:hover {
@@ -40,6 +56,9 @@
   width: 100%;
 }
 
-.Good p:last-child {
+.Good p:last-child{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   margin-bottom: 0;
 }

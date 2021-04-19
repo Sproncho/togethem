@@ -43,6 +43,7 @@ export async function getMyLots(uid){
             var lot = (await fb.firestore().collection("lots").doc(id).get()).data();
             lots.push(lot);
         })
+        console.log(lots);
         return lots
     }catch(error){
 

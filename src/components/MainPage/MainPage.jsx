@@ -14,6 +14,12 @@ export default function MainPage() {
     });
     setLoading(false);
   }, []);
+  const cutDescription = (description) => {
+    if(description.length > 50){
+      description.slice(0, 50)
+    }
+    return description;
+  }
   return (
     <div className="MainPage">
       {loading && <h2>Loading...</h2>}
@@ -23,7 +29,7 @@ export default function MainPage() {
             className="Good"
             title={lot.title}
             soloPrice={lot.soloPrice}
-            description={lot.description}
+            description={cutDescription(lot.description)}
             imageId={lot.photoIDs[0]}
           />
         ))}

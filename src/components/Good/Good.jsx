@@ -3,12 +3,7 @@ import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
 
-export default function Good({
-  title,
-  soloPrice,
-  description,
-  imageId,
-}) {
+export default function Good({ title, soloPrice, description, imageId }) {
   const history = useHistory();
   return (
     <div className="Good">
@@ -26,12 +21,11 @@ export default function Good({
           format="PNG"
         />
       </Image>
-      <h1>{title}</h1>
+      <h1 className="title">{title}</h1>
       <p className="price">price: {soloPrice}</p>
-      <p> {description}</p>
-      <p>
-        <button>Buy</button>
-      </p>
+      <p className="description"> {description}</p>
+      <p><button>Buy</button></p>
+      
     </div>
   );
 }
