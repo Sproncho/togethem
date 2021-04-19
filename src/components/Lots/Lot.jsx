@@ -2,7 +2,7 @@ import "./Lot.css";
 import { useHistory } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
 
-export default function Lot({soloPrice,title,description,amount,totalAmount}) {
+export default function Lot({soloPrice,title,description,amount,totalAmount,imageId}) {
   const history = useHistory();
 
   return (
@@ -10,7 +10,7 @@ export default function Lot({soloPrice,title,description,amount,totalAmount}) {
       <div className="img">
          <Image
           cloudName={process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME}
-          public_id="fvkskq5fuba7zxdr5dit"
+          public_id={imageId}
         >
             <Transformation
             height="200"
