@@ -3,7 +3,8 @@ import Good from "../Good/Good.jsx";
 import { useHistory } from "react-router-dom";
 import { getLots } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
-export default function MainPage() {
+import {connect} from "react-redux"
+function MainPage({UID}) {
   const history = useHistory();
   const [lots, setLots] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,14 +27,28 @@ export default function MainPage() {
       {!loading &&
         lots.map((lot) => (
           <Good
+            key={lot.id}
             className="Good"
             title={lot.title}
             soloPrice={lot.soloPrice}
             description={cutDescription(lot.description)}
             imageId={lot.photoIDs[0]}
+            id={lot.id}
           />
         ))}
         {/* <div className="grow"></div> */}
     </div>
   );
 }
+const mapStateToProps  = (state)=>{
+  return {
+    UID:state.userInfo.UID,
+    role:state.userInfo.role
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage)

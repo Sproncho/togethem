@@ -5,7 +5,7 @@ import { func } from 'prop-types';
 export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs,hashtags,uid){
     try{
         const ref = fb.firestore().collection("users").doc(uid);
-        const collection = fb.firestore().collection("lots")
+        const collection = fb.firestore().collection("lots");
         const response = await collection.add({
             title,
             description,
@@ -32,7 +32,7 @@ export async function getLots(){
         console.log(lots);
         return lots; 
     }catch(error){
-        Promise.reject(error);
+        return Promise.reject(error);
     }
 }
 
@@ -54,7 +54,7 @@ export async function getMyLots(uid){
         return lots;
         // return lotsIds;
     }catch(error){
-        Promise.reject(error);
+        return Promise.reject(error);
     }
 }
 
@@ -64,7 +64,7 @@ export async function getLotById(id){
         const lot = await fb.firestore().collection("lots").doc(id).get();
         console.log({...lot.data(),id:id});
     }catch(error){
-        Promise.reject(error);
+        return Promise.reject(error);
     }
 }
 export async function deleteLotByid(uid,id){
@@ -75,6 +75,54 @@ export async function deleteLotByid(uid,id){
             lotsIds:firebase.firestore.FieldValue.arrayRemove(id)
         })
         return deleted;
+    }catch(error){
+        return Promise.reject(error);
+    }
+}
+
+
+export async function checkBuying(uid,id){
+    const doc =  await fb.firestore().collection("lots").doc(id).collection("buyers").doc(uid).get();
+    if(doc.exists){
+        console.log("купил уже");
+        return true;
+    }else{
+        console.log("еще не купил");
+        return false;
+    }
+}
+
+export async function subscribeOnLot(uid,id,amount){
+    try{
+        const isBought =await checkBuying(uid,id)
+        if(isBought){
+            throw "already bought";
+        }
+        const collection = fb.firestore().collection("lots").doc(id).collection("buyers");
+        await collection.doc(uid).set({amount});
+        const lotRef = fb.firestore().collection("lots").doc(id);
+        await lotRef.update({
+            amount:firebase.firestore.FieldValue.increment(amount)
+        }) 
+        const userRef =  fb.firestore().collection("users").doc(uid);
+        await userRef.update({
+            groupIds:firebase.firestore.FieldValue.arrayUnion(id)
+        })
+    }catch(error){
+        return Promise.reject(error);
+    }
+}
+
+export async function getMyGroups(uid){
+    try{
+        const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().groupIds;
+        var lots = [];
+        for(let i = 0; i < lotsIds.length; i++){
+           var lot = (await fb.firestore().collection("lots").doc(lotsIds[i]).get()).data();
+           lots.push({...lot,id:lotsIds[i]});
+        }
+        console.log(lots);
+        return lots;
     }catch(error){
         return Promise.reject(error);
     }

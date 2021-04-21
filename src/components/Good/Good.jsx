@@ -2,8 +2,9 @@ import "./Good.css";
 import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
-
-export default function Good({ title, soloPrice, description, imageId }) {
+import {connect} from "react-redux"
+import {subscribeOnLot} from '../../services/card-data-servcie'
+function Good({ title, soloPrice, description, imageId,UID,id }) {
   const history = useHistory();
   return (
     <div className="Good">
@@ -24,8 +25,20 @@ export default function Good({ title, soloPrice, description, imageId }) {
       <h1 className="title">{title}</h1>
       <p className="price">price: {soloPrice}</p>
       <p className="description"> {description}</p>
-      <p><button>Buy</button></p>
+      <p><button onClick={() =>{subscribeOnLot(UID,id,1).catch(error => console.log(error))}}>Buy</button></p>
       
     </div>
   );
 }
+const mapStateToProps  = (state)=>{
+  return {
+    UID:state.userInfo.UID,
+    role:state.userInfo.role
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Good)
