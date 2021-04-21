@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "./components/Header/Header";
 import MainPage from "./components/MainPage/MainPage";
 import SellerLots from "./components/SellerLots/SellerLots";
+import FullCard from "./components/FullCard/FullCard";
 import Test from "./components/testComponent/testComponent";
 import * as Actions from "./redux/userInfoStore/actionCreators";
 import CardAdder from "./components/CardAdder/CardAdder";
@@ -80,6 +81,8 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
           </Route>
           <Route path="/sellerLots" component={SellerLots}>
             {role !== "Seller" && <Redirect from="/sellerLots" to="/" />}
+          </Route>
+          <Route path="/fullCard/:id" component={FullCard}>
           </Route>
         </Switch>
       )}

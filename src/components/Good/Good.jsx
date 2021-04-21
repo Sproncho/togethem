@@ -3,8 +3,14 @@ import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
 
-export default function Good({ title, soloPrice, description, imageId }) {
+export default function Good({ title, soloPrice, description, imageId, id}) {
   const history = useHistory();
+  const cutDescription = (description) => {
+    if(description.length > 70){
+      description = description.substring(0, 70)+'...';
+    }
+    return description;
+  }
   return (
     <div className="Good">
       {/* <img src={imageSrc} alt="Photo of good" /> */}
@@ -23,8 +29,10 @@ export default function Good({ title, soloPrice, description, imageId }) {
       </Image>
       <h1 className="title">{title}</h1>
       <p className="price">price: {soloPrice}</p>
-      <p className="description"> {description}</p>
-      <p><button>Buy</button></p>
+      <p className="description"> {cutDescription(description)}</p>
+      <p><button
+      onClick={() => history.push(`/fullCard/${id}`)}
+      >Buy</button></p>
       
     </div>
   );

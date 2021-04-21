@@ -14,12 +14,6 @@ export default function MainPage() {
     });
     setLoading(false);
   }, []);
-  const cutDescription = (description) => {
-    if(description.length > 70){
-      description = description.substring(0, 70)+'...';
-    }
-    return description;
-  }
   return (
     <div className="MainPage">
       {loading && <h2>Loading...</h2>}
@@ -29,8 +23,9 @@ export default function MainPage() {
             className="Good"
             title={lot.title}
             soloPrice={lot.soloPrice}
-            description={cutDescription(lot.description)}
+            description={(lot.description)}
             imageId={lot.photoIDs[0]}
+            id={lot.id}
           />
         ))}
         {/* <div className="grow"></div> */}
