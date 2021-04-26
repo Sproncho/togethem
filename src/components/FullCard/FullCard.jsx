@@ -21,7 +21,7 @@ export default function FullCard({ soloPrice,title,description,amount,totalAmoun
 
 //   const renderCustomThumbs = () => {
 //     const thumblist = uploadedFiles.map((file) => (
-//       <img key={file.public_id} src={file.url} />
+//       <img key={imageId} src={file.url} />
 //     ));
 //     return thumblist;
 //   };
@@ -34,12 +34,12 @@ export default function FullCard({ soloPrice,title,description,amount,totalAmoun
               onChange={getCurrentPhoto}
             >
               {uploadedFiles.map((file) => (
-                <div key={file.public_id}>
+                <div key={imageId}>
                   <Image
                     cloudName={
                       process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME
                     }
-                    publicId={file.public_id}
+                    publicId={imageId}
                   >
                     <Transformation
                       height="480"
