@@ -26,7 +26,7 @@ function MainPage({ UID }) {
       {loading && <h2>Loading...</h2>}
       {!loading &&
         lots.map((lot) => {
-          if (!lot.finished || true) {
+          if (!lot.finished) {
             return (
               <Good
                 key={lot.id}
