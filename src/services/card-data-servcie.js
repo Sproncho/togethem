@@ -14,7 +14,8 @@ export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs
             amount:0,
             photoIDs,
             hashtags,
-            sellerId:uid
+            sellerId:uid,
+            finished:false
         })
         console.log("response is",response.id);
         await ref.update({
@@ -63,6 +64,7 @@ export async function getLotById(id){
     try{
         const lot = await fb.firestore().collection("lots").doc(id).get();
         console.log({...lot.data(),id:id});
+        return {...lot.data(),id:id};
     }catch(error){
         return Promise.reject(error);
     }
@@ -98,12 +100,31 @@ export async function subscribeOnLot(uid,id,amount){
         if(isBought){
             throw "already bought";
         }
+
+        const lot = await getLotById(id);
+
+        console.log("Gotted lot:",lot,"id of lot: ",id);
+
+        if(lot.amount + amount > lot.totalAmount){
+            throw "too big number";
+        }
+
+        
+
         const collection = fb.firestore().collection("lots").doc(id).collection("buyers");
         await collection.doc(uid).set({amount});
         const lotRef = fb.firestore().collection("lots").doc(id);
+        if(lot.amount + amount === lot.totalAmount){
+            await lotRef.update({//need testing
+                finished:true
+            }) 
+        }
+
         await lotRef.update({
             amount:firebase.firestore.FieldValue.increment(amount)
         }) 
+
+
         const userRef =  fb.firestore().collection("users").doc(uid);
         await userRef.update({
             groupIds:firebase.firestore.FieldValue.arrayUnion(id)
@@ -113,6 +134,17 @@ export async function subscribeOnLot(uid,id,amount){
     }
 }
 
+export async function unsubscribeFromLot(uid,id){
+    const ref =  fb.firestore().collection("lots").doc(id).collection("buyers").doc(uid);
+    const amount =  (await ref.get()).data().amount;
+    console.log("AMOUNT", amount);
+    await ref.delete();
+    const lotRef = fb.firestore().collection("lots").doc(id);
+    await lotRef.update({
+        amount:firebase.firestore.FieldValue.increment(-amount),
+        finished:false
+    })
+}
 export async function getMyGroups(uid){
     try{
         const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().groupIds;

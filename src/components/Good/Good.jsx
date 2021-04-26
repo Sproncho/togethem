@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
 import {connect} from "react-redux"
-import {subscribeOnLot} from '../../services/card-data-servcie'
+import {subscribeOnLot,unsubscribeFromLot} from '../../services/card-data-servcie'
 function Good({ title, soloPrice, description, imageId,UID,id }) {
   const history = useHistory();
   return (
