@@ -15,6 +15,33 @@
   background-color: #ffffff;
   position: relative;
 }
+@media screen and (min-width: 1400px) {
+  .Good {
+    width:calc(100% /4 - 60px);
+    /* margin:15px auto; */
+  }
+}
+@media screen and (max-width: 1200px) {
+  .Good {
+    width:calc(100% /3 - 60px);
+    /* margin:15px auto; */
+  }
+}
+@media screen and (max-width: 992px) {
+  .Good {
+    width:calc(100% /2 - 60px);
+    /* margin:15px auto; */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Good {
+    width:calc(100% /1 - 60px);
+    margin:15px auto;
+  }
+}
+
+
 .Good .title{
   white-space: nowrap;
   text-overflow: ellipsis;
