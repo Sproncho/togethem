@@ -6,7 +6,7 @@ import { getLots } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
 import Good from "../Good/Good.jsx";
 
-export default function FullCard({ imageId }) {
+export default function FullCard({ soloPrice,title,description,amount,totalAmount,imageId }) {
   const [lots, setLots] = useState([]);
   const [loading, setLoading] = useState(true);
   const {id} = useParams();
@@ -55,21 +55,21 @@ export default function FullCard({ imageId }) {
       </div>
 
       <div className="mainDiv">
-        <div>Title</div>
+        <div>{title}</div>
         <hr />
-        <div>Description</div>
+        <div>{description}</div>
         <hr />
-        <div>Price</div>
+        <div>{soloPrice}</div>
         <hr />
         <div className="GroupAndAmount">
           <span>GROUP BUY</span>
-          <span>Amount in group</span>
+          <span>{amount}/{totalAmount}</span>
         </div>
       </div>
       <div className="similarLots">
         {loading && <h2>Loading...</h2>}
         {!loading &&
-          lots.map((lot) => (
+          lots.slice(0,3).map((lot) => (
             <Good
               className="Good"
               title={lot.title}
