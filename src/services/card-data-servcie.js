@@ -51,11 +51,6 @@ export async function getMyLots(uid){
         return Promise.reject(error);
 
     }
-    console.log(lots);
-    return lots;
-  } catch (error) {
-    Promise.reject(error);
-  }
 }
 
 export async function getLotById(id){

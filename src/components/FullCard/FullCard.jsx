@@ -2,12 +2,13 @@ import "./FullCard.css";
 import { useHistory , useParams } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
 import { Carousel } from "react-responsive-carousel";
-import { getLots } from "../../services/card-data-servcie";
+import { getLots, getLotById } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
 import Good from "../Good/Good.jsx";
 
-export default function FullCard({ soloPrice,title,description,amount,totalAmount,imageId }) {
+export default function FullCard() {
   const [lots, setLots] = useState([]);
+  const [lot, setLot] = useState({});
   const [loading, setLoading] = useState(true);
   const {id} = useParams();
   useEffect(() => {
@@ -16,56 +17,56 @@ export default function FullCard({ soloPrice,title,description,amount,totalAmoun
     getLots().then((response) => {
       setLots(response);
     });
+    getLotById(id).then((response) => {
+      setLot(response);
+    })
+    console.log("НАШ ЛОТ", lot);
     setLoading(false);
   }, []);
 
-//   const renderCustomThumbs = () => {
-//     const thumblist = uploadedFiles.map((file) => (
-//       <img key={imageId} src={file.url} />
-//     ));
-//     return thumblist;
-//   };
-
+  // const renderCustomThumbs = () => {
+  //   const thumblist = uploadedFiles.map((file) => (
+  //     <img key={lot.imageId} src={file.url} />
+  //   ));
+  //   return thumblist;
+  // };
+  console.log("НАШ ЛОТ2", lot.photoIDs);
   return (
     <div className="FullCard">
       <div className="mainDiv">
-        {/* <Carousel
-              renderThumbs={renderCustomThumbs}
-              onChange={getCurrentPhoto}
-            >
-              {uploadedFiles.map((file) => (
-                <div key={imageId}>
+        {lot.photoIDs && <Carousel>
+              {lot.photoIDs.map((id) => (
+                <div key={id}>
                   <Image
                     cloudName={
                       process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME
                     }
-                    publicId={imageId}
+                    publicId={id}
                   >
-                    <Transformation
+                    {/* <Transformation
                       height="480"
                       width="720"
                       background=""
                       crop="pad"
-                      format="PNG"
+                      format="PNG" */}
                     />
                   </Image>
                 </div>
               ))}
-            </Carousel> */}
+        </Carousel>}
       </div>
-
       <div className="mainDiv">
-        <div>{title}</div>
-        <hr />
-        <div>{description}</div>
-        <hr />
-        <div>{soloPrice}</div>
-        <hr />
+        <div className="title">{lot.title}</div>
+        <div className="hr"/>
+        <div className="price">${lot.soloPrice}</div>
+        <div className="hr"/>
         <div className="GroupAndAmount">
-          <span>GROUP BUY</span>
-          <span>{amount}/{totalAmount}</span>
+          <span><button className="mainBtn">Group Buy {lot.amount}/{lot.totalAmount}</button></span>
         </div>
       </div>
+      <div className="hr"/>
+      <div className="description">{lot.description}</div>
+      <div className="hr"/>
       <div className="similarLots">
         {loading && <h2>Loading...</h2>}
         {!loading &&
