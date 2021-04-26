@@ -1,6 +1,6 @@
-import { fb } from "../config/firebase-config";
+import {fb} from '../config/firebase-config';
 import firebase from "firebase";
-import { func } from "prop-types";
+import { func } from 'prop-types';
 
 export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs,hashtags,uid){
     try{
@@ -41,17 +41,24 @@ export async function getMyLots(uid){
     try{
         const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().lotsIds
         var lots = [];
+        // lotsIds.forEach(async id =>{
+        //     var lot = (await fb.firestore().collection("lots").doc(id).get()).data();
+           
+        //     lots.push(lot);
+        // })
+        
         for(let i = 0; i < lotsIds.length; i++){
             var lot = (await fb.firestore().collection("lots").doc(lotsIds[i]).get()).data();
             lots.push({...lot,id:lotsIds[i]});
         }
         console.log(lots);
         return lots;
+        // return lotsIds;
     }catch(error){
         return Promise.reject(error);
-
     }
 }
+
 
 export async function getLotById(id){
     try{
