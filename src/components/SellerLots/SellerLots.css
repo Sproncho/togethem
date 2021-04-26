@@ -1,21 +1,38 @@
 .SellerLots {
-    width: 80%;
-    border: 1px solid #204660;
-    border-radius: 10px;
-    margin: 15px auto 30px auto;
-    background-color: rgb(231, 238, 238);
+  width: 80%;
+  border: 1px solid #204660;
+  border-radius: 10px;
+  margin: 15px auto 30px auto;
+  background-color: rgb(231, 238, 238);
 }
 
-.SellerLots .addLotsButton{
-    padding-bottom: 15px;
-    height: 80px;
-    display: block;
-    position: fixed;
-    right: 50px;
-    bottom: 40px;
-    cursor: pointer;
+.SellerLots .addLotsButton {
+  padding-bottom: 15px;
+  height: 80px;
+  display: block;
+  position: fixed;
+  right: 50px;
+  bottom: 40px;
+  cursor: pointer;
 }
 
-.SellerLots .addLotsButton:hover{
-    opacity: 0.7;
+.SellerLots .addLotsButton:hover {
+  opacity: 0.7;
+}
+
+.SellerLots .mainBtn {
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 60px;
+  min-width: 50px;
+  border: 1px solid rgb(58, 55, 55);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  font-size: 2rem;
+  background-color: #111111;
+  color: #fff1f1;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
