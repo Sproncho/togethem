@@ -1,8 +1,7 @@
 import "./Lot.css";
 import { useHistory } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
-
-import {deleteLotByid} from "../../services/card-data-servcie"
+import {deleteLotByid} from "../../services/card-data-servcie";
 export default function Lot({soloPrice,title,description,amount,totalAmount,imageId,id,sellerId,deleteCallback}) {
   const history = useHistory();
   const cutTitle = (title) => {
