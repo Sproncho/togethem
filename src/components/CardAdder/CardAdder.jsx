@@ -8,13 +8,26 @@ import { fb } from "../../config/firebase-config";
 import { connect } from "react-redux";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 import InputBox from "./InputBox";
-import { uploadLot, getLots,getMyLots} from "../../services/card-data-servcie";
+import {
+  uploadLot,
+  getLots,
+  getMyLots,
+} from "../../services/card-data-servcie";
 
 const schema = yup.object().shape({
   title: yup.string().required("Required field."),
   description: yup.string().required("Required field."),
-  soloPrice: yup.string().required("Required field."),
-  amount: yup.string().required("Required field."),
+  soloPrice: yup
+    .number()
+    .min(0.01, "Price cannot be zero").positive("Price cannot be negative")
+    .max(10000, "The price cannot be more than $10,000")
+    .required("Required field."),
+  amount: yup
+    .number()
+    .min(1, "The quantity of goods must not be equal to 0 or less")
+    .max(10000, "The quantity of goods must be no more than 10.000")
+    .positive("The amount must be greater than zero")
+    .required("Required field."),
 });
 
 function CardAdder({ UID }) {
@@ -58,11 +71,14 @@ function CardAdder({ UID }) {
         {(props) => {
           return (
             <form onSubmit={props.handleSubmit}>
-
-
-               <button type="button" onClick={() =>{getMyLots(UID)}}>get lots</button>
-
-
+              <button
+                type="button"
+                onClick={() => {
+                  getMyLots(UID);
+                }}
+              >
+                get lots
+              </button>
 
               <div className="mainDiv">
                 <div className="gallery">

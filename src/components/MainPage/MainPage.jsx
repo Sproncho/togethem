@@ -21,6 +21,7 @@ function MainPage({ UID }) {
     }
     return description;
   };
+
   return (
     <div className="MainPage">
       {loading && <h2>Loading...</h2>}
@@ -41,6 +42,7 @@ function MainPage({ UID }) {
           }
         })}
       {/* <div className="grow"></div> */}
+
     </div>
   );
 }
