@@ -10,13 +10,17 @@ import {
 } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
 import Good from "../Good/Good.jsx";
+
+import Popup from "reactjs-popup";
 import { connect } from "react-redux";
+
 function FullCard({ UID }) {
+  const [bought, setBought] = useState(false);
   const [lots, setLots] = useState([]);
   const [lot, setLot] = useState({});
   const [loading, setLoading] = useState(true);
-  const [bought, setBought] = useState(false);
   const { id } = useParams();
+  const amountToPurchase = () => lot.totalAmount - lot.amount;
   useEffect(() => {
     setLoading(true);
     checkBuying(UID, id).then((response) => {
@@ -32,7 +36,6 @@ function FullCard({ UID }) {
     console.log("НАШ ЛОТ", lot);
     setLoading(false);
   }, []);
-
   // const renderCustomThumbs = () => {
   //   const thumblist = uploadedFiles.map((file) => (
   //     <img key={lot.imageId} src={file.url} />
@@ -40,6 +43,7 @@ function FullCard({ UID }) {
   //   return thumblist;
   // };
   console.log("НАШ ЛОТ2", lot.photoIDs);
+  console.log("КОЛИЧЕСТВО ДОСТУПНЫХ ЛОТОВ", amountToPurchase);
   return (
     <div className="FullCard">
       <div className="mainDiv">
@@ -53,13 +57,6 @@ function FullCard({ UID }) {
                   }
                   publicId={id}
                 >
-                  {/* <Transformation
-                      height="480"
-                      width="720"
-                      background=""
-                      crop="pad"
-                      format="PNG"
-                    /> */}
                 </Image>
               </div>
             ))}
@@ -73,18 +70,46 @@ function FullCard({ UID }) {
         <div className="hr" />
         <div className="GroupAndAmount">
           <span>
+            {bought && <button className="mainBtn inActive">Subscribed</button>}
             {!bought && (
-              <button
-                className="mainBtn"
-                onClick={() => {
-                  subscribeOnLot(UID, id, 1);
-                  setBought(true);
-                }}
+              <Popup
+                className="Popup"
+                modal
+                overlayStyle={{ background: "rgba(68,68,68,0.7" }}
+                trigger={(open) => (
+                  <button
+                    className="mainBtn"
+                    onClick={() => {
+                      subscribeOnLot(UID, id, 1);
+                      setBought(true);
+                    }}
+                    open={open}
+                  >
+                    Group Buy {lot.amount}/{lot.totalAmount}
+                  </button>
+                )}
+                position="right center"
+                closeOnDocumentClick
               >
-                Group Buy {lot.amount}/{lot.totalAmount}
-              </button>
+                <span className="buyInf">How much do you want to buy?</span>
+                <br />
+                <span className="buyInf">
+                  the remaining amount for purchase: {amountToPurchase()}
+                </span>
+                <hr />
+                <input
+                  className="calculatedAmount"
+                  type="number"
+                  max={amountToPurchase()}
+                  onChange={(e) =>
+                    e.target.value > amountToPurchase()
+                      ? (e.target.value = amountToPurchase())
+                      : null
+                  }
+                />
+                <button className="PopupSubmitBtn">Submit</button>
+              </Popup>
             )}
-            {bought && <button className="mainBtn inActive" >Subscribed</button>}
           </span>
         </div>
       </div>
