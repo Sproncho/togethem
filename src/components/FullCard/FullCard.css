@@ -52,7 +52,10 @@
   color: #fff1f1;
   margin-bottom: 30px;
 }
-
+.FullCard .mainDiv .inActive{
+  background-color: #717171;
+  border-color: #717171;
+}
 .FullCard .GroupAndAmount {
   display: flex;
   flex-wrap: wrap;

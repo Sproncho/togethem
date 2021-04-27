@@ -2,12 +2,20 @@ import "./FullCard.css";
 import { useHistory, useParams } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
 import { Carousel } from "react-responsive-carousel";
-import { getLots, getLotById } from "../../services/card-data-servcie";
+import {
+  getLots,
+  getLotById,
+  subscribeOnLot,
+  checkBuying,
+} from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
 import Good from "../Good/Good.jsx";
-import Popup from "reactjs-popup";
 
-export default function FullCard() {
+import Popup from "reactjs-popup";
+import { connect } from "react-redux";
+
+function FullCard({ UID }) {
+  const [bought, setBought] = useState(false);
   const [lots, setLots] = useState([]);
   const [lot, setLot] = useState({});
   const [loading, setLoading] = useState(true);
@@ -15,6 +23,9 @@ export default function FullCard() {
   const amountToPurchase = () => lot.totalAmount - lot.amount;
   useEffect(() => {
     setLoading(true);
+    checkBuying(UID, id).then((response) => {
+      setBought(response);
+    });
     console.log("НАШ АЙДИШНИК", id);
     getLots().then((response) => {
       setLots(response);
@@ -46,13 +57,6 @@ export default function FullCard() {
                   }
                   publicId={id}
                 >
-                  {/* <Transformation
-                      height="480"
-                      width="720"
-                      background=""
-                      crop="pad"
-                      format="PNG" */}
-                  />
                 </Image>
               </div>
             ))}
@@ -66,30 +70,46 @@ export default function FullCard() {
         <div className="hr" />
         <div className="GroupAndAmount">
           <span>
-            <Popup className="Popup"
-              modal
-              overlayStyle={{ background: "rgba(68,68,68,0.7" }}
-              trigger={(open) => (
-                <button className="mainBtn" open={open}>
-                  Group Buy {lot.amount}/{lot.totalAmount}
-                </button>
-              )}
-              position="right center"
-              closeOnDocumentClick
-            >
-              <span className="buyInf">How much do you want to buy?</span>
-              <br/>
-              <span className="buyInf">the remaining amount for purchase: {amountToPurchase()}</span>
-              <hr />
-              <input
-                className="calculatedAmount"
-                type="number"
-                max={amountToPurchase()}
-                onChange={(e) => e.target.value > amountToPurchase() ? e.target.value = amountToPurchase() : null}
-
-              />
-              <button className="PopupSubmitBtn">Submit</button>
-            </Popup>
+            {bought && <button className="mainBtn inActive">Subscribed</button>}
+            {!bought && (
+              <Popup
+                className="Popup"
+                modal
+                overlayStyle={{ background: "rgba(68,68,68,0.7" }}
+                trigger={(open) => (
+                  <button
+                    className="mainBtn"
+                    onClick={() => {
+                      subscribeOnLot(UID, id, 1);
+                      setBought(true);
+                    }}
+                    open={open}
+                  >
+                    Group Buy {lot.amount}/{lot.totalAmount}
+                  </button>
+                )}
+                position="right center"
+                closeOnDocumentClick
+              >
+                <span className="buyInf">How much do you want to buy?</span>
+                <br />
+                <span className="buyInf">
+                  the remaining amount for purchase: {amountToPurchase()}
+                </span>
+                <hr />
+                <input
+                  className="calculatedAmount"
+                  type="number"
+                  max={amountToPurchase()}
+                  onChange={(e) =>
+                    e.target.value > amountToPurchase()
+                      ? (e.target.value = amountToPurchase())
+                      : null
+                  }
+                />
+                <button className="PopupSubmitBtn">Submit</button>
+              </Popup>
+            )}
           </span>
         </div>
       </div>
@@ -114,3 +134,14 @@ export default function FullCard() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    UID: state.userInfo.UID,
+    role: state.userInfo.role,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FullCard);
