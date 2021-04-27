@@ -10,7 +10,7 @@ export  function setUID(UID){
 }
 
 
-// export function setUID(){
+//  export function setUID(){
 //     return dispatch =>{
 //         fb.auth().then(response => {
 //             dispatch({
