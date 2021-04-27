@@ -39,19 +39,22 @@ export async function getLots(){
 
 export async function getMyLots(uid){
     try{
-        const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().lotsIds
+        const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().lotsIds;
         var lots = [];
+        if(!lotsIds){
+            return lots;
+        }
         // lotsIds.forEach(async id =>{
         //     var lot = (await fb.firestore().collection("lots").doc(id).get()).data();
            
         //     lots.push(lot);
         // })
-        
+        console.log("My lots:",lots);
         for(let i = 0; i < lotsIds.length; i++){
             var lot = (await fb.firestore().collection("lots").doc(lotsIds[i]).get()).data();
             lots.push({...lot,id:lotsIds[i]});
         }
-        console.log(lots);
+        console.log(lotsIds);
         return lots;
         // return lotsIds;
     }catch(error){
