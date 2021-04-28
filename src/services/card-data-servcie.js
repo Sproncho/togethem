@@ -96,6 +96,7 @@ export async function checkBuying(uid,id){
 }
 
 export async function subscribeOnLot(uid,id,amount){
+    amount = parseInt(amount);
     try{
         const isBought =await checkBuying(uid,id)
         if(isBought){
@@ -117,6 +118,7 @@ export async function subscribeOnLot(uid,id,amount){
         const collection = fb.firestore().collection("lots").doc(id).collection("buyers");
         await collection.doc(uid).set({amount});
         const lotRef = fb.firestore().collection("lots").doc(id);
+        console.log();
         if(lot.amount + amount === lot.totalAmount){
             await lotRef.update({//need testing
                 finished:true
@@ -141,7 +143,7 @@ export async function unsubscribeFromLot(uid,id){
     console.log("ID", id);
     console.log("UID", uid);
     const ref =  fb.firestore().collection("lots").doc(id).collection("buyers").doc(uid);
-    const amount =  (await ref.get()).data().amount;
+    const amount =  parseInt((await ref.get()).data().amount);
     console.log("AMOUNT", amount);
     
     await ref.delete();

@@ -21,7 +21,7 @@ function FullCard({ UID }) {
   const [lot, setLot] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(1);
   const amountToPurchase = () => lot.totalAmount - lot.amount;
   useEffect(() => {
     setLoading(true);
@@ -46,8 +46,8 @@ function FullCard({ UID }) {
   // };
   console.log("НАШ ЛОТ2", lot.photoIDs);
   console.log("КОЛИЧЕСТВО ДОСТУПНЫХ ЛОТОВ", amountToPurchase);
-  console.log("Наш айдишник",UID);
-  
+  console.log("Наш айдишник", UID);
+
   return (
     <div className="FullCard">
       <div className="mainDiv">
@@ -60,7 +60,15 @@ function FullCard({ UID }) {
                     process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME
                   }
                   publicId={id}
-                ></Image>
+                >
+                  <Transformation
+                    height="480"
+                    width="720"
+                    background=""
+                    crop="pad"
+                    format="PNG"
+                  />
+                </Image>
               </div>
             ))}
           </Carousel>
@@ -74,7 +82,14 @@ function FullCard({ UID }) {
         <div className="GroupAndAmount">
           <span>
             {bought && <button className="mainBtn inActive">Subscribed</button>}
-            {UID.length === 0 && <button className="mainBtn" onClick={() => history.push("/login")}>Login or Register to buy!</button>}
+            {UID.length === 0 && (
+              <button
+                className="mainBtn"
+                onClick={() => history.push("/login")}
+              >
+                Login or Register to buy!
+              </button>
+            )}
             {!bought && UID.length > 0 && (
               <Popup
                 className="Popup"
@@ -101,7 +116,7 @@ function FullCard({ UID }) {
                   min={1}
                   value={amount}
                   onChange={(e) =>
-                    e.target.value > amountToPurchase()
+                    e.target.value > amountToPurchase() || e.target.value <= 0
                       ? setAmount(amountToPurchase())
                       : setAmount(e.target.value)
                   }

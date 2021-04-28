@@ -45,3 +45,22 @@
       /* margin:15px auto; */
     }
   }
+
+
+/* pagination */
+
+.Pagination ul li{
+    font-size: 2rem;
+    width: 20px;
+    border: 1px solid #204660;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5px 3px;
+}
+
+.Pagination ul{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
