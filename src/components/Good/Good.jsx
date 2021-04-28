@@ -4,8 +4,8 @@ import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
 import {connect} from "react-redux"
 import {subscribeOnLot,unsubscribeFromLot} from '../../services/card-data-servcie'
-function Good({ title, soloPrice, description, imageId,UID,id }) {
-
+export default function Good({hit}) {
+  console.log(hit);
   const history = useHistory();
   const cutDescription = (description) => {
     if(description.length > 70){
@@ -18,7 +18,7 @@ function Good({ title, soloPrice, description, imageId,UID,id }) {
       {/* <img src={imageSrc} alt="Photo of good" /> */}
       <Image
         cloudName={process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME}
-        publicId={imageId}
+        publicId={hit.photoIDs[0]}
         alt={bigLogo}
       >
         <Transformation
@@ -29,26 +29,26 @@ function Good({ title, soloPrice, description, imageId,UID,id }) {
           format="PNG"
         />
       </Image>
-      <h1 className="title">{title}</h1>
-      <p className="price">price: {soloPrice}</p>
+      <h1 className="title">{hit.title}</h1>
+      <p className="price">price: {hit.soloPrice}</p>
 
-      <p className="description"> {cutDescription(description)}</p>
+      <p className="description"> {cutDescription(hit.description)}</p>
       <p><button
-      onClick={() => history.push(`/fullCard/${id}`)}
+      onClick={() => history.push(`/fullCard/${hit.objectID}`)}
       >Buy</button></p>
       
     </div>
   );
 }
-const mapStateToProps  = (state)=>{
-  return {
-    UID:state.userInfo.UID,
-    role:state.userInfo.role
-  }
-}
+// const mapStateToProps  = (state)=>{
+//   return {
+//     UID:state.userInfo.UID,
+//     role:state.userInfo.role
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) =>{
-  return {
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Good)
+// const mapDispatchToProps = (dispatch) =>{
+//   return {
+//   }
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(Good)

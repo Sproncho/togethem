@@ -124,7 +124,7 @@ function FullCard({ UID }) {
       <div className="hr" />
       <div className="similarLots">
         {loading && <h2>Loading...</h2>}
-        {!loading &&
+        {/* {!loading &&
           lots
             .slice(0, 3)
             .map((lot) => (
@@ -135,7 +135,7 @@ function FullCard({ UID }) {
                 description={lot.description}
                 imageId={lot.photoIDs[0]}
               />
-            ))}
+            ))} */}
       </div>
     </div>
   );

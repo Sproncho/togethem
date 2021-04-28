@@ -6,9 +6,10 @@ import { fb } from "../../config/firebase-config";
 import { getUserInfo, getUser } from "../../services/auth-service";
 import { useEffect } from "react";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
-
+import { SearchBox } from 'react-instantsearch-dom';
 function Header({ setRole, role, location }) {
   const history = useHistory();
+  console.log("HEader location",location)
   return (
     <div className="Header">
       <img
@@ -18,6 +19,7 @@ function Header({ setRole, role, location }) {
           history.push("/");
         }}
       />
+      {location.pathname ==="/" &&  <SearchBox translations={{placeholder:'Search for goods'}}/>}
       {console.log("my role is :", role)}
       <span>
         {fb.auth().currentUser &&
@@ -26,10 +28,11 @@ function Header({ setRole, role, location }) {
             <button onClick={()=>{
               history.push("/consumerLots")
             }}>Groups</button>
+
           )}
         {fb.auth().currentUser &&
           role === "Seller" &&
-          (location !== "/register" || location !== "/login") && (
+          (
             <button onClick={()=>{
               history.push("/sellerLots")
             }}>Lots</button>
@@ -44,7 +47,7 @@ function Header({ setRole, role, location }) {
           </button>
         )}
         {fb.auth().currentUser &&
-          (location !== "/register" || location !== "/login") && (
+          (
             <button>Profile</button>
           )}
       </span>
