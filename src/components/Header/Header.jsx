@@ -6,10 +6,10 @@ import { fb } from "../../config/firebase-config";
 import { getUserInfo, getUser } from "../../services/auth-service";
 import { useEffect } from "react";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
-import { SearchBox } from 'react-instantsearch-dom';
+import { SearchBox } from "react-instantsearch-dom";
 function Header({ setRole, role, location }) {
   const history = useHistory();
-  console.log("HEader location",location)
+  console.log("HEader location", location);
   return (
     <div className="Header">
       <img
@@ -19,26 +19,33 @@ function Header({ setRole, role, location }) {
           history.push("/");
         }}
       />
-      {location.pathname ==="/" &&  <SearchBox translations={{placeholder:'Search for goods'}}/>}
+      {location.pathname === "/" && (
+        <SearchBox className="Searchbox" translations={{ placeholder: "Search for goods" }} />
+      )}
       {console.log("my role is :", role)}
       <span>
         {fb.auth().currentUser &&
           role === "Consumer" &&
           (location !== "/register" || location !== "/login") && (
-            <button onClick={()=>{
-              history.push("/consumerLots")
-            }}>Groups</button>
-
+            <button className="mainBtn"
+              onClick={() => {
+                history.push("/consumerLots");
+              }}
+            >
+              Groups
+            </button>
           )}
-        {fb.auth().currentUser &&
-          role === "Seller" &&
-          (
-            <button onClick={()=>{
-              history.push("/sellerLots")
-            }}>Lots</button>
-          )}
+        {fb.auth().currentUser && role === "Seller" && (
+          <button className="mainBtn"
+            onClick={() => {
+              history.push("/sellerLots");
+            }}
+          >
+            Lots
+          </button>
+        )}
         {!fb.auth().currentUser && (
-          <button
+          <button className="mainBtn"
             onClick={() => {
               history.push("/login");
             }}
@@ -46,10 +53,7 @@ function Header({ setRole, role, location }) {
             Login
           </button>
         )}
-        {fb.auth().currentUser &&
-          (
-            <button>Profile</button>
-          )}
+        {fb.auth().currentUser && <button className="mainBtn">Profile</button>}
       </span>
     </div>
   );
