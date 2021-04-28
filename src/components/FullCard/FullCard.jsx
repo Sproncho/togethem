@@ -113,6 +113,7 @@ function FullCard({ UID }) {
                   className="calculatedAmount"
                   type="number"
                   max={amountToPurchase()}
+                  min={1}
                   value={amount}
                   onChange={(e) =>
                     e.target.value > amountToPurchase() || e.target.value <= 0
