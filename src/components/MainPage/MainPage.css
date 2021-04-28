@@ -5,6 +5,43 @@
     border-radius: 10px;
     margin: 15px auto 30px auto;
     background-color: rgb(231, 238, 238);
-    display: flex;
-    flex-flow: row wrap;
+    /* display: flex;
+    flex-flow: row wrap; */
 }
+
+.MainPage ul{
+    display: flex;
+    flex-flow:row wrap;
+    width: 100%;
+}
+
+.MainPage li{
+    width: calc(100%/ 3 - 60px);
+    margin: 15px 30px;
+}
+
+@media screen and (min-width: 1400px) {
+    .MainPage ul li {
+      width:calc(100% /4 - 60px);
+      /* margin:15px auto; */
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .MainPage ul li {
+      width:calc(100% /3 - 60px);
+      /* margin:15px auto; */
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .MainPage ul li {
+      width:calc(100% /2 - 60px);
+      /* margin:15px auto; */
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .MainPage ul li {
+      width:calc(100% /1 - 60px);
+      /* margin:15px auto; */
+    }
+  }

@@ -6,8 +6,8 @@
   box-shadow: 0 4px 8px 0 #204660;
   max-width: 300px;
   height: 395px;
-  margin: 15px 30px;
-  width:calc(100% /3 - 60px);
+  /* margin: 15px 30px; */
+  width: 100%;
   text-align: center;
   font-family: arial;
   border-radius: 5px;
@@ -15,31 +15,32 @@
   background-color: #ffffff;
   position: relative;
 }
-@media screen and (min-width: 1400px) {
-  .Good {
-    width:calc(100% /4 - 60px);
-    /* margin:15px auto; */
-  }
-}
-@media screen and (max-width: 1200px) {
-  .Good {
-    width:calc(100% /3 - 60px);
-    /* margin:15px auto; */
-  }
-}
-@media screen and (max-width: 992px) {
-  .Good {
-    width:calc(100% /2 - 60px);
-    /* margin:15px auto; */
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .Good {
-    width:calc(100% /1 - 60px);
-    margin:15px auto;
+  /* @media screen and (min-width: 1400px) {
+    .Good {
+      width:calc(100% /4 - 60px);
+      margin:15px auto;
+    }
   }
-}
+  @media screen and (max-width: 1200px) {
+    .Good {
+      width:calc(100% /3 - 60px);
+      margin:15px auto;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .Good {
+      width:calc(100% /2 - 60px);
+      margin:15px auto;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .Good {
+      width:calc(100% /1 - 60px);
+      margin:15px auto;
+    }
+  } */
 
 
 .Good .title{
