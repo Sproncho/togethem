@@ -13,6 +13,7 @@ function SellerLots({ UID }) {
   const history = useHistory();
   const [lots, setLots] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [activeLots, setActiveLots] = useState("opened");
   useEffect(() => {
     console.log(lots);
 
@@ -30,27 +31,53 @@ function SellerLots({ UID }) {
   return (
     //Todo check if lot not undef!!!!
     <div className="SellerLots">
-      <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-        <button className="mainBtn">Closed Lots</button>
-        <button className="mainBtn">Opened Lots</button>
+      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <button className="mainBtn" onClick={() =>{setActiveLots("closed")}}>Closed Lots</button>
+        <button className="mainBtn" onClick={() => setActiveLots("opened")}>Opened Lots</button>
       </div>
       {loading && <h2>Loading...</h2>}
 
       {!loading &&
-        lots.map((lot, i) => (
-          <Lot
-            key={i}
-            soloPrice={lot.soloPrice}
-            title={lot.title}
-            description={lot.description}
-            amount={lot.amount}
-            totalAmount={lot.totalAmount}
-            imageId={lot.photoIDs[0]}
-            id={lot.id}
-            sellerId={lot.sellerId}
-            deleteCallback={deleteLotCallback}
-          />
-        ))}
+        activeLots === "opened" &&
+        lots.map((lot, i) => {
+          if (!lot.finished) {
+            return (
+              <Lot
+                key={i}
+                soloPrice={lot.soloPrice}
+                title={lot.title}
+                description={lot.description}
+                amount={lot.amount}
+                totalAmount={lot.totalAmount}
+                imageId={lot.photoIDs[0]}
+                id={lot.id}
+                sellerId={lot.sellerId}
+                deleteCallback={deleteLotCallback}
+              />
+            );
+          }
+        })}
+
+      {!loading &&
+        activeLots === "closed" &&
+        lots.map((lot, i) => {
+          if (lot.finished) {
+            return (
+              <Lot
+                key={i}
+                soloPrice={lot.soloPrice}
+                title={lot.title}
+                description={lot.description}
+                amount={lot.amount}
+                totalAmount={lot.totalAmount}
+                imageId={lot.photoIDs[0]}
+                id={lot.id}
+                sellerId={lot.sellerId}
+                deleteCallback={deleteLotCallback}
+              />
+            );
+          }
+        })}
       {!loading && (
         <img
           className="addLotsButton"
