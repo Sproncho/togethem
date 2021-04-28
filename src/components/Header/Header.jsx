@@ -19,7 +19,7 @@ function Header({ setRole, role, location }) {
           history.push("/");
         }}
       />
-      {location.pathname ==="/" &&  <SearchBox translations={{placeholder:'Search for goods'}}/>}
+      {location.pathname ==="/" &&  <SearchBox  className ="inputBox"translations={{placeholder:'Search for goods'}}/>}
       {console.log("my role is :", role)}
       <span>
         {fb.auth().currentUser &&

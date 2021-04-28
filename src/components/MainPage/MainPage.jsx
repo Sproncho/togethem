@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getLots } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {  Hits } from 'react-instantsearch-dom';
+import { Hits, Pagination, Configure } from "react-instantsearch-dom";
 function MainPage({ UID }) {
   const history = useHistory();
   const [lots, setLots] = useState([]);
@@ -26,29 +26,9 @@ function MainPage({ UID }) {
   return (
     <div className="MainPage">
       {loading && <h2>Loading...</h2>}
-      {/* {!loading &&
-        lots.map((lot) => {
-          if (!lot.finished) {
-            return (
-              <Good
-                key={lot.id}
-                className="Good"
-                title={lot.title}
-                soloPrice={lot.soloPrice}
-                description={cutDescription(lot.description)}
-                imageId={lot.photoIDs[0]}
-                id={lot.id}
-              />
-            );
-          }
-        })} */}
-
-        {!loading && <Hits hitComponent={Good}/>}
-
-        {/* <Hits hitComponent={Good}/> */}
-
-
-      {/* <div className="grow"></div> */}
+      {!loading && <Hits hitComponent={Good} />}
+      <Configure hitsPerPage={8}/>
+      <Pagination className="Pagination"/>
     </div>
   );
 }
