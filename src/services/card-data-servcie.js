@@ -41,11 +41,9 @@ export async function getMyLots(uid){
     try{
         const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().lotsIds
         var lots = [];
-        // lotsIds.forEach(async id =>{
-        //     var lot = (await fb.firestore().collection("lots").doc(id).get()).data();
-           
-        //     lots.push(lot);
-        // })
+        if(!lotsIds){
+            return lots;
+        }
         
         for(let i = 0; i < lotsIds.length; i++){
             var lot = (await fb.firestore().collection("lots").doc(lotsIds[i]).get()).data();
@@ -84,6 +82,9 @@ export async function deleteLotByid(uid,id){
 
 
 export async function checkBuying(uid,id){
+    if(!uid){
+        return false;
+    }
     const doc =  await fb.firestore().collection("lots").doc(id).collection("buyers").doc(uid).get();
     if(doc.exists){
         console.log("купил уже");
@@ -105,7 +106,9 @@ export async function subscribeOnLot(uid,id,amount){
 
         console.log("Gotted lot:",lot,"id of lot: ",id);
 
-        if(lot.amount + amount > lot.totalAmount){
+        if(lot.amount + parseInt(amount) > lot.totalAmount){
+            // const sum = lot.amount + amount;    
+            // console.log("lotmount:",lot.amount," amount:",amount," totalAmount:",lot.totalAmount,"sum: ",sum);
             throw "too big number";
         }
 
@@ -135,14 +138,23 @@ export async function subscribeOnLot(uid,id,amount){
 }
 
 export async function unsubscribeFromLot(uid,id){
+    console.log("ID", id);
+    console.log("UID", uid);
     const ref =  fb.firestore().collection("lots").doc(id).collection("buyers").doc(uid);
     const amount =  (await ref.get()).data().amount;
     console.log("AMOUNT", amount);
+    
     await ref.delete();
     const lotRef = fb.firestore().collection("lots").doc(id);
     await lotRef.update({
         amount:firebase.firestore.FieldValue.increment(-amount),
         finished:false
+    })
+
+
+    const userRef = fb.firestore().collection("users").doc(uid);
+    await userRef.update({
+        groupIds:firebase.firestore.FieldValue.arrayRemove(id)
     })
 }
 export async function getMyGroups(uid){

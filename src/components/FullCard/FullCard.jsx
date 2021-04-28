@@ -15,11 +15,13 @@ import Popup from "reactjs-popup";
 import { connect } from "react-redux";
 
 function FullCard({ UID }) {
+  const history = useHistory();
   const [bought, setBought] = useState(false);
   const [lots, setLots] = useState([]);
   const [lot, setLot] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const [amount, setAmount] = useState();
   const amountToPurchase = () => lot.totalAmount - lot.amount;
   useEffect(() => {
     setLoading(true);
@@ -44,6 +46,8 @@ function FullCard({ UID }) {
   // };
   console.log("НАШ ЛОТ2", lot.photoIDs);
   console.log("КОЛИЧЕСТВО ДОСТУПНЫХ ЛОТОВ", amountToPurchase);
+  console.log("Наш айдишник",UID);
+  
   return (
     <div className="FullCard">
       <div className="mainDiv">
@@ -56,8 +60,7 @@ function FullCard({ UID }) {
                     process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME
                   }
                   publicId={id}
-                >
-                </Image>
+                ></Image>
               </div>
             ))}
           </Carousel>
@@ -71,20 +74,14 @@ function FullCard({ UID }) {
         <div className="GroupAndAmount">
           <span>
             {bought && <button className="mainBtn inActive">Subscribed</button>}
-            {!bought && (
+            {UID.length === 0 && <button className="mainBtn" onClick={() => history.push("/login")}>Login or Register to buy!</button>}
+            {!bought && UID.length > 0 && (
               <Popup
                 className="Popup"
                 modal
                 overlayStyle={{ background: "rgba(68,68,68,0.7" }}
                 trigger={(open) => (
-                  <button
-                    className="mainBtn"
-                    onClick={() => {
-                      subscribeOnLot(UID, id, 1);
-                      setBought(true);
-                    }}
-                    open={open}
-                  >
+                  <button className="mainBtn" open={open}>
                     Group Buy {lot.amount}/{lot.totalAmount}
                   </button>
                 )}
@@ -101,13 +98,22 @@ function FullCard({ UID }) {
                   className="calculatedAmount"
                   type="number"
                   max={amountToPurchase()}
+                  value={amount}
                   onChange={(e) =>
                     e.target.value > amountToPurchase()
-                      ? (e.target.value = amountToPurchase())
-                      : null
+                      ? setAmount(amountToPurchase())
+                      : setAmount(e.target.value)
                   }
                 />
-                <button className="PopupSubmitBtn">Submit</button>
+                <button
+                  className="PopupSubmitBtn"
+                  onClick={() => {
+                    subscribeOnLot(UID, id, amount);
+                    setBought(true);
+                  }}
+                >
+                  Submit
+                </button>
               </Popup>
             )}
           </span>

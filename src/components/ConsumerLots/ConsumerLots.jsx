@@ -1,39 +1,39 @@
-import "./SellerLots.css";
+import "./ConsumerLots.css";
 import { useHistory } from "react-router-dom";
 import Lot from "../Lots/Lot";
-import plusIcon from "./free-icon-plus-149688.svg";
-import { getMyLots } from "../../services/card-data-servcie";
+import { getMyGroups } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { deleteLotByid } from "../../services/card-data-servcie";
+import { unsubscribeFromLot } from "../../services/card-data-servcie";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 
-function SellerLots({ UID }) {
+function ConsumerLots({ UID }) {
   const history = useHistory();
   const [lots, setLots] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeLots, setActiveLots] = useState("opened");
   useEffect(() => {
-    console.log(lots);
-
     setLoading(true);
-    getMyLots(UID).then((response) => {
-      console.log("SellerLots:", response);
+    getMyGroups(UID).then((response) => {
+      console.log("ConsumerLots:", response);
       setLots(response);
       setLoading(false);
+      console.log("ЛОТЫ", lots);
     });
   }, []);
-  const deleteLotCallback = async (sellerId, id) => {
-    deleteLotByid(sellerId, id);
+  const unsubscribeLotCallback = async (UID, id) => {
+    unsubscribeFromLot(UID, id);
     setLots(lots.filter((lot) => lot.id !== id));
   };
-
   return (
-    //Todo check if lot not undef!!!!
-    <div className="SellerLots">
+    <div className="ConsumerLots">
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <button className="mainBtn" onClick={() => setActiveLots("closed")}>Closed Lots</button>
-        <button className="mainBtn" onClick={() => setActiveLots("opened")}>Opened Lots</button>
+        <button className="mainBtn" onClick={() => setActiveLots("closed")}>
+          Finished Lots
+        </button>
+        <button className="mainBtn" onClick={() => setActiveLots("opened")}>
+          Active Lots
+        </button>
       </div>
       {loading && <h2>Loading...</h2>}
 
@@ -52,7 +52,7 @@ function SellerLots({ UID }) {
                 imageId={lot.photoIDs[0]}
                 id={lot.id}
                 sellerId={lot.sellerId}
-                deleteCallback={deleteLotCallback}
+                unsubscribeCallback={unsubscribeLotCallback}
               />
             );
           }
@@ -73,20 +73,11 @@ function SellerLots({ UID }) {
                 imageId={lot.photoIDs[0]}
                 id={lot.id}
                 sellerId={lot.sellerId}
-                deleteCallback={deleteLotCallback}
+                unsubscribeCallback={unsubscribeLotCallback}
               />
             );
           }
         })}
-      {!loading && (
-        <img
-          className="addLotsButton"
-          src={plusIcon}
-          onClick={() => {
-            history.push("/addCard");
-          }}
-        />
-      )}
     </div>
   );
 }
@@ -101,4 +92,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SellerLots);
+export default connect(mapStateToProps, mapDispatchToProps)(ConsumerLots);

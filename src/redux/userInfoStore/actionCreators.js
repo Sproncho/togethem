@@ -1,5 +1,6 @@
 import Types from './actionTypes'
 import {fb} from '../../config/firebase-config'
+
 export  function setUID(UID){
     return{
         type:Types.setUID,
