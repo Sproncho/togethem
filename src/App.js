@@ -12,6 +12,7 @@ import CardAdder from "./components/CardAdder/CardAdder";
 import { connect } from "react-redux";
 import { fb } from "./config/firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
+import ConsumerLots from "./components/ConsumerLots/ConsumerLots.jsx";
 import { getUserInfo } from "./services/auth-service";
 import { useEffect, useState } from "react";
 
@@ -83,6 +84,9 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
             {role !== "Seller" && <Redirect from="/sellerLots" to="/" />}
           </Route>
           <Route path="/fullCard/:id" component={FullCard}>
+          </Route>
+          <Route path="/consumerLots" component={ConsumerLots}>
+            {role !== "Consumer" && <Redirect from="/consumerLots" to="/" />}
           </Route>
         </Switch>
       )}

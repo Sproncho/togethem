@@ -24,8 +24,11 @@ function Header({ setRole, role, location }) {
       <span>
         {fb.auth().currentUser &&
           role === "Consumer" &&
-           (
-            <button>Groups</button>
+          (location !== "/register" || location !== "/login") && (
+            <button onClick={()=>{
+              history.push("/consumerLots")
+            }}>Groups</button>
+
           )}
         {fb.auth().currentUser &&
           role === "Seller" &&
@@ -34,7 +37,7 @@ function Header({ setRole, role, location }) {
               history.push("/sellerLots")
             }}>Lots</button>
           )}
-        {!fb.auth().currentUser && location.pathname === "/" && (
+        {!fb.auth().currentUser && (
           <button
             onClick={() => {
               history.push("/login");

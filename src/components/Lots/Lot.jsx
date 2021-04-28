@@ -1,8 +1,25 @@
 import "./Lot.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
-import {deleteLotByid} from "../../services/card-data-servcie";
-export default function Lot({soloPrice,title,description,amount,totalAmount,imageId,id,sellerId,deleteCallback}) {
+import { deleteLotByid } from "../../services/card-data-servcie";
+import { unsubscribeFromLot } from "../../services/card-data-servcie";
+import * as Actions from "../../redux/userInfoStore/actionCreators";
+import { connect } from "react-redux";
+
+export function Lot({
+  soloPrice,
+  title,
+  description,
+  amount,
+  totalAmount,
+  imageId,
+  id,
+  sellerId,
+  deleteCallback,
+  unsubscribeCallback,
+  role,
+  UID,
+}) {
   const history = useHistory();
   const cutTitle = (title) => {
     if (title.length > 40) {
@@ -16,6 +33,7 @@ export default function Lot({soloPrice,title,description,amount,totalAmount,imag
     }
     return description;
   };
+  console.log("my role is :", role);
   return (
     <div className="Lots">
       <div className="img">
@@ -45,12 +63,46 @@ export default function Lot({soloPrice,title,description,amount,totalAmount,imag
             Amount: {amount}/{totalAmount}
           </div>
         </div>
-
       </div>
 
       <div className="buttons">
-        <button className="button" onClick={() =>{deleteCallback(sellerId,id)}}>exit or close</button>
+        {role === "Seller" && (
+          <button
+            className="button"
+            onClick={() => {
+              deleteCallback(sellerId, id);
+            }}
+          >
+            Close
+          </button>
+        )}
+        {role === "Consumer" && (
+          <button
+            className="button"
+            onClick={() => {
+              console.log("UID", UID);
+              unsubscribeCallback(UID, id);
+            }}
+          >
+            Unsubscribe
+          </button>
+        )}
       </div>
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    role: state.userInfo.role,
+    UID: state.userInfo.UID,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setRole: (role) => dispatch(Actions.setRole(role)),
+    setUID: (uid) => dispatch(Actions.setUID(uid)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Lot));

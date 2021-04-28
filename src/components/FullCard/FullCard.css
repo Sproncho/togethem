@@ -15,7 +15,8 @@
 }
 
 .FullCard .hr {
-  border-top: 1px solid #204660;
+  border-top: 3px solid #dee5eb;
+  border-radius: 4px;
   width: 100%;
   margin: 0 0 20px 0;
 }
@@ -29,10 +30,10 @@
 .FullCard .description {
   font-size: 2rem;
   text-align: left;
-  width: 100%;
+  width: 90%;
 }
 
-.FullCard .mainDiv .price{
+.FullCard .mainDiv .price {
   font-size: 2rem;
 }
 
@@ -68,4 +69,31 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+/* POPUP  */
+
+.calculatedAmount {
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 2rem;
+  color: #204660;
+  width: 280px;
+  height: 40px;
+}
+
+.buyInf {
+  color: #fff1f1;
+  font-size: 2rem;
+}
+
+.PopupSubmitBtn {
+  height: 40px;
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 2rem;
+  background-color: #111111;
+  color: #fff1f1;
+  padding: 5px 30px;
+  margin-left: 25px;
 }
