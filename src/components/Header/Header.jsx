@@ -3,15 +3,19 @@ import bigLogo from "./LogoNew.svg";
 import { connect } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import { fb } from "../../config/firebase-config";
-import { getUserInfo, getUser } from "../../services/auth-service";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 import { SearchBox } from "react-instantsearch-dom";
 function Header({ setRole, role, location }) {
   const history = useHistory();
   console.log("HEader location", location);
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [username, setUername] = useState("");
   return (
     <div className="Header">
+      
+
       <img
         src={bigLogo}
         alt="photo"
@@ -20,14 +24,18 @@ function Header({ setRole, role, location }) {
         }}
       />
       {location.pathname === "/" && (
-        <SearchBox className="Searchbox" translations={{ placeholder: "Search for goods" }} />
+        <SearchBox
+          className="Searchbox"
+          translations={{ placeholder: "Search for goods" }}
+        />
       )}
       {console.log("my role is :", role)}
       <span>
         {fb.auth().currentUser &&
           role === "Consumer" &&
           (location !== "/register" || location !== "/login") && (
-            <button className="mainBtn"
+            <button
+              className="mainBtn"
               onClick={() => {
                 history.push("/consumerLots");
               }}
@@ -36,7 +44,8 @@ function Header({ setRole, role, location }) {
             </button>
           )}
         {fb.auth().currentUser && role === "Seller" && (
-          <button className="mainBtn"
+          <button
+            className="mainBtn"
             onClick={() => {
               history.push("/sellerLots");
             }}
@@ -45,7 +54,8 @@ function Header({ setRole, role, location }) {
           </button>
         )}
         {!fb.auth().currentUser && (
-          <button className="mainBtn"
+          <button
+            className="mainBtn"
             onClick={() => {
               history.push("/login");
             }}
