@@ -7,6 +7,7 @@ import MainPage from "./components/MainPage/MainPage";
 import SellerLots from "./components/SellerLots/SellerLots";
 import FullCard from "./components/FullCard/FullCard";
 import Test from "./components/testComponent/testComponent";
+import Profile from "./components/Profile/Profile";
 import * as Actions from "./redux/userInfoStore/actionCreators";
 import CardAdder from "./components/CardAdder/CardAdder";
 import { connect } from "react-redux";
@@ -87,6 +88,9 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
           </Route>
           <Route path="/consumerLots" component={ConsumerLots}>
             {role !== "Consumer" && <Redirect from="/consumerLots" to="/" />}
+          </Route>
+          <Route path="/profile" component={Profile}>
+          {!state.user && <Redirect from="/profile" to="/login" />}
           </Route>
         </Switch>
       )}

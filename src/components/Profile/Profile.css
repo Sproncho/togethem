@@ -1,0 +1,82 @@
+.Profile {
+  width: 80%;
+  border: 1px solid #204660;
+  border-radius: 10px;
+  margin: 15px auto 30px auto;
+  background-color: #f0f1ef;
+  padding: 30px;
+  position: relative;
+}
+
+.Profile .MainDiv {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.Profile .xButton {
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 1.5rem;
+  background-color: #111111;
+  color: #fff1f1;
+  padding: 4px 10px 4px 10px;
+  position: absolute;
+  right: 6%;
+  z-index: 1;
+  top: 5%;
+}
+
+.Profile .xButton:hover {
+  background-color: #424141;
+}
+
+.Profile .isGalleryEmpty {
+  display: none;
+}
+
+.Profile .Img {
+  width: 44%;
+  justify-content: space-around;
+}
+
+.Profile .NickName {
+  width: 44%;
+  justify-content: space-around;
+}
+
+.Profile .LogOut {
+  width: 44%;
+  justify-content: space-around;
+}
+
+.Profile .Password {
+  width: 44%;
+  justify-content: space-around;
+}
+
+.Profile input {
+  width: 100%;
+  margin-top: 5px;
+  height: 50px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+
+.Profile .SubmitButton {
+  margin: 25px auto 25px auto;
+  height: 50px;
+  width: 150px;
+  border: 1px solid rgb(58, 55, 55);
+  border-radius: 30px;
+  font-size: 1.5rem;
+  background-color: #111111;
+  color: #fff1f1;
+}
+
+.is-invalid:focus {
+    outline: none;
+    box-shadow: 0 0 4px 0 rgb(173, 41, 41);
+    border: rgb(241, 139, 139);
+  }
