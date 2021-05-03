@@ -31,17 +31,19 @@ export async function register(email, password){
     }
 }
 
-export async function setRoleandNickName(role,nickname){
+export async function setRoleandNickName(role,nickname,email){
     try{
+        console.log("EMAIL",email);
         const ref = fb.firestore().collection("users").doc(uid);
         const doc = await ref.get();
         if(doc.exists){
             await ref.update({
                 role: role,
-                nickname: nickname
+                nickname: nickname,
+                email:email
             });
         }else{
-            await ref.set({role: role,nickname: nickname},{merge: true});
+            await ref.set({role: role,nickname: nickname, email:email},{merge: true});
         }
     }catch(error){
         return Promise.reject(error);

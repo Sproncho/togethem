@@ -86,6 +86,9 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
           </Route>
           <Route path="/fullCard/:id" component={FullCard}>
           </Route>
+          <Route path="/fullCard" exact component={FullCard}>
+             <Redirect from="/fullCard" to="/" />
+          </Route>
           <Route path="/consumerLots" component={ConsumerLots}>
             {role !== "Consumer" && <Redirect from="/consumerLots" to="/" />}
           </Route>

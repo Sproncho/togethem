@@ -9,13 +9,8 @@ import { SearchBox } from "react-instantsearch-dom";
 function Header({ setRole, role, location }) {
   const history = useHistory();
   console.log("HEader location", location);
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [username, setUername] = useState("");
   return (
     <div className="Header">
-      
-
       <img
         src={bigLogo}
         alt="photo"
@@ -63,7 +58,7 @@ function Header({ setRole, role, location }) {
             Login
           </button>
         )}
-        {fb.auth().currentUser && <button className="mainBtn">Profile</button>}
+        {fb.auth().currentUser && <button className="mainBtn" onClick={() =>{history.push("/profile")}}>Profile</button>}
       </span>
     </div>
   );
