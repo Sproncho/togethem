@@ -57,7 +57,7 @@ function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
             .then((response) => {
               setUID(response.user.uid);
               setRole(values.userChoise);
-              setRoleandNickName(values.userChoise, values.userName);
+              setRoleandNickName(values.userChoise, values.userName,values.email);
               setInit();
               console.log("role and uid:", role, " ", UID);
             })
@@ -83,12 +83,16 @@ function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
                 value={props.values.email}
                 onChange={props.handleChange}
               />
+
+
               {state.error &&
                 (state.error.code === "auth/invalid-email" ||
                   state.error.code === "auth/email-already-in-use") &&
                 props.touched.email && (
                   <span style={{ color: "red" }}>{state.error.message}</span>
                 )}
+
+
               {!state.error && props.errors.email && props.touched.email && (
                 <span style={{ color: "red" }}>{props.errors.email}</span>
               )}

@@ -17,7 +17,6 @@ function FullCard({ UID }) {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const [bought, setBought] = useState(false);
-  const [lots, setLots] = useState([]);
   const [lot, setLot] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -27,10 +26,6 @@ function FullCard({ UID }) {
     setLoading(true);
     checkBuying(UID, id).then((response) => {
       setBought(response);
-    });
-    console.log("НАШ АЙДИШНИК", id);
-    getLots().then((response) => {
-      setLots(response);
     });
     getLotById(id)
       .then((response) => {
@@ -45,12 +40,12 @@ function FullCard({ UID }) {
     console.log("НАШ ЛОТ", lot);
     setLoading(false);
   }, []);
-  // const renderCustomThumbs = () => {
-  //   const thumblist = uploadedFiles.map((file) => (
-  //     <img key={lot.imageId} src={file.url} />
-  //   ));
-  //   return thumblist;
-  // };
+  const renderCustomThumbs = () => {
+    const thumblist = lot.photoIDs.map((id) => (
+      <img key={id} src={`https://res.cloudinary.com/togethem/image/upload/${id}`} />
+    ));
+    return thumblist;
+  };
   console.log("НАШ ЛОТ2", lot.photoIDs);
   console.log("КОЛИЧЕСТВО ДОСТУПНЫХ ЛОТОВ", amountToPurchase);
   console.log("Наш айдишник", UID);
@@ -59,7 +54,7 @@ function FullCard({ UID }) {
     <div className="FullCard">
       <div className="mainDiv">
         {lot.photoIDs && (
-          <Carousel>
+          <Carousel renderThumbs={renderCustomThumbs}>
             {lot.photoIDs.map((id) => (
               <div key={id}>
                 <Image

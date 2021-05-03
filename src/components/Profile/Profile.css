@@ -36,11 +36,6 @@
   display: none;
 }
 
-.Profile .Img {
-  width: 44%;
-  justify-content: space-around;
-}
-
 .Profile .NickName {
   width: 44%;
   justify-content: space-around;
