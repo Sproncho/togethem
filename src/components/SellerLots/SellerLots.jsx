@@ -32,8 +32,12 @@ function SellerLots({ UID }) {
     //Todo check if lot not undef!!!!
     <div className="SellerLots">
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <button className="mainBtn" onClick={() => setActiveLots("closed")}>Closed Lots</button>
-        <button className="mainBtn" onClick={() => setActiveLots("opened")}>Opened Lots</button>
+        <button className="mainBtn" onClick={() => setActiveLots("closed")}>
+          Closed Lots
+        </button>
+        <button className="mainBtn" onClick={() => setActiveLots("opened")}>
+          Opened Lots
+        </button>
       </div>
       {loading && <h2>Loading...</h2>}
 
