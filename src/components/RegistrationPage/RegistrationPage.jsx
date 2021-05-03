@@ -7,12 +7,15 @@ import {
 } from "../../services/auth-service";
 import { Formik } from "formik";
 import * as yup from "yup";
-import {useState} from "react"
-import {connect} from "react-redux"
-import * as Actions from '../../redux/userInfoStore/actionCreators'
+import { useState } from "react";
+import { connect } from "react-redux";
+import * as Actions from "../../redux/userInfoStore/actionCreators";
 
 const schema = yup.object().shape({
-  email: yup.string().email("The email address is badly formatted.").required("Required field."),
+  email: yup
+    .string()
+    .email("The email address is badly formatted.")
+    .required("Required field."),
   userName: yup
     .string()
     .min(3, "Username is too short.")
@@ -33,8 +36,8 @@ const schema = yup.object().shape({
     .required("Required field."),
 });
 
-function RegistrationPage({setUID,setRole,UID,role,setInit}) {
-  const [state,setState] = useState({});
+function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
+  const [state, setState] = useState({});
   return (
     <div className="RegistrationPage">
       <Formik
@@ -49,19 +52,19 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
           logout();
           register(values.email, values.password)
             .then((response) => {
-               return login(values.email, values.password);
+              return login(values.email, values.password);
             })
             .then((response) => {
               setUID(response.user.uid);
               setRole(values.userChoise);
-              setRoleandNickName(values.userChoise, values.userName);
+              setRoleandNickName(values.userChoise, values.userName,values.email);
               setInit();
-              console.log("role and uid:",role," ",UID);
+              console.log("role and uid:", role, " ", UID);
             })
             .catch((error) => {
               console.log(error);
-              setState({error: error})
-            })
+              setState({ error: error });
+            });
         }}
         validationSchema={schema}
       >
@@ -71,21 +74,34 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
           return (
             <form onSubmit={props.handleSubmit}>
               <input
-                className={props.errors.email && props.touched.email ? "is-invalid" : ""}
+                className={
+                  props.errors.email && props.touched.email ? "is-invalid" : ""
+                }
                 type="text"
                 name="email"
                 placeholder="type E-mail"
                 value={props.values.email}
                 onChange={props.handleChange}
               />
-              {state.error && (state.error.code === "auth/invalid-email" || state.error.code === "auth/email-already-in-use") && props.touched.email && (
-                <span style={{ color: "red" }}>{state.error.message}</span>
-              )}
+
+
+              {state.error &&
+                (state.error.code === "auth/invalid-email" ||
+                  state.error.code === "auth/email-already-in-use") &&
+                props.touched.email && (
+                  <span style={{ color: "red" }}>{state.error.message}</span>
+                )}
+
+
               {!state.error && props.errors.email && props.touched.email && (
                 <span style={{ color: "red" }}>{props.errors.email}</span>
               )}
               <input
-                className={props.errors.userName && props.touched.userName ? "is-invalid" : ""}
+                className={
+                  props.errors.userName && props.touched.userName
+                    ? "is-invalid"
+                    : ""
+                }
                 type="text"
                 name="userName"
                 placeholder="type username"
@@ -93,11 +109,15 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
                 value={props.values.userName}
                 onChange={props.handleChange}
               />
-              {props.errors.userName &&  props.touched.userName && (
+              {props.errors.userName && props.touched.userName && (
                 <span style={{ color: "red" }}>{props.errors.userName}</span>
               )}
               <input
-                className={props.errors.password && props.touched.password? "is-invalid" : ""}
+                className={
+                  props.errors.password && props.touched.password
+                    ? "is-invalid"
+                    : ""
+                }
                 type="password"
                 name="password"
                 placeholder="type password"
@@ -109,7 +129,11 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
                 <span style={{ color: "red" }}>{props.errors.password}</span>
               )}
               <input
-                className={props.errors.confirmPassword && props.touched.confirmPassword ? "is-invalid" : ""}
+                className={
+                  props.errors.confirmPassword && props.touched.confirmPassword
+                    ? "is-invalid"
+                    : ""
+                }
                 type="password"
                 name="confirmPassword"
                 placeholder="confirm password"
@@ -117,17 +141,22 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
                 value={props.values.confirmPassword}
                 onChange={props.handleChange}
               />
-              {props.errors.confirmPassword && props.touched.confirmPassword && (
-                <span style={{ color: "red" }}>
-                  {props.errors.confirmPassword}
-                </span>
-              )}
+              {props.errors.confirmPassword &&
+                props.touched.confirmPassword && (
+                  <span style={{ color: "red" }}>
+                    {props.errors.confirmPassword}
+                  </span>
+                )}
               <br />
               <select
                 name="userChoise"
                 id=""
                 onChange={props.handleChange}
-                className={props.errors.userChoise && props.touched.userChoise ? "is-invalid" : ""}
+                className={
+                  props.errors.userChoise && props.touched.userChoise
+                    ? "is-invalid"
+                    : ""
+                }
                 required
               >
                 <option select="selected">Choose your role</option>
@@ -140,7 +169,7 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
                 </span>
               )}
               <br />
-              <button type="" id="registerButton" >
+              <button type="" id="registerButton">
                 Register
               </button>
             </form>
@@ -151,19 +180,19 @@ function RegistrationPage({setUID,setRole,UID,role,setInit}) {
   );
 }
 
-const mapStateToProps  = (state)=>{
+const mapStateToProps = (state) => {
   return {
-    UID:state.userInfo.UID,
-    role:state.userInfo.role
-  }
-}
+    UID: state.userInfo.UID,
+    role: state.userInfo.role,
+  };
+};
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
   return {
-    setUID:(uid)=>dispatch(Actions.setUID(uid)),
-    setRole:(role)=>dispatch(Actions.setRole(role)),
+    setUID: (uid) => dispatch(Actions.setUID(uid)),
+    setRole: (role) => dispatch(Actions.setRole(role)),
     setInit: () => dispatch(Actions.setInit()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(RegistrationPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationPage);
