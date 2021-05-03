@@ -36,7 +36,7 @@ export function Lot({
   console.log("my role is :", role);
   return (
     <div className="Lots">
-      <div className="img">
+      <div className="img" onClick={() => history.push(`/fullCard/${id}`)}>
         <Image
           cloudName={process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME}
           public_id={imageId}
@@ -52,14 +52,32 @@ export function Lot({
       </div>
       <div className="mainDiv">
         <div className="textInf">
-          <div className="title">{cutTitle(title)}</div>
+          <div
+            className="title"
+            onClick={() => history.push(`/fullCard/${id}`)}
+          >
+            {cutTitle(title)}
+          </div>
           <hr />
-          <div className="description">{cutDescription(description)}</div>
+          <div
+            className="description"
+            onClick={() => history.push(`/fullCard/${id}`)}
+          >
+            {cutDescription(description)}
+          </div>
         </div>
         <div className="digitInf">
-          <div className="price">Price: {soloPrice}$</div>
+          <div
+            className="price"
+            onClick={() => history.push(`/fullCard/${id}`)}
+          >
+            Price: {soloPrice}$
+          </div>
           <hr />
-          <div className="count">
+          <div
+            className="count"
+            onClick={() => history.push(`/fullCard/${id}`)}
+          >
             Amount: {amount}/{totalAmount}
           </div>
         </div>
@@ -73,7 +91,7 @@ export function Lot({
               deleteCallback(sellerId, id);
             }}
           >
-            Close
+            remove
           </button>
         )}
         {role === "Consumer" && (

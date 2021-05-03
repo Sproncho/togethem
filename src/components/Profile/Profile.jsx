@@ -36,7 +36,7 @@ export default function Profile() {
                 Name: "",
               }}
               onSubmit={(values) => {
-                  ///////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////
               }}
               validationSchema={schema}
             >
@@ -51,7 +51,7 @@ export default function Profile() {
                       }
                       placeholder="Type new Nickname"
                       type="text"
-                      value={props.values.email}
+                      value={props.values.Name}
                       onChange={props.handleChange}
                     />
                     <br />

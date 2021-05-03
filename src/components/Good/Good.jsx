@@ -2,19 +2,25 @@ import "./Good.css";
 import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
-import {connect} from "react-redux"
-import {subscribeOnLot,unsubscribeFromLot} from '../../services/card-data-servcie'
-export default function Good({hit}) {
-  console.log(hit);
+import { connect } from "react-redux";
+import {
+  subscribeOnLot,
+  unsubscribeFromLot,
+} from "../../services/card-data-servcie";
+
+export default function Good({ hit }) {
   const history = useHistory();
   const cutDescription = (description) => {
-    if(description.length > 70){
-      description = description.substring(0, 70)+'...';
+    if (description.length > 70) {
+      description = description.substring(0, 70) + "...";
     }
     return description;
-  }
+  };
   return (
-    <div className="Good">
+    <div
+      className="Good"
+      onClick={() => history.push(`/fullCard/${hit.objectID}`)}
+    >
       {/* <img src={imageSrc} alt="Photo of good" /> */}
       <Image
         cloudName={process.env.REACT_APP_NEXT_PUPLIC_CLAUDINARY_CLOUD_NAME}
@@ -33,10 +39,11 @@ export default function Good({hit}) {
       <p className="price">price: {hit.soloPrice}</p>
 
       <p className="description"> {cutDescription(hit.description)}</p>
-      <p><button
-      onClick={() => history.push(`/fullCard/${hit.objectID}`)}
-      >Buy</button></p>
-      
+      <p>
+        <button onClick={() => history.push(`/fullCard/${hit.objectID}`)}>
+          Buy
+        </button>
+      </p>
     </div>
   );
 }

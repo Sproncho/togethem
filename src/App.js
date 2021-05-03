@@ -18,23 +18,13 @@ import { getUserInfo } from "./services/auth-service";
 import { useEffect, useState } from "react";
 
 function App({ setRole, setUID, setInit, init, UID, role }) {
-  // console.log(init);
-  // const [user, loading, error] = useAuthState(fb.auth());
   const [state, setState] = useState({ loading: true, user: null });
   useEffect(() => {
     setState((state) => ({ ...state, loading: true }));
-    // const user = fb.auth().currentUser;
     fb.auth().onAuthStateChanged((user) => {
       if (user == null) {
-        console.log("USER NOT EXIST");
-        // fb.auth().signInWithEmailAndPassword("dan.zaborov@gmail.com",'Aa1234')
-        // .then((user) => {
-        //   setState(state => ({...state, loading:false,user: user.uid}));
-        // });
         setState((state) => ({ ...state, loading: false }));
       } else {
-        console.log("USER EXIST");
-
         getUserInfo(user.uid)
           .then((response) => {
             console.log("USER response:", response);
@@ -51,18 +41,6 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
       }
     });
   }, []);
-
-  // if(!init){
-  //   if(user){
-  //     getUserInfo(user.uid).then(response =>{
-  //       setRole(response.role);
-  //       setUID(user.uid);
-  //       setInit();
-  //     })
-  //   }
-  // }
-  // console.log("UID before redirect: ",UID)
-  // console.log("role before redirect: ",role)
   return (
     <div className="App">
       <Route path="/" component={Header} />
@@ -84,13 +62,12 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
           <Route path="/sellerLots" component={SellerLots}>
             {role !== "Seller" && <Redirect from="/sellerLots" to="/" />}
           </Route>
-          <Route path="/fullCard/:id" component={FullCard}>
-          </Route>
+          <Route path="/fullCard/:id" component={FullCard}></Route>
           <Route path="/consumerLots" component={ConsumerLots}>
             {role !== "Consumer" && <Redirect from="/consumerLots" to="/" />}
           </Route>
           <Route path="/profile" component={Profile}>
-          {!state.user && <Redirect from="/profile" to="/login" />}
+            {!state.user && <Redirect from="/profile" to="/login" />}
           </Route>
         </Switch>
       )}

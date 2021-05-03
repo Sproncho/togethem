@@ -9,12 +9,12 @@ import {
   checkBuying,
 } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
-import Good from "../Good/Good.jsx";
-
 import Popup from "reactjs-popup";
 import { connect } from "react-redux";
+import { getUserInfo } from "../../services/auth-service";
 
 function FullCard({ UID }) {
+  const [email, setEmail] = useState("");
   const history = useHistory();
   const [bought, setBought] = useState(false);
   const [lots, setLots] = useState([]);
@@ -32,9 +32,16 @@ function FullCard({ UID }) {
     getLots().then((response) => {
       setLots(response);
     });
-    getLotById(id).then((response) => {
-      setLot(response);
-    });
+    getLotById(id)
+      .then((response) => {
+        setLot(response);
+        console.log("НАШ РЕСПОНЗИК", response);
+        return getUserInfo(response.sellerId);
+      })
+      .then((response) => {
+        setEmail(response);
+        console.log("НАШ РЕСПОНС 2", response);
+      });
     console.log("НАШ ЛОТ", lot);
     setLoading(false);
   }, []);
@@ -133,26 +140,26 @@ function FullCard({ UID }) {
               </Popup>
             )}
           </span>
+          <br />
+          <Popup
+            className="Popup2"
+            nested
+            position="bottom left"
+            trigger={(open) => (
+              <button className="mainBtn" open={open}>
+                Seller's Contacts
+              </button>
+            )}
+            closeOnDocumentClick
+          >
+            <span>Seller's Email: {email.email}</span>
+          </Popup>
         </div>
       </div>
       <div className="hr" />
       <div className="description">{lot.description}</div>
       <div className="hr" />
-      <div className="similarLots">
-        {loading && <h2>Loading...</h2>}
-        {/* {!loading &&
-          lots
-            .slice(0, 3)
-            .map((lot) => (
-              <Good
-                className="Good"
-                title={lot.title}
-                soloPrice={lot.soloPrice}
-                description={lot.description}
-                imageId={lot.photoIDs[0]}
-              />
-            ))} */}
-      </div>
+      <div className="similarLots">{loading && <h2>Loading...</h2>}</div>
     </div>
   );
 }

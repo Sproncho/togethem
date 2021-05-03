@@ -54,7 +54,7 @@ export default function InputBox({ photosCallback }) {
     setCurrentPhotoIndex(index);
   };
   return (
-    <div style={{position:"relative"}}>
+    <div style={{ position: "relative" }}>
       <button
         onClick={() =>
           setUploadedFiles((old) => {

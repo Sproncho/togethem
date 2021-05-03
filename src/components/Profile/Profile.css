@@ -76,7 +76,7 @@
 }
 
 .is-invalid:focus {
-    outline: none;
-    box-shadow: 0 0 4px 0 rgb(173, 41, 41);
-    border: rgb(241, 139, 139);
-  }
+  outline: none;
+  box-shadow: 0 0 4px 0 rgb(173, 41, 41);
+  border: rgb(241, 139, 139);
+}
