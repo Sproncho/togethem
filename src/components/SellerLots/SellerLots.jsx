@@ -1,7 +1,7 @@
 import "./SellerLots.css";
 import { useHistory } from "react-router-dom";
 import Lot from "../Lots/Lot";
-import plusIcon from "./free-icon-plus-149688.svg";
+import plusIcon from "./addPic.png";
 import { getMyLots } from "../../services/card-data-servcie";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -14,11 +14,8 @@ function SellerLots({ UID }) {
   const [loading, setLoading] = useState(false);
   const [activeLots, setActiveLots] = useState("opened");
   useEffect(() => {
-    console.log(lots);
-
     setLoading(true);
     getMyLots(UID).then((response) => {
-      console.log("SellerLots:", response);
       setLots(response);
       setLoading(false);
     });
@@ -29,14 +26,14 @@ function SellerLots({ UID }) {
   };
 
   return (
-    //Todo check if lot not undef!!!!
     <div className="SellerLots">
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div style={{ display: "flex"}}>
+        <button className="divSellerLots"><div>MY LOTS</div></button>
         <button className="mainBtn" onClick={() => setActiveLots("closed")}>
-          Closed Lots
+          <div onClick={() => setActiveLots("closed")}>CLOSED</div>
         </button>
         <button className="mainBtn" onClick={() => setActiveLots("opened")}>
-          Opened Lots
+          <div onClick={() => setActiveLots("opened")}>OPENED</div>
         </button>
       </div>
       {loading && <h2>Loading...</h2>}
