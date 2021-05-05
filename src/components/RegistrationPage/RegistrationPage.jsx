@@ -30,14 +30,11 @@ const schema = yup.object().shape({
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match."),
-  userChoise: yup
-    .string()
-    .matches(/^(Seller)|(Consumer)$/, "You have not chosen a role.")
-    .required("Required field."),
 });
 
 function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
   const [state, setState] = useState({});
+  const [userChoice, setUserChoice] = useState("Consumer");
   return (
     <div className="RegistrationPage">
       <Formik
@@ -46,7 +43,6 @@ function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
           userName: "",
           password: "",
           confirmPassword: "",
-          userChoise: "",
         }}
         onSubmit={(values) => {
           logout();
@@ -56,8 +52,8 @@ function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
             })
             .then((response) => {
               setUID(response.user.uid);
-              setRole(values.userChoise);
-              setRoleandNickName(values.userChoise, values.userName,values.email);
+              setRole(userChoice);
+              setRoleandNickName(userChoice, values.userName, values.email);
               setInit();
               console.log("role and uid:", role, " ", UID);
             })
@@ -73,74 +69,113 @@ function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
 
           return (
             <form onSubmit={props.handleSubmit}>
-              <input
-                className={
-                  props.errors.email && props.touched.email ? "is-invalid" : ""
-                }
-                type="text"
-                name="email"
-                placeholder="type E-mail"
-                value={props.values.email}
-                onChange={props.handleChange}
-              />
-
-
-              {state.error &&
-                (state.error.code === "auth/invalid-email" ||
-                  state.error.code === "auth/email-already-in-use") &&
-                props.touched.email && (
-                  <span style={{ color: "red" }}>{state.error.message}</span>
+              <div className="roleSelect">
+                <button
+                  type="button"
+                  className="arrow leftArrow"
+                  onClick={() => {
+                    if (userChoice === "Seller") {
+                      setUserChoice("Consumer");
+                    } else {
+                      setUserChoice("Seller");
+                    }
+                  }}
+                >
+                  &lt;
+                </button>
+                {userChoice === "Consumer" && (
+                  <div className="role">CONSUMER</div>
                 )}
+                {userChoice === "Seller" && <div className="role">SELLER</div>}
+                <button
+                  type="button"
+                  className="arrow rightArrow"
+                  onClick={() => {
+                    if (userChoice === "Seller") {
+                      setUserChoice("Consumer");
+                    } else {
+                      setUserChoice("Seller");
+                    }
+                  }}
+                >
+                  &gt;
+                </button>
+              </div>
+              <div className="inputs">
+                <input
+                  autocomplete="off"
+                  className={
+                    props.errors.email && props.touched.email
+                      ? "is-invalid"
+                      : ""
+                  }
+                  type="text"
+                  name="email"
+                  placeholder="type E-mail"
+                  value={props.values.email}
+                  onChange={props.handleChange}
+                />
 
+                {state.error &&
+                  (state.error.code === "auth/invalid-email" ||
+                    state.error.code === "auth/email-already-in-use") &&
+                  props.touched.email && (
+                    <span style={{ color: "red" }}>{state.error.message}</span>
+                  )}
 
-              {!state.error && props.errors.email && props.touched.email && (
-                <span style={{ color: "red" }}>{props.errors.email}</span>
-              )}
-              <input
-                className={
-                  props.errors.userName && props.touched.userName
-                    ? "is-invalid"
-                    : ""
-                }
-                type="text"
-                name="userName"
-                placeholder="type username"
-                maxLength="20"
-                value={props.values.userName}
-                onChange={props.handleChange}
-              />
-              {props.errors.userName && props.touched.userName && (
-                <span style={{ color: "red" }}>{props.errors.userName}</span>
-              )}
-              <input
-                className={
-                  props.errors.password && props.touched.password
-                    ? "is-invalid"
-                    : ""
-                }
-                type="password"
-                name="password"
-                placeholder="type password"
-                maxLength="25"
-                value={props.values.password}
-                onChange={props.handleChange}
-              />
-              {props.errors.password && props.touched.password && (
-                <span style={{ color: "red" }}>{props.errors.password}</span>
-              )}
-              <input
-                className={
-                  props.errors.confirmPassword && props.touched.confirmPassword
-                    ? "is-invalid"
-                    : ""
-                }
-                type="password"
-                name="confirmPassword"
-                placeholder="confirm password"
-                maxLength="25"
-                value={props.values.confirmPassword}
-                onChange={props.handleChange}
-              />
+                {!state.error && props.errors.email && props.touched.email && (
+                  <span style={{ color: "red" }}>{props.errors.email}</span>
+                )}
+                <input
+                  autocomplete="off"
+                  className={
+                    props.errors.userName && props.touched.userName
+                      ? "is-invalid"
+                      : ""
+                  }
+                  type="text"
+                  name="userName"
+                  placeholder="type username"
+                  maxLength="20"
+                  value={props.values.userName}
+                  onChange={props.handleChange}
+                />
+                {props.errors.userName && props.touched.userName && (
+                  <span style={{ color: "red" }}>{props.errors.userName}</span>
+                )}
+                <input
+                  autocomplete="off"
+                  className={
+                    props.errors.password && props.touched.password
+                      ? "is-invalid"
+                      : ""
+                  }
+                  type="password"
+                  name="password"
+                  placeholder="type password"
+                  maxLength="25"
+                  value={props.values.password}
+                  onChange={props.handleChange}
+                />
+                {props.errors.password && props.touched.password && (
+                  <span style={{ color: "red" }}>{props.errors.password}</span>
+                )}
+                <input
+                  autocomplete="off"
+                  className={
+                    props.errors.confirmPassword &&
+                    props.touched.confirmPassword
+                      ? "is-invalid"
+                      : ""
+                  }
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="confirm password"
+                  maxLength="25"
+                  value={props.values.confirmPassword}
+                  onChange={props.handleChange}
+                />
+              </div>
               {props.errors.confirmPassword &&
                 props.touched.confirmPassword && (
                   <span style={{ color: "red" }}>
@@ -148,30 +183,11 @@ function RegistrationPage({ setUID, setRole, UID, role, setInit }) {
                   </span>
                 )}
               <br />
-              <select
-                name="userChoise"
-                id=""
-                onChange={props.handleChange}
-                className={
-                  props.errors.userChoise && props.touched.userChoise
-                    ? "is-invalid"
-                    : ""
-                }
-                required
-              >
-                <option select="selected">Choose your role</option>
-                <option value="Consumer">Consumer</option>
-                <option value="Seller">Seller</option>
-              </select>
-              {props.errors.userChoise && props.touched.userChoise && (
-                <span style={{ color: "red", marginLeft: "5px" }}>
-                  {props.errors.userChoise}
-                </span>
-              )}
-              <br />
-              <button type="" id="registerButton">
-                Register
-              </button>
+              <div className="buttons">
+                <button type="" id="registerButton">
+                  Register
+                </button>
+              </div>
             </form>
           );
         }}

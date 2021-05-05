@@ -1,31 +1,77 @@
 .RegistrationPage {
-  width: 500px;
+  height: 540px;
+  width: 480px;
   margin: 100px auto;
   padding: 30px;
-  border: 1px solid #204660;
   border-radius: 10px;
-  background-color: rgb(231, 238, 238);
+  background-color: rgba(231, 238, 238, 0);
+  background-image: url("./blankImg.png");
+  background-size: cover;
 }
+
+.RegistrationPage .inputs{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content:space-between;
+  width:100%;
+  height: 300px;
+  margin-top: 20px;
+}
+
 
 .RegistrationPage input {
   width: 100%;
-  margin-top: 5px;
-  height: 50px;
-  font-size: 1.5rem;
-  border-radius: 10px;
+  padding-left: 10px;
+  /* margin-top: 5px; */
+  height: 60px;
+  font-size: 2rem;
+  border:none;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:#9c7c63;
+  color: #ffff;
 }
-
-.RegistrationPage button {
-  margin: 25px 50px 25px 15px;
-  height: 50px;
-  width: 150px;
-  border: 1px solid rgb(58, 55, 55);
-  border-radius: 30px;
-  font-size: 1.5rem;
-  background-color: #111111;
+.RegistrationPage input::placeholder{
+  color: #ffff;
+}
+.RegistrationPage #registerButton {
+  height: 60px;
+  width: 200px;
+  border:none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.5rem;
+  background-color: #9c7c63;
   color: #fff1f1;
+  font-weight:900;
+  margin:0 auto;
+  display: block;
+}
+.RegistrationPage .buttons {
+  width: 100%;
+}
+.RegistrationPage .roleSelect{
+  display: flex;
+  width:fit-content;
+  margin: 0 auto;
+  margin-top: 20px;
+  align-items: center;
+}
+.RegistrationPage .arrow{
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  color:black;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "CustomFonts",Arial, Helvetica, sans-serif;
 }
 
+.RegistrationPage .role{
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "CustomFonts",Arial, Helvetica, sans-serif;
+  border-bottom: 5px solid black;
+  border-top: 5px solid black;
+}
 .RegistrationPage select {
   margin-top: 5px;
   height: 40px;
@@ -33,6 +79,8 @@
   background-color: white;
   font-size: 1.5rem;
   border-radius: 10px;
+  display: none;
+  text-align: center;
 }
 
 .is-invalid:focus {
