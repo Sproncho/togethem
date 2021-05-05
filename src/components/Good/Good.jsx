@@ -2,6 +2,8 @@ import "./Good.css";
 import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from "react-redux";
 import {
   subscribeOnLot,
@@ -10,12 +12,12 @@ import {
 
 export default function Good({ hit }) {
   const history = useHistory();
-  const cutDescription = (description) => {
-    if (description.length > 70) {
-      description = description.substring(0, 70) + "...";
-    }
-    return description;
-  };
+  // const cutDescription = (description) => {
+  //   if (description.length > 70) {
+  //     description = description.substring(0, 70) + "...";
+  //   }
+  //   return description;
+  // };
   return (
     <div
       className="Good"
@@ -28,17 +30,27 @@ export default function Good({ hit }) {
         alt={bigLogo}
       >
         <Transformation
-          height="480"
-          width="720"
+          height="1080"
+          width="1920"
           background=""
           crop="pad"
           format="PNG"
         />
       </Image>
       <h1 className="title">{hit.title}</h1>
-      <p className="price">price: {hit.soloPrice}</p>
-
-      <p className="description"> {cutDescription(hit.description)}</p>
+      <div className="hr"></div>
+      <p className="price">price: ${hit.soloPrice}</p>
+      <div className="hr"></div>
+      <ProgressBar
+        className="progressBar"
+        max={hit.totalAmount}
+        variant="success"
+        now={hit.amount}
+        color="green"
+      />
+      <div className="amount" >
+        {hit.amount}/{hit.totalAmount}
+      </div>
       <p>
         <button onClick={() => history.push(`/fullCard/${hit.objectID}`)}>
           Buy

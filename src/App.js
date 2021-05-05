@@ -45,7 +45,7 @@ function App({ setRole, setUID, setInit, init, UID, role }) {
     <div className="App">
       <Route path="/" component={Header} />
       {state.loading && <h2>Loading...</h2>}
-      {!state.loading && <h2>{state.user}</h2>}
+      {/* {!state.loading && <h2>{state.user}</h2>} */}
       {!state.loading && (
         <Switch>
           <Route path="/" exact component={MainPage} />

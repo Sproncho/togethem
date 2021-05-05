@@ -3,17 +3,26 @@
 }
 
 .Good {
-  box-shadow: 0 4px 8px 0 #204660;
-  max-width: 300px;
-  height: 395px;
-  /* margin: 15px 30px; */
+  box-shadow: 0 4px 8px 0 #363636;
+  width: 300px;
+  height: 365px;
   width: 100%;
   text-align: center;
   font-family: arial;
-  border-radius: 5px;
+  border-radius: 4px;
   overflow: hidden;
   background-color: #ffffff;
   position: relative;
+}
+
+.Good .amount{
+  margin-top: -32px;
+}
+
+.Good .progressBar{
+  margin: 20px 15px 5px 10px;
+  height: 35px;
+
 }
 
   /* @media screen and (min-width: 1400px) {
@@ -42,6 +51,12 @@
     }
   } */
 
+.Good .hr{
+  border-bottom: 4px solid #000000;
+  margin: 5px 5px 5px 10px;
+  width: 90%;
+}
+
 
 .Good .title{
   white-space: nowrap;
@@ -50,13 +65,16 @@
   overflow:hidden;
   text-align: left;
   margin-left: 10px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .Good .price {
-  color: grey;
+  color: #9c7c63;
   font-size: 1.8rem;
   text-align: left;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .Good .description {
@@ -64,6 +82,7 @@
   overflow:hidden;
   text-align: left;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .Good button {
@@ -72,7 +91,7 @@
   outline: 0;
   padding: 12px;
   color: #ffffff;
-  background-color: #060e14;
+  background-color: #9c7c63;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -86,6 +105,7 @@
 
 .Good img {
   width: 100%;
+  cursor: pointer;
 }
 
 .Good p:last-child{
