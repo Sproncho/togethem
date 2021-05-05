@@ -24,42 +24,57 @@ function Header({ setRole, role, location }) {
           translations={{ placeholder: "Search for goods" }}
         />
       )}
-      {console.log("my role is :", role)}
-      <span>
+      <div className="btnHolder">
         {fb.auth().currentUser &&
           role === "Consumer" &&
-          (location !== "/register" || location !== "/login") && (
-            <button
-              className="mainBtn"
-              onClick={() => {
-                history.push("/consumerLots");
-              }}
-            >
-              Groups
+          (<div className="btnHolder"></div>)(
+            location !== "/register" || location !== "/login"
+          ) && (
+            <button className="mainBtn">
+              <div
+                onClick={() => {
+                  history.push("/consumerLots");
+                }}
+              >
+                Groups
+              </div>
             </button>
           )}
         {fb.auth().currentUser && role === "Seller" && (
-          <button
-            className="mainBtn"
-            onClick={() => {
-              history.push("/sellerLots");
-            }}
-          >
-            Lots
+          <button className="mainBtn">
+            <div
+              onClick={() => {
+                history.push("/sellerLots");
+              }}
+            >
+              Lots
+            </div>
           </button>
         )}
         {!fb.auth().currentUser && (
-          <button
-            className="mainBtn"
-            onClick={() => {
-              history.push("/login");
-            }}
-          >
-            Login
+          <button className="mainBtn">
+            <div
+              onClick={() => {
+                history.push("/login");
+              }}
+            >
+              Login
+            </div>
           </button>
         )}
-        {fb.auth().currentUser && <button className="mainBtn" onClick={() =>{history.push("/profile")}}>Profile</button>}
-      </span>
+        {fb.auth().currentUser && (
+          <button className="mainBtn">
+            <div
+              onClick={() => {
+                history.push("/profile");
+              }}
+            >
+              Profile
+            </div>
+          </button>
+        )}
+        <div className="whiteBox"></div>
+      </div>
     </div>
   );
 }
