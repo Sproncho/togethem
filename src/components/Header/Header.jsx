@@ -24,52 +24,63 @@ function Header({ setRole, role, location }) {
           translations={{ placeholder: "Search for goods" }}
         />
       )}
+      {location.pathname !== "/" && (
+        <div className="invisBox"/>
+      )}
       <div className="btnHolder">
         {fb.auth().currentUser &&
           role === "Consumer" &&
           (<div className="btnHolder"></div>)(
             location !== "/register" || location !== "/login"
           ) && (
-            <button className="mainBtn">
+            <button className="mainBtn" onClick={() => {
+              history.push("/consumerLots");
+            }}>
               <div
                 onClick={() => {
                   history.push("/consumerLots");
                 }}
               >
-                Groups
+                GROUPS
               </div>
             </button>
           )}
         {fb.auth().currentUser && role === "Seller" && (
-          <button className="mainBtn">
+          <button className="mainBtn" onClick={() => {
+            history.push("/sellerLots");
+          }}>
             <div
               onClick={() => {
                 history.push("/sellerLots");
               }}
             >
-              Lots
+              LOTS
             </div>
           </button>
         )}
         {!fb.auth().currentUser && (
-          <button className="mainBtn">
+          <button className="mainBtn" onClick={() => {
+            history.push("/login");
+          }}>
             <div
               onClick={() => {
                 history.push("/login");
               }}
             >
-              Login
+              LOGIN
             </div>
           </button>
         )}
         {fb.auth().currentUser && (
-          <button className="mainBtn">
+          <button className="mainBtn" onClick={() => {
+            history.push("/profile");
+          }}>
             <div
               onClick={() => {
                 history.push("/profile");
               }}
             >
-              Profile
+              PROFILE
             </div>
           </button>
         )}
