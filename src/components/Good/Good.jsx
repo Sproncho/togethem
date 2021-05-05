@@ -2,8 +2,9 @@ import "./Good.css";
 import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
-import ProgressBar from "react-bootstrap/ProgressBar";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import ProgressBar from "react-bootstrap/ProgressBar";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import ProgressBar from "../ProgressBar/ProgressBar";
 import { connect } from "react-redux";
 import {
   subscribeOnLot,
@@ -37,23 +38,23 @@ export default function Good({ hit }) {
           format="PNG"
         />
       </Image>
-      <h1 className="title">{hit.title}</h1>
-      <div className="hr"></div>
-      <p className="price">price: ${hit.soloPrice}</p>
-      <div className="hr"></div>
-      <ProgressBar
-        className="progressBar"
-        max={hit.totalAmount}
-        variant="success"
-        now={hit.amount}
-        color="green"
-      />
-      <div className="amount" >
-        {hit.amount}/{hit.totalAmount}
+      <div className="content">
+        <div className="title">
+          <span>{hit.title}</span>
+        </div>
+
+        <ProgressBar
+          amount={hit.amount}
+          totalAmount={hit.totalAmount}
+          bgcolor="acd34a"
+          style={{ width: "100%" }}
+        />
+
+        <div className="price">price: ${hit.soloPrice}</div>
       </div>
       <p>
         <button onClick={() => history.push(`/fullCard/${hit.objectID}`)}>
-          Buy
+          BUY 
         </button>
       </p>
     </div>
