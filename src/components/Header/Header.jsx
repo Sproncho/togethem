@@ -24,18 +24,18 @@ function Header({ setRole, role, location }) {
           translations={{ placeholder: "Search for goods" }}
         />
       )}
-      {location.pathname !== "/" && (
-        <div className="invisBox"/>
-      )}
+      {location.pathname !== "/" && <div className="invisBox" />}
       <div className="btnHolder">
         {fb.auth().currentUser &&
           role === "Consumer" &&
-          (<div className="btnHolder"></div>)(
-            location !== "/register" || location !== "/login"
-          ) && (
-            <button className="mainBtn" onClick={() => {
-              history.push("/consumerLots");
-            }}>
+          (location !== "/register" ||
+          location !== "/login") && (
+            <button
+              className="mainBtn"
+              onClick={() => {
+                history.push("/consumerLots");
+              }}
+            >
               <div
                 onClick={() => {
                   history.push("/consumerLots");
@@ -46,9 +46,12 @@ function Header({ setRole, role, location }) {
             </button>
           )}
         {fb.auth().currentUser && role === "Seller" && (
-          <button className="mainBtn" onClick={() => {
-            history.push("/sellerLots");
-          }}>
+          <button
+            className="mainBtn"
+            onClick={() => {
+              history.push("/sellerLots");
+            }}
+          >
             <div
               onClick={() => {
                 history.push("/sellerLots");
@@ -59,9 +62,12 @@ function Header({ setRole, role, location }) {
           </button>
         )}
         {!fb.auth().currentUser && (
-          <button className="mainBtn" onClick={() => {
-            history.push("/login");
-          }}>
+          <button
+            className="mainBtn"
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
             <div
               onClick={() => {
                 history.push("/login");
@@ -72,9 +78,12 @@ function Header({ setRole, role, location }) {
           </button>
         )}
         {fb.auth().currentUser && (
-          <button className="mainBtn" onClick={() => {
-            history.push("/profile");
-          }}>
+          <button
+            className="mainBtn"
+            onClick={() => {
+              history.push("/profile");
+            }}
+          >
             <div
               onClick={() => {
                 history.push("/profile");

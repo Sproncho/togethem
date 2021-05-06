@@ -13,12 +13,12 @@ function LoginPage({ setUID, setRole, setInit }) {
       <div className="loginDiv">
         <div className="login">Login</div>
       </div>
+      <div className="inputs">
       {errors.error && (
         <span style={{ color: "red" }}>
           {"Inavlid email or password. Please try again."}
         </span>
       )}
-      <div className="inputs">
         <input
           autocomplete="off"
           type="text"

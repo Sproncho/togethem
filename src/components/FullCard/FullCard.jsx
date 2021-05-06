@@ -13,7 +13,7 @@ import Popup from "reactjs-popup";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../services/auth-service";
 
-function FullCard({ UID }) {
+function FullCard({ UID,role }) {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const [bought, setBought] = useState(false);
@@ -92,7 +92,7 @@ function FullCard({ UID }) {
                 Login or Register to buy!
               </button>
             )}
-            {!bought && UID.length > 0 && (
+            {!bought && UID.length > 0 && role !== "Seller" && (
               <Popup
                 className="Popup"
                 modal
@@ -105,7 +105,7 @@ function FullCard({ UID }) {
                 position="right center"
                 closeOnDocumentClick
               >
-                <span className="buyInf">How much do you want to buy?</span>
+                <span className="buyInf">How much do you want to buy?</span>  
                 <br />
                 <span className="buyInf">
                   the remaining amount for purchase: {amountToPurchase()}
