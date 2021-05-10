@@ -2,6 +2,7 @@ import "./FullCard.css";
 import { useHistory, useParams } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
 import { Carousel } from "react-responsive-carousel";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import {
   getLots,
   getLotById,
@@ -13,7 +14,7 @@ import Popup from "reactjs-popup";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../services/auth-service";
 
-function FullCard({ UID,role }) {
+function FullCard({ UID, role }) {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const [bought, setBought] = useState(false);
@@ -42,7 +43,10 @@ function FullCard({ UID,role }) {
   }, []);
   const renderCustomThumbs = () => {
     const thumblist = lot.photoIDs.map((id) => (
-      <img key={id} src={`https://res.cloudinary.com/togethem/image/upload/${id}`} />
+      <img
+        key={id}
+        src={`https://res.cloudinary.com/togethem/image/upload/${id}`}
+      />
     ));
     return thumblist;
   };
@@ -52,7 +56,11 @@ function FullCard({ UID,role }) {
 
   return (
     <div className="FullCard">
-      <div className="mainDiv">
+      <div className="description">
+        <p>DESCRIPTION</p>
+        <div className="descriptionText">{lot.description}</div>
+      </div>
+      <div className="gallery">
         {lot.photoIDs && (
           <Carousel renderThumbs={renderCustomThumbs}>
             {lot.photoIDs.map((id) => (
@@ -76,85 +84,84 @@ function FullCard({ UID,role }) {
           </Carousel>
         )}
       </div>
-      <div className="mainDiv">
+      <div className="lotInfo">
         <div className="title">{lot.title}</div>
-        <div className="hr" />
-        <div className="price">${lot.soloPrice}</div>
-        <div className="hr" />
-        <div className="GroupAndAmount">
-          <span>
-            {bought && <button className="mainBtn inActive">Subscribed</button>}
-            {UID.length === 0 && (
-              <button
-                className="mainBtn"
-                onClick={() => history.push("/login")}
-              >
-                Login or Register to buy!
-              </button>
-            )}
-            {!bought && UID.length > 0 && role !== "Seller" && (
-              <Popup
-                className="Popup"
-                modal
-                overlayStyle={{ background: "rgba(68,68,68,0.7" }}
-                trigger={(open) => (
-                  <button className="mainBtn" open={open}>
-                    Group Buy {lot.amount}/{lot.totalAmount}
-                  </button>
-                )}
-                position="right center"
-                closeOnDocumentClick
-              >
-                <span className="buyInf">How much do you want to buy?</span>  
-                <br />
-                <span className="buyInf">
-                  the remaining amount for purchase: {amountToPurchase()}
-                </span>
-                <hr />
-                <input
-                  className="calculatedAmount"
-                  type="number"
-                  max={amountToPurchase()}
-                  min={1}
-                  value={amount}
-                  onChange={(e) =>
-                    e.target.value > amountToPurchase() || e.target.value <= 0
-                      ? setAmount(amountToPurchase())
-                      : setAmount(e.target.value)
-                  }
-                />
-                <button
-                  className="PopupSubmitBtn"
-                  onClick={() => {
-                    subscribeOnLot(UID, id, amount);
-                    setBought(true);
-                  }}
-                >
-                  Submit
-                </button>
-              </Popup>
-            )}
-          </span>
-          <br />
-          <Popup
-            className="Popup2"
-            nested
-            position="bottom left"
-            trigger={(open) => (
-              <button className="mainBtn" open={open}>
-                Seller's Contacts
-              </button>
-            )}
-            closeOnDocumentClick
-          >
-            <span>Seller's Email: {email.email}</span>
-          </Popup>
+        <div className="price">PRICE:{lot.soloPrice}$</div>
+        <div className="amount">
+          <p>AMOUNT IN GROUP:</p>
+          <ProgressBar
+            amount={lot.amount}
+            totalAmount={lot.totalAmount}
+            bgcolor="acd34a"
+            style={{ width: "100%" }}
+          />
         </div>
       </div>
-      <div className="hr" />
-      <div className="description">{lot.description}</div>
-      <div className="hr" />
-      <div className="similarLots">{loading && <h2>Loading...</h2>}</div>
+
+      <div className="buttons">
+        {bought && <button className="mainBtn inActive">Subscribed</button>}
+        {UID.length === 0 && (
+          <button className="mainBtn" onClick={() => history.push("/login")}>
+            Login or Register to buy!
+          </button>
+        )}
+        {!bought && UID.length > 0 && role !== "Seller" && (
+          <Popup
+            className="Popup"
+            modal
+            overlayStyle={{ background: "rgba(68,68,68,0.7" }}
+            trigger={(open) => (
+              <button className="mainBtn" open={open}>
+                GROUP BUY {lot.amount}/{lot.totalAmount}
+              </button>
+            )}
+            position="right center"
+            closeOnDocumentClick
+          >
+            <span className="buyInf">How much do you want to buy?</span>
+            <br />
+            <span className="buyInf">
+              the remaining amount for purchase: {amountToPurchase()}
+            </span>
+            <hr />
+            <input
+              className="calculatedAmount"
+              type="number"
+              max={amountToPurchase()}
+              min={1}
+              value={amount}
+              onChange={(e) =>
+                e.target.value > amountToPurchase() || e.target.value <= 0
+                  ? setAmount(amountToPurchase())
+                  : setAmount(e.target.value)
+              }
+            />
+            <button
+              className="PopupSubmitBtn"
+              onClick={() => {
+                subscribeOnLot(UID, id, amount);
+                setBought(true);
+              }}
+            >
+              Submit
+            </button>
+          </Popup>
+        )}
+
+        <Popup
+          className="Popup2"
+          nested
+          position="bottom left"
+          trigger={(open) => (
+            <button className="mainBtn" open={open}>
+              Seller's Contacts
+            </button>
+          )}
+          closeOnDocumentClick
+        >
+          <span>Seller's Email: {email.email}</span>
+        </Popup>
+      </div>
     </div>
   );
 }
