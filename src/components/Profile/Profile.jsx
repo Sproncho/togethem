@@ -1,9 +1,13 @@
 import "./Profile.css";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { changePassword, changeUserame,logout } from "../../services/auth-service";
+import {
+  changePassword,
+  changeUserame,
+  logout,
+} from "../../services/auth-service";
 import { connect } from "react-redux";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 import { useState } from "react";
 
@@ -35,10 +39,9 @@ function Profile({ UID }) {
   const [nameDone, setNameDone] = useState(false);
   const history = useHistory();
   return (
-    <div className="Profile">
-      <div className="MainDiv">
+   <div className="backGround">
+      <div className="Profile">
         <div className="NickName">
-          <div>NickName</div>
           <div>
             <Formik
               initialValues={{
@@ -51,7 +54,7 @@ function Profile({ UID }) {
                 changeUserame(UID, values.name).then(() => {
                   console.log("submitted");
                   values.name = "";
-                })
+                });
                 setNameDone(true);
               }}
             >
@@ -72,9 +75,13 @@ function Profile({ UID }) {
                     />
                     <br />
                     <button className="SubmitButton" type="">
-                      Submit Changes
+                      CONFIRM
                     </button>
-                    {nameDone && <span style={{ color: "green", marginLeft: "15px"}}>Done</span>}
+                    {nameDone && (
+                      <span style={{ color: "green", marginLeft: "15px" }}>
+                        Done
+                      </span>
+                    )}
                   </form>
                 );
               }}
@@ -82,7 +89,6 @@ function Profile({ UID }) {
           </div>
         </div>
         <div className="Password">
-          <div>Password</div>
           <div>
             <Formik
               initialValues={{
@@ -130,12 +136,12 @@ function Profile({ UID }) {
                           {props.errors.oldPassword}
                         </span>
                       )}
-
+  
                     {errors.error &&
                       errors.error.code === "auth/wrong-password" && (
                         <span style={{ color: "red" }}>Wrong password</span>
                       )}
-
+  
                     <br />
                     <input
                       className={
@@ -150,7 +156,7 @@ function Profile({ UID }) {
                       onChange={props.handleChange}
                     />
                     {props.errors.newPassword && props.touched.newPassword && (
-                      <span style={{ color: "red"}}>
+                      <span style={{ color: "red" }}>
                         {props.errors.newPassword}
                       </span>
                     )}
@@ -180,26 +186,33 @@ function Profile({ UID }) {
                       type=""
                       onClick={() => console.log(props.errors)}
                     >
-                      Submit Changes
+                      CONFIRM
                     </button>
-                    {passwordDone && <span style={{ color: "green", marginLeft: "15px" }}>Done</span>}
+                    {passwordDone && (
+                      <span style={{ color: "green", marginLeft: "15px" }}>
+                        Done
+                      </span>
+                    )}
                   </form>
                 );
               }}
             </Formik>
           </div>
         </div>
-      </div>
-      <div className="MainDiv">
+  
         <div className="LogOut">
-          <button className="SubmitButton" onClick={() => {
-            logout();
-            window.location.reload();
-          }}>Logout</button>
+          <button className="logOutBtn"
+            onClick={() => {
+              logout();
+              window.location.reload();
+            }}
+          >
+            LOGOUT
+          </button>
         </div>
         <div className="Password"></div>
       </div>
-    </div>
+   </div>
   );
 }
 const mapStateToProps = (state) => {

@@ -130,11 +130,15 @@ function FullCard({ UID, role }) {
               max={amountToPurchase()}
               min={1}
               value={amount}
-              onChange={(e) =>
-                e.target.value > amountToPurchase() || e.target.value <= 0
+              onChange={(e) => {
+                if(e.target.value !== ""){
+                  e.target.value > amountToPurchase() || e.target.value <= 0
                   ? setAmount(amountToPurchase())
-                  : setAmount(e.target.value)
-              }
+                  : setAmount(e.target.value);
+                }else{
+                  setAmount(1);
+                }
+              }}
             />
             <button
               className="PopupSubmitBtn"

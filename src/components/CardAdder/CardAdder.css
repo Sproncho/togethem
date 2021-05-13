@@ -17,7 +17,7 @@
   justify-content: space-between;
   padding: 10px 0;
 }
-.gallery {
+.CardAdder .gallery {
   display: block;
   margin-left: 20px;
   width: 44%;

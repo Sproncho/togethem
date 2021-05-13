@@ -1,75 +1,81 @@
-.Profile {
-  width: 80%;
-  border: 1px solid #204660;
-  border-radius: 10px;
-  margin: 15px auto 30px auto;
-  background-color: #f0f1ef;
-  padding: 30px;
-  position: relative;
-}
 
+.backGround{
+  width:885px;
+  background-image: url("./profilebg.png");
+  background-size: cover;
+  margin: 50px auto 30px auto;
+  height:500px;
+  padding: 30px;
+  padding-left:120px;
+  padding-right:125px;
+
+}
+.Profile {
+  height: 300px;
+  width:100%;
+  position: relative;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap: wrap;
+
+}
+.Profile .NickName {
+  width: calc(100%/2 - 40px);
+  margin-right: 10px;
+}
+.Profile .Password {
+  width: 50%;
+  margin-left: 10px;
+}
 .Profile .MainDiv {
   margin: 30px 0;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
 }
-
-.Profile .xButton {
-  border: 1px solid rgb(58, 55, 55);
-  border-radius: 30px;
-  font-size: 1.5rem;
-  background-color: #111111;
-  color: #fff1f1;
-  padding: 4px 10px 4px 10px;
-  position: absolute;
-  right: 6%;
-  z-index: 1;
-  top: 5%;
-}
-
-.Profile .xButton:hover {
-  background-color: #424141;
-}
-
-.Profile .isGalleryEmpty {
-  display: none;
-}
-
-.Profile .NickName {
-  width: 44%;
-  justify-content: space-around;
-}
-
-.Profile .LogOut {
-  width: 44%;
-  justify-content: space-around;
-}
-
-.Profile .Password {
-  width: 44%;
-  justify-content: space-around;
+.LogOut{
+  width:100%;
 }
 
 .Profile input {
   width: 100%;
   margin-top: 5px;
   height: 50px;
-  font-size: 1.5rem;
-  border-radius: 10px;
+  font-size: 1.8rem;
+  border:none;
+  padding:5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background-color:#acacac;
+}
+.Profile ::placeholder{
+  color:white;
 }
 
 .Profile .SubmitButton {
   margin: 25px auto 25px auto;
+  height: 40px;
+  width: 150px;
+  border:none;
+
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+  background-color: #acd34a;
+  color: #ffff;
+}
+.Profile .logOutBtn{
+  margin: 25px auto 25px auto;
   height: 50px;
   width: 150px;
-  border: 1px solid rgb(58, 55, 55);
-  border-radius: 30px;
-  font-size: 1.5rem;
-  background-color: #111111;
-  color: #fff1f1;
-}
+  border:none;
 
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+  background-color: #d88585;
+  color: #ffff;
+}
 .is-invalid:focus {
   outline: none;
   box-shadow: 0 0 4px 0 rgb(173, 41, 41);
