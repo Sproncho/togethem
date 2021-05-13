@@ -71,37 +71,112 @@ function CardAdder({ UID }) {
         {(props) => {
           return (
             <form onSubmit={props.handleSubmit}>
-              <button
-                type="button"
-                onClick={() => {
-                  getMyLots(UID);
-                }}
-              >
-                get lots
-              </button>
-
-              <div className="mainDiv">
+              <div className="firstDiv">
+                <p>HASHTAGS</p>
+                <span className="hashtagHolder">
+                  {hashtags.map((h, index) => (
+                    <div className="hashtag" key={index}>
+                      {h}
+                      <button
+                        className="xButton_2"
+                        type="button"
+                        onClick={() =>
+                          setHashtags(hashtags.filter((h, i) => i !== index))
+                        }
+                      >
+                        x
+                      </button>
+                    </div>
+                  ))}
+                </span>
+                <div style={{display: "flex", alignItems: "center"}}>
+                  <input
+                className="hashtagInput" 
+                  name="hashtags"
+                  type="text"
+                  placeholder="Type key-words"
+                  value={hashtag}
+                  onChange={(e) => setHashtag(e.target.value)}
+                />
+                <button
+                  className="addBtn"
+                  disabled={
+                    hashtag.length === 0 || hashtags.length === 5
+                      ? "true"
+                      : ""
+                  }
+                  type="button"
+                  id="addButton"
+                  onClick={() => {
+                    setHashtags([...hashtags, hashtag]);
+                    setHashtag("");
+                  }}
+                >
+                  Add
+                </button>
+                </div>
+              </div>
+              <div className="secondDiv">
                 <div className="gallery">
                   <InputBox photosCallback={handlePhotosCallback} />
                 </div>
+                <input
+                  className={
+                    props.errors.title && props.touched.title
+                      ? "is-invalid"
+                      : "title"
+                  }
+                  name="title"
+                  type="text"
+                  placeholder="Type title"
+                  maxLength="50"
+                  value={props.values.title}
+                  onChange={props.handleChange}
+                />
+                {props.errors.title && props.touched.title && (
+                  <span style={{ color: "red" }}>{props.errors.title}</span>
+                )}
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", alignItems: "center" }}>
+                  <div style={{width: "40%"}}>
+                    <span>$</span>
+                    <input
+                      className={
+                        props.errors.soloPrice && props.touched.soloPrice
+                          ? "is-invalid"
+                          : "price"
+                      }
+                      name="soloPrice"
+                      type="number"
+                      value={props.values.soloPrice}
+                      onChange={props.handleChange}
+                    />
+                    {props.errors.soloPrice && props.touched.soloPrice && (
+                      <span style={{ color: "red" }}>
+                        {props.errors.soloPrice}
+                      </span>
+                    )}</div>
+                  <div style={{width: "50%"}}>
+                    <span>AMOUNT:</span>
+                    <input
+                      className={
+                        props.errors.amount && props.touched.amount
+                          ? "is-invalid"
+                          : "amount"
+                      }
+                      name="amount"
+                      type="number"
+                      min="0"
+                      value={props.values.amount}
+                      onChange={props.handleChange}
+                    />
+                    {props.errors.amount && props.touched.amount && (
+                      <span style={{ color: "red" }}>{props.errors.amount}</span>
+                    )}</div>
+                </div>
+              </div>
+              <div className="thirdDiv">
+                <p>DESCRIPTION</p>
                 <span>
-                  <input
-                    className={
-                      props.errors.title && props.touched.title
-                        ? "is-invalid"
-                        : ""
-                    }
-                    name="title"
-                    type="text"
-                    placeholder="Type title"
-                    maxLength="50"
-                    value={props.values.title}
-                    onChange={props.handleChange}
-                  />
-                  {props.errors.title && props.touched.title && (
-                    <span style={{ color: "red" }}>{props.errors.title}</span>
-                  )}
-                  <br />
                   <textarea
                     className={
                       props.errors.description && props.touched.description
@@ -122,91 +197,7 @@ function CardAdder({ UID }) {
                   )}
                 </span>
               </div>
-              <div className="mainDiv">
-                <span>
-                  <input
-                    className={
-                      props.errors.soloPrice && props.touched.soloPrice
-                        ? "is-invalid"
-                        : ""
-                    }
-                    name="soloPrice"
-                    type="number"
-                    placeholder="Type price for one"
-                    value={props.values.soloPrice}
-                    onChange={props.handleChange}
-                  />
-                  {props.errors.soloPrice && props.touched.soloPrice && (
-                    <span style={{ color: "red" }}>
-                      {props.errors.soloPrice}
-                    </span>
-                  )}
-                </span>
-                <span>
-                  <input
-                    className={
-                      props.errors.amount && props.touched.amount
-                        ? "is-invalid"
-                        : ""
-                    }
-                    name="amount"
-                    type="number"
-                    min="0"
-                    placeholder="amount"
-                    value={props.values.amount}
-                    onChange={props.handleChange}
-                  />
-                  {props.errors.amount && props.touched.amount && (
-                    <span style={{ color: "red" }}>{props.errors.amount}</span>
-                  )}
-                </span>
-              </div>
-              <div className="mainDiv">
-                <span>
-                  <input
-                    name="hashtags"
-                    type="text"
-                    placeholder="Type key-words"
-                    value={hashtag}
-                    onChange={(e) => setHashtag(e.target.value)}
-                  />
-                </span>
-                <span className="hashtagHolder">
-                  {hashtags.map((h, index) => (
-                    <div className="hashtag" key={index}>
-                      {h}
-                      <button
-                        className="xButton_2"
-                        type="button"
-                        onClick={() =>
-                          setHashtags(hashtags.filter((h, i) => i !== index))
-                        }
-                      >
-                        x
-                      </button>
-                    </div>
-                  ))}
-                </span>
-              </div>
-              <div className="mainDiv">
-                <span>
-                  <button
-                    className="mainButton"
-                    disabled={
-                      hashtag.length === 0 || hashtags.length === 5
-                        ? "true"
-                        : ""
-                    }
-                    type="button"
-                    id="addButton"
-                    onClick={() => {
-                      setHashtags([...hashtags, hashtag]);
-                      setHashtag("");
-                    }}
-                  >
-                    Add key-word
-                  </button>
-                </span>
+              <div className="btnDiv">
                 <span>
                   <button
                     type="submit"

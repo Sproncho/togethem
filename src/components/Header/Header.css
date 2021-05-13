@@ -1,54 +1,91 @@
 .Header {
-  width: 100%;
-  display: flex;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .Header img {
-  width: 120px;
-  margin-left: 15%;
-  cursor: pointer;
+    width: 120px;
+    cursor: pointer;
 }
 
 .Header span {
-  margin-left: 0;
-  margin-right: 10%;
+    margin-left: 0;
+    margin-right: 10%;
 }
 
 .Header .btnHolder {
-  margin-right: auto;
-  margin-left: -50px;
-  display: flex;
+    margin-left: -50px;
+    margin-right: auto;
+    display: flex;
 }
 
 .Header .mainBtn {
-
-  height: 50px;
-  width: 120px;
-  border-left: 8px solid #626262;
-  border-top: none;
-  border-bottom: none;
-  border-right: none;
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: "CustomFonts",Arial, Helvetica, sans-serif;
-  background-color: #ffffff;
-  color: #9c7c63;
-  transform: skewX(-45deg);
-}
-.mainBtn > div {
-  transform: skewX(45deg);
+    height: 50px;
+    width: 120px;
+    border-left: 8px solid #626262;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #9c7c63;
+    transform: skewX(-45deg);
 }
 
-.Header .mainBtn:hover + .whiteBox {
-  background-color: #fbdd7e;
+.mainBtn>div {
+    transform: skewX(45deg);
 }
+
+.Header .mainBtn:hover+.whiteBox {
+    background-color: #fbdd7e;
+}
+
 .Header .mainBtn:hover {
-  background-color: #fbdd7e;
+    background-color: #fbdd7e;
+}
+
+@media screen and (max-width: 1400px) {
+    .Header {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .Header {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .Header {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Header {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .Header {
+        padding-left: none;
+        padding-right: none;
+    }
 }
 
 .whiteBox {
-  /* width: 55px;
+    /* width: 55px;
   height: 50px;
   background-color: #ffffff;
   border-top-right-radius: 3px;
@@ -56,57 +93,57 @@
   margin-left: -25px;
   margin-top: 25.5px;
   margin-bottom: auto; */
-  display: none;
+    display: none;
 }
 
 .Searchbox {
-  width: 44%;
-  height: 70px;
-  margin-left: 0;
+    width: 70%;
+    height: 70px;
+    margin-left: 0;
 }
 
 .Header .invisBox {
-  width: 44%;
-  height: 50px;
-  border-left: 4px solid #ffffff;
-  border-right: 4px solid #ffffff;
-  border-top: 4px solid #ffffff;
-  border-bottom: 4px solid #ffffff;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: "CustomFonts",Arial, Helvetica, sans-serif;
-  background-color: #fbdd7e;
+    width: 70%;
+    height: 50px;
+    border-left: 4px solid #ffffff;
+    border-right: 4px solid #ffffff;
+    border-top: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+    background-color: #fbdd7e;
 }
 
 .Searchbox form {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  transform: skewX(-45deg);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: skewX(-45deg);
 }
 
-.Searchbox form > input {
-  transform: skewX(45deg);
+.Searchbox form>input {
+    transform: skewX(45deg);
 }
 
 .Searchbox input {
-  width: 100%;
-  height: 49.5px;
-  border-left: 4px solid #ffffff;
-  border-right: 4px solid #ffffff;
-  border-top: 4px solid #ffffff;
-  border-bottom: 4px solid #ffffff;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-  font-size: 3rem;
-  background-color: #fbdd7e;
+    width: 100%;
+    height: 49.5px;
+    border-left: 4px solid #ffffff;
+    border-right: 4px solid #ffffff;
+    border-top: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    font-size: 3rem;
+    background-color: #fbdd7e;
 }
 
 .Searchbox button {
-  /* border-top-right-radius: 30px;
+    /* border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   border-top: 3px solid #ffffff;
   border-right: 3px solid #ffffff;
@@ -115,11 +152,11 @@
   background-color: #fbdd7e;
   height: 50px;
   width: 50px; */
-  display: none;
+    display: none;
 }
 
 .Searchbox button:last-child {
-  /* border-top-right-radius: 30px;
+    /* border-top-right-radius: 30px;
   border-bottom-right-radius: 30px; */
-  display: none;
+    display: none;
 }

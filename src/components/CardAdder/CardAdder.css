@@ -1,138 +1,210 @@
 .CardAdder {
-  width: 80%;
-  border: 1px solid #204660;
-  border-radius: 10px;
-  margin: 15px auto 30px auto;
-  background-color: #f0f1ef;
-  padding: 30px;
+    width: 80%;
+    margin: 15px auto 30px auto;
+    padding: 30px;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
 }
 
-.CardAdder .mainDiv span {
-  width: 44%;
-}
-
-.CardAdder .mainDiv {
-  margin: 30px 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-}
-.CardAdder .gallery {
-  display: block;
-  margin-left: 20px;
-  width: 44%;
-  box-shadow: 5px #204660;
-}
-.CardAdder input {
-  width: 100%;
-  height: 50px;
-  font-size: 1.5rem;
-  border-radius: 10px;
-}
-
-.CardAdder textarea {
-  border: 2px solid #204660;
-  width: 100%;
-  height: 60%;
-  font-size: 1.5rem;
-  border-radius: 10px;
-  min-width: 20%;
-  max-width: 500px;
-  min-height: 50px;
-  max-height: 80%;
-  display: block;
-}
-
-.CardAdder span:first-child {
-  margin: 0 auto 0 20px;
-}
-
-.CardAdder span:last-child {
-  margin: 0 20px 0 auto;
-}
-
-.CardAdder div:first-child span:last-child input:first-child {
-  margin-bottom: 10px;
-}
-.CardAdder div:first-child span:last-child input:last-child {
-  height: 80%;
-  width: 100%;
+.CardAdder .addBtn {
+    height: 35px;
+    width: 25%;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.9rem;
+    background-color: #9c7c63;
+    color: #fff1f1;
+    font-weight: 900;
 }
 
 .CardAdder .mainButton {
-  margin: 25px 60px 25px 25px;
-  padding-left: 40px;
-  padding-right: 40px;
-  height: 50px;
-  min-width: 50px;
-  border: 1px solid rgb(58, 55, 55);
-  border-radius: 30px;
-  font-size: 1.5rem;
-  background-color: #111111;
-  color: #fff1f1;
-  margin: 15px 0 0 auto;
-  display: block;
+    height: 60px;
+    width: 180px;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.9rem;
+    background-color: #9c7c63;
+    color: #fff1f1;
+    font-weight: 900;
+    display: block;
 }
 
-.CardAdder .mainButton:disabled{
-  background-color: #717171;
+.CardAdder form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.CardAdder .firstDiv {
+    font-size: 2rem;
+    text-align: left;
+    width: 30%;
+    min-height: 250px;
+    background-color: white;
+    padding: 20px;
+    align-self: flex-end;
+    box-sizing: border-box;
+    color: black;
+}
+
+.CardAdder .firstDiv p {
+    width: 100%;
+    text-align: center;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    text-transform: uppercase;
+}
+
+.CardAdder .secondDiv {
+    background-image: url("../../assets/blankImg.png");
+    background-size: cover;
+    width: 30%;
+    margin: 0;
+    min-height: 400px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 70px;
+}
+
+.CardAdder .title {
+    width: 100%;
+}
+
+.CardAdder .price {
+    width: 80px;
+}
+
+.CardAdder .amount {
+    width: 80px;
+}
+
+.CardAdder .thirdDiv {
+    width: 30%;
+    height: 238px;
+    background-color: white;
+    align-self: flex-end;
+    padding: 20px;
+    color: black;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+}
+
+.CardAdder .thirdDiv p {
+    width: 100%;
+    text-align: center;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    text-transform: uppercase;
+}
+
+.CardAdder .btnDiv {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.CardAdder .gallery {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.CardAdder .secondDiv input {
+    margin-top: 5px;
+    padding-left: 10px;
+    height: 35px;
+    font-size: 2rem;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(190, 190, 190);
+    color: rgb(0, 0, 0);
+}
+
+.CardAdder input::placeholder {
+    color: #919191;
+}
+
+.CardAdder textarea {
+    border: 2px solid #204660;
+    width: 100%;
+    height: 60%;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    min-width: 20%;
+    max-width: 100%;
+    min-height: 50px;
+    max-height: 80%;
+    display: block;
+}
+
+.CardAdder .addBtn:disabled {
+    background-color: #717171;
 }
 
 .CardAdder .xButton {
-  border: 1px solid rgb(58, 55, 55);
-  border-radius: 30px;
-  font-size: 1.5rem;
-  background-color: #111111;
-  color: #fff1f1;
-  padding: 4px 10px 4px 10px;
-  position: absolute;
-  right:6%;
-  z-index: 1;
-  top:5%;
+    border: 1px solid rgb(58, 55, 55);
+    border-radius: 30px;
+    font-size: 1.5rem;
+    background-color: #111111;
+    color: #fff1f1;
+    padding: 4px 10px 4px 10px;
+    position: absolute;
+    right: 6%;
+    z-index: 1;
+    top: 5%;
 }
 
 .CardAdder .xButton:hover {
-  background-color: #424141;
+    background-color: #424141;
 }
 
 .CardAdder .isGalleryEmpty {
-  display: none;
+    display: none;
 }
 
 .CardAdder img {
-  width: 100%;
+    width: 100%;
 }
 
 .is-invalid:focus {
-  outline: none;
-  box-shadow: 0 0 4px 0 rgb(173, 41, 41);
-  border: rgb(241, 139, 139);
+    outline: none;
+    box-shadow: 0 0 4px 0 rgb(173, 41, 41);
+    border: rgb(241, 139, 139);
 }
 
-.CardAdder .hashtagHolder{
-  display: flex;
-  flex-wrap: wrap;
+.CardAdder .hashtagHolder {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.CardAdder .hashtag{
-  background-color: #aba8a8;
-  text-align: left;
-  margin: 2px 2px 2px 2px;
-  border-radius: 13px;
-  border: 1 solid #204660;
-  width: fit-content;
-  height: fit-content;
-  padding: 5px;
+.CardAdder .hashtag {
+    background-color: #aba8a8;
+    text-align: left;
+    margin: 2px 2px 2px 2px;
+    border-radius: 13px;
+    border: 1 solid #204660;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
 }
 
-.CardAdder .xButton_2{
-  border: 1px solid rgb(58, 55, 55);
-  border-radius: 7px;
-  background-color: #111111;
-  color: #fff1f1;
-  padding: 0px 5px 3px 5px;
-  margin: 2px 2px 2px 3px;
+.CardAdder .xButton_2 {
+    border: 1px solid rgb(58, 55, 55);
+    border-radius: 7px;
+    background-color: #111111;
+    color: #fff1f1;
+    padding: 0px 5px 3px 5px;
+    margin: 2px 2px 2px 3px;
 }
+
 .CardAdder .xButton_2:hover {
-  background-color: #424141;
+    background-color: #424141;
+}
+
+.CardAdder .hashtagInput {
+    width: 75%;
+    margin-top: none;
 }
