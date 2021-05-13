@@ -1,18 +1,19 @@
-.dropzone{
-    height: 8 rem;
-    padding: 1rem;
-    border: 2px dashed #204660;
-    background-color: #10d48fe0;
+.dropzone {
+    height: 80px;
+    width: 95%;
+    padding: 10px;
+    border: 2px dashed #9c7c63;
+    background-color: #f8f1dbe0;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
 }
 
-.active{
-    border: 2px solid #306c94;
-    background-color: #0e9d6be0;
+.active {
+    border: 2px solid #6e5847;
+    background-color: #999486e0;
 }
