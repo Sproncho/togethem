@@ -70,7 +70,7 @@ function CardAdder({ UID }) {
       >
         {(props) => {
           return (
-            <form onSubmit={props.handleSubmit}>
+            <form className="addForm" onSubmit={props.handleSubmit}>
               <div className="firstDiv">
                 <p>HASHTAGS</p>
                 <span className="hashtagHolder">
@@ -118,7 +118,7 @@ function CardAdder({ UID }) {
               </div>
               <div className="secondDiv">
                 <div className="gallery">
-                  <InputBox photosCallback={handlePhotosCallback} />
+                  <InputBox photosCallback={handlePhotosCallback} renderDefault={true}/>
                 </div>
                 <input
                   className={
@@ -136,8 +136,8 @@ function CardAdder({ UID }) {
                 {props.errors.title && props.touched.title && (
                   <span style={{ color: "red" }}>{props.errors.title}</span>
                 )}
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", alignItems: "center" }}>
-                  <div style={{width: "40%"}}>
+                <div className="subDivHolder">
+                  <div className="subDiv priceDiv">
                     <span>$</span>
                     <input
                       className={
@@ -155,7 +155,7 @@ function CardAdder({ UID }) {
                         {props.errors.soloPrice}
                       </span>
                     )}</div>
-                  <div style={{width: "50%"}}>
+                  <div className = "subDiv amountDiv">
                     <span>AMOUNT:</span>
                     <input
                       className={
@@ -198,7 +198,7 @@ function CardAdder({ UID }) {
                 </span>
               </div>
               <div className="btnDiv">
-                <span>
+                <div className="buttons">
                   <button
                     type="submit"
                     className="mainButton"
@@ -206,7 +206,7 @@ function CardAdder({ UID }) {
                   >
                     Submit
                   </button>
-                </span>
+                </div>
               </div>
             </form>
           );

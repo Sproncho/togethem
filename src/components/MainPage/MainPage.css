@@ -36,10 +36,18 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+
+  @media screen and (max-width: 768px) {
+    .MainPage ul{
+      /* justify-content:space-evenly; */
+      width: 100%;
+    }
     .MainPage ul li {
-        width: calc(100% /1 - 60px);
-        /* margin: 15px auto; */
+      width:calc(100% /1 - 60px);
+      margin:15px auto;
+    }
+    .MainPage .Good{
+     margin:0 auto; 
     }
 }
 
