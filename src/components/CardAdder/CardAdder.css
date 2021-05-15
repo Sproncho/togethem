@@ -282,7 +282,7 @@
       order:1;
       margin-bottom:20px;
     }
-    .FullCard .buttons{
+    .CardAdder .btnDiv  {
       order:4;
     }
   }
