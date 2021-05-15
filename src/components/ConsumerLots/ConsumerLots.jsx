@@ -27,12 +27,13 @@ function ConsumerLots({ UID }) {
   };
   return (
     <div className="ConsumerLots">
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div className="btnHolder">
+        <button className="divConsumerLots"><div>MY LOTS</div></button>
         <button className="mainBtn" onClick={() => setActiveLots("closed")}>
-          Finished Lots
+          <div onClick={() => setActiveLots("closed")}>FINISHED</div>
         </button>
         <button className="mainBtn" onClick={() => setActiveLots("opened")}>
-          Active Lots
+          <div onClick={() => setActiveLots("opened")}>ACTIVE</div>
         </button>
       </div>
       {loading && <h2>Loading...</h2>}
