@@ -129,7 +129,7 @@ function CardAdder({ UID }) {
                   name="title"
                   type="text"
                   placeholder="Type title"
-                  maxLength="50"
+                  maxLength="35"
                   value={props.values.title}
                   onChange={props.handleChange}
                 />

@@ -3,6 +3,7 @@ import { useHistory, withRouter } from "react-router-dom";
 import { Image, Transformation } from "cloudinary-react";
 import { deleteLotByid } from "../../services/card-data-servcie";
 import { unsubscribeFromLot } from "../../services/card-data-servcie";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 import { connect } from "react-redux";
 
@@ -58,53 +59,46 @@ export function Lot({
           >
             {cutTitle(title)}
           </div>
-          <hr />
-          <div
-            className="description"
-            onClick={() => history.push(`/fullCard/${id}`)}
-          >
-            {cutDescription(description)}
-          </div>
-        </div>
-        <div className="digitInf">
           <div
             className="price"
             onClick={() => history.push(`/fullCard/${id}`)}
           >
             Price: {soloPrice}$
           </div>
-          <hr />
-          <div
-            className="count"
-            onClick={() => history.push(`/fullCard/${id}`)}
-          >
-            Amount: {amount}/{totalAmount}
+        </div>
+        <div className="adaptiveHolder">
+          <div className="digitInf">
+            <ProgressBar
+              amount={amount}
+              totalAmount={totalAmount}
+              bgcolor="acd34a"
+              style={{ width: "100%", marginTop: "auto", marginBottom: "auto" }}
+            />
+          </div>
+          <div className="buttons">
+            {role === "Seller" && (
+              <button
+                className="button"
+                onClick={() => {
+                  deleteCallback(sellerId, id);
+                }}
+              >
+                REMOVE
+              </button>
+            )}
+            {role === "Consumer" && (
+              <button
+                className="button"
+                onClick={() => {
+                  console.log("UID", UID);
+                  unsubscribeCallback(UID, id);
+                }}
+              >
+                UNSUBSCRIBE
+              </button>
+            )}
           </div>
         </div>
-      </div>
-
-      <div className="buttons">
-        {role === "Seller" && (
-          <button
-            className="button"
-            onClick={() => {
-              deleteCallback(sellerId, id);
-            }}
-          >
-            remove
-          </button>
-        )}
-        {role === "Consumer" && (
-          <button
-            className="button"
-            onClick={() => {
-              console.log("UID", UID);
-              unsubscribeCallback(UID, id);
-            }}
-          >
-            Unsubscribe
-          </button>
-        )}
       </div>
     </div>
   );

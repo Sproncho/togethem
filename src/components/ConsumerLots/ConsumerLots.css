@@ -1,43 +1,70 @@
 .ConsumerLots {
-  width: 80%;
-  border: 1px solid #204660;
-  border-radius: 10px;
-  margin: 15px auto 30px auto;
-  background-color: rgb(231, 238, 238);
-}
-
-.ConsumerLots .addLotsButton {
-  padding-bottom: 15px;
-  height: 80px;
-  display: block;
-  position: fixed;
-  right: 50px;
-  bottom: 40px;
-  cursor: pointer;
-}
-
-.ConsumerLots .addLotsButton:hover {
-  opacity: 0.7;
+    width: 80%;
+    margin: 15px auto 30px auto;
 }
 
 .ConsumerLots .mainBtn {
-  padding-left: 40px;
-  padding-right: 40px;
-  height: 60px;
-  width: 250px;
-  min-width: 50px;
-  border: 1px solid rgb(58, 55, 55);
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-  font-size: 2rem;
-  background-color: #111111;
-  color: #fff1f1;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
+    height: 50px;
+    width: 150px;
+    border-left: 8px solid #626262;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #9c7c63;
+    transform: skewX(-45deg);
 }
 
-.ConsumerLots .mainBtn:focus{
-    height: 70px;
-    width: 280px;;
+.ConsumerLots .divConsumerLots {
+    cursor: default;
+    margin-left: 50px;
+    height: 50px;
+    width: 200px;
+    border-left: 8px solid #626262;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+    background-color: #d8d8d8;
+    color: #9c7c63;
+    transform: skewX(-45deg);
+}
+
+.divConsumerLots>div {
+    transform: skewX(45deg);
+}
+
+.ConsumerLots .mainBtn:hover {
+    background-color: #fbdd7e;
+}
+
+.ConsumerLots .btnHolder {
+    display: flex;
+    width: fit-content;
+}
+
+@media screen and (max-width: 992px) {
+    .ConsumerLots {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ConsumerLots {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .ConsumerLots {
+        width: 100%;
+    }
+    .ConsumerLots .btnHolder {
+        width: 520px;
+    }
 }

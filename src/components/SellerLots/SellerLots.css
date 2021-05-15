@@ -1,59 +1,88 @@
 .SellerLots {
-  width: 80%;
-  margin: 15px auto 30px auto;
+    width: 80%;
+    margin: 15px auto 30px auto;
 }
 
 .SellerLots .addLotsButton {
-  padding-bottom: 15px;
-  height: 80px;
-  display: block;
-  position: fixed;
-  right: 50px;
-  bottom: 40px;
-  cursor: pointer;
+    padding-bottom: 15px;
+    height: 80px;
+    display: block;
+    position: fixed;
+    right: 50px;
+    bottom: 40px;
+    cursor: pointer;
 }
 
 .SellerLots .addLotsButton:hover {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 .SellerLots .divSellerLots {
-  cursor:default;
-  margin-left: 64px;
-  height: 50px;
-  width: 200px;
-  border-left: 8px solid #626262;
-  border-top: none;
-  border-bottom: none;
-  border-right: none;
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: "CustomFonts",Arial, Helvetica, sans-serif;
-  background-color: #d8d8d8;
-  color: #9c7c63;
-  transform: skewX(-45deg);
+    cursor: default;
+    margin-left: 50px;
+    height: 50px;
+    width: 200px;
+    border-left: 8px solid #626262;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+    background-color: #d8d8d8;
+    color: #9c7c63;
+    transform: skewX(-45deg);
 }
 
 .SellerLots .mainBtn {
-  height: 50px;
-  width: 150px;
-  border-left: 8px solid #626262;
-  border-top: none;
-  border-bottom: none;
-  border-right: none;
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: "CustomFonts",Arial, Helvetica, sans-serif;
-  background-color: #ffffff;
-  color: #9c7c63;
-  transform: skewX(-45deg);
+    height: 50px;
+    width: 150px;
+    border-left: 8px solid #626262;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "CustomFonts", Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #9c7c63;
+    transform: skewX(-45deg);
 }
 
-.SellerLots .mainBtn:hover{
-  background-color: #fbdd7e;
+.SellerLots .btnHolder {
+    display: flex;
+    width: fit-content;
 }
 
-.divSellerLots> div {
-  transform: skewX(45deg);
+.SellerLots .mainBtn:hover {
+    background-color: #fbdd7e;
 }
 
+.divSellerLots>div {
+    transform: skewX(45deg);
+}
+
+@media screen and (max-width: 992px) {
+    .SellerLots {
+        width: 90%;
+    }
+    .SellerLots .addLotsButton {
+        position: static;
+        margin: 20px 20px 20px auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .SellerLots {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .SellerLots {
+        width: 100%;
+    }
+    .SellerLots .btnHolder {
+        width: 520px;
+    }
+}

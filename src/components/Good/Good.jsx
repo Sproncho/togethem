@@ -2,8 +2,6 @@ import "./Good.css";
 import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
-// import ProgressBar from "react-bootstrap/ProgressBar";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { connect } from "react-redux";
 import {
@@ -42,14 +40,12 @@ export default function Good({ hit }) {
         <div className="title">
           <span>{hit.title}</span>
         </div>
-
         <ProgressBar
           amount={hit.amount}
           totalAmount={hit.totalAmount}
           bgcolor="acd34a"
           style={{ width: "100%" }}
         />
-
         <div className="price">price: ${hit.soloPrice}</div>
       </div>
       <p>
