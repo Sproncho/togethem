@@ -155,7 +155,7 @@ function FullCard({ UID, role }) {
         <Popup
           className="Popup2"
           nested
-          position="right"
+          position="top "
           trigger={(open) => (
             <button className="mainBtn" open={open}>
               Seller's Contacts
