@@ -123,6 +123,9 @@
         height: 110px;
         flex-wrap: wrap;
     }
+    .Lots .buttons, .Lots .digitInf {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 576px) {
