@@ -39,7 +39,7 @@ function Profile({ UID }) {
   const [nameDone, setNameDone] = useState(false);
   const history = useHistory();
   return (
-   <div className="backGround">
+   <div className="profileBackGround">
       <div className="Profile">
         <div className="NickName">
           <div>
@@ -210,7 +210,6 @@ function Profile({ UID }) {
             LOGOUT
           </button>
         </div>
-        <div className="Password"></div>
       </div>
    </div>
   );

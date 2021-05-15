@@ -1,5 +1,5 @@
 
-.backGround{
+.profileBackGround{
   width:885px;
   background-image: url("./profilebg.png");
   background-size: cover;
@@ -80,4 +80,16 @@
   outline: none;
   box-shadow: 0 0 4px 0 rgb(173, 41, 41);
   border: rgb(241, 139, 139);
+}
+
+@media screen and (max-width:992px){
+  .profileBackGround{
+    width:500px;
+    height: 400px;
+    background-image: none;
+    background-color: #d1d1d1;
+    padding:30px;
+   
+  }
+ 
 }

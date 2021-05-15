@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./Dropzone.css";
 
-export default function InputBox({ photosCallback }) {
+export default function InputBox({ photosCallback,renderDefault }) {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState("");
   //  1. запрос на выборку чтобы отправить эти данные на URL, поэтому нам надо сделать запросы асинхронными чтобы они могли быть извлечены
@@ -71,6 +71,9 @@ export default function InputBox({ photosCallback }) {
         X
       </button>
       <div>
+        {renderDefault && uploadedFiles.length === 0 && 
+          <img className="defaultImg" src="https://res.cloudinary.com/togethem/image/upload/v1621004856/noImage_jmrahn.png"/>
+        }
         <Carousel renderThumbs={renderCustomThumbs} onChange={getCurrentPhoto}>
           {uploadedFiles.map((file) => (
             <div key={file.public_id}>
