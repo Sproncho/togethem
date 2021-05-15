@@ -27,7 +27,7 @@ function SellerLots({ UID }) {
 
   return (
     <div className="SellerLots">
-      <div style={{ display: "flex"}}>
+      <div className="btnHolder">
         <button className="divSellerLots"><div>MY LOTS</div></button>
         <button className="mainBtn" onClick={() => setActiveLots("closed")}>
           <div onClick={() => setActiveLots("closed")}>CLOSED</div>
