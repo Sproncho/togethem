@@ -6,7 +6,6 @@ export default function progressBar(props) {
     backgroundColor: "#e0e0de",
     borderTop:"5px solid black",
     borderBottom:"5px solid black"
-    // margin: 50,
   };
 
   const fillerStyles = {
@@ -34,4 +33,4 @@ export default function progressBar(props) {
     </div>
   );
 }
-//{`${amount}`}/{`${totalAmount}`}
+

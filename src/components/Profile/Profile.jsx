@@ -8,7 +8,6 @@ import {
 } from "../../services/auth-service";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import * as Actions from "../../redux/userInfoStore/actionCreators";
 import { useState } from "react";
 
 const nameSchema = yup.object().shape({

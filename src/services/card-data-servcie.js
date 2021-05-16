@@ -1,7 +1,5 @@
 import {fb} from '../config/firebase-config';
 import firebase from "firebase";
-import { func } from 'prop-types';
-
 export async function uploadLot(title,description,soloPrice,totalAmount,photoIDs,hashtags,uid){
     try{
         const ref = fb.firestore().collection("users").doc(uid);
@@ -51,7 +49,6 @@ export async function getMyLots(uid){
         }
         console.log(lotsIds);
         return lots;
-        // return lotsIds;
     }catch(error){
         return Promise.reject(error);
     }
@@ -108,8 +105,6 @@ export async function subscribeOnLot(uid,id,amount){
         console.log("Gotted lot:",lot,"id of lot: ",id);
 
         if(lot.amount + parseInt(amount) > lot.totalAmount){
-            // const sum = lot.amount + amount;    
-            // console.log("lotmount:",lot.amount," amount:",amount," totalAmount:",lot.totalAmount,"sum: ",sum);
             throw "too big number";
         }
 
@@ -120,7 +115,7 @@ export async function subscribeOnLot(uid,id,amount){
         const lotRef = fb.firestore().collection("lots").doc(id);
         console.log();
         if(lot.amount + amount === lot.totalAmount){
-            await lotRef.update({//need testing
+            await lotRef.update({
                 finished:true
             }) 
         }

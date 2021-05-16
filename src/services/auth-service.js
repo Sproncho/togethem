@@ -5,11 +5,9 @@ var uid;
 export  async function login(email,password){
     try{
         const response  = await fb.auth().signInWithEmailAndPassword(email,password);
-        // console.log("",response);
         uid = fb.auth().currentUser.uid;
         return response;
     }catch(error){
-       // console.log(error);
         return Promise.reject(error);
     }
 }
@@ -21,12 +19,10 @@ export function logout(){
 export async function register(email, password){
     try{
         const response = await fb.auth().createUserWithEmailAndPassword(email,password);
-        // console.log(response);
         console.log("uid setted");
         uid = fb.auth().currentUser.uid;
         return response;
     }catch(error){
-      //  console.log(error);
         return  Promise.reject(error);
     }
 }
@@ -57,7 +53,6 @@ export async function getUserInfo(uid){
         return Promise.reject(error);
     }
 }
-//To Test
 export async function changeUserame(uid,newUsername){
     try{
         const ref = fb.firestore().collection("users").doc(uid);

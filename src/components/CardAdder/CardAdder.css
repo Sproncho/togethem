@@ -4,7 +4,9 @@
     padding: 30px;
     font-family: "CustomFonts", Arial, Helvetica, sans-serif;
 }
-
+.CardAdder .error{
+    width: 100%;
+}
 .CardAdder .addBtn {
     height: 35px;
     width: 25%;
@@ -73,7 +75,7 @@
     margin-top:5px;
 }
 .CardAdder .secondDiv .subDivHolder{
-    /* { display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", alignItems: "center" } */
+ 
     display:flex;
     width: 100%;
 }
@@ -91,6 +93,7 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 .CardAdder .secondDiv .amountDiv{
     flex-basis:calc(62% - 5px);

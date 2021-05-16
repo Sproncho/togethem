@@ -3,7 +3,6 @@ import bigLogo from "./LogoNew.svg";
 import { connect } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import { fb } from "../../config/firebase-config";
-import { useEffect, useState } from "react";
 import * as Actions from "../../redux/userInfoStore/actionCreators";
 import { SearchBox } from "react-instantsearch-dom";
 function Header({ setRole, role, location }) {

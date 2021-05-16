@@ -20,7 +20,6 @@
   max-width: 30%;
   background-color: white;
   padding: 20px;
-  /* height:200px; */
   align-self: flex-end;
   box-sizing: border-box;
   color: black;
@@ -198,5 +197,13 @@
   }
   .FullCard .buttons{
     order:4;
+  }
+}
+
+@media screen and (max-width:576px){
+
+  .FullCard .mainBtn{
+    width:110px;
+    font-size: 1.5rem;
   }
 }

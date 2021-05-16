@@ -61,10 +61,20 @@
 }
 
 @media screen and (max-width: 576px) {
+
     .ConsumerLots {
         width: 100%;
     }
     .ConsumerLots .btnHolder {
+
         width: 520px;
+    }
+    .ConsumerLots .mainBtn{
+        width: 70px;
+        font-size:1.2rem;
+    }
+    .ConsumerLots .divConsumerLots{
+        width: 70px;
+        font-size:1.2rem;
     }
 }

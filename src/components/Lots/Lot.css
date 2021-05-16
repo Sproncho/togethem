@@ -149,13 +149,6 @@
         flex-wrap: wrap;
     }
     
-    .Lots .img {
-       
-    }
-    
-    .Lots .img img {
-       
-    }
     
     .Lots .textInf {
         width:100%;
@@ -163,20 +156,9 @@
         border:none;
     }
     
-    .Lots .title {
-       
-    }
     
     .Lots .digitInf {
         display:none;
-    }
-    
-    .Lots .price {
-        
-    }
-    
-    .Lots .count {
-      
     }
     
     .Lots .buttons {
@@ -190,7 +172,7 @@
         height: 30px;
         width: 80%;
         border: none;
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin: 0 auto;
         margin-top:5px;
         background-color: #c70000;

@@ -3,20 +3,8 @@ import { useHistory } from "react-router-dom";
 import bigLogo from "./LOGO2.png";
 import { Image, Transformation } from "cloudinary-react";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { connect } from "react-redux";
-import {
-  subscribeOnLot,
-  unsubscribeFromLot,
-} from "../../services/card-data-servcie";
-
 export default function Good({ hit }) {
   const history = useHistory();
-  // const cutDescription = (description) => {
-  //   if (description.length > 70) {
-  //     description = description.substring(0, 70) + "...";
-  //   }
-  //   return description;
-  // };
   return (
     <div
       className="Good"
@@ -56,15 +44,3 @@ export default function Good({ hit }) {
     </div>
   );
 }
-// const mapStateToProps  = (state)=>{
-//   return {
-//     UID:state.userInfo.UID,
-//     role:state.userInfo.role
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) =>{
-//   return {
-//   }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Good)

@@ -4,9 +4,8 @@ import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { fb } from "../../config/firebase-config";
 import { connect } from "react-redux";
-import * as Actions from "../../redux/userInfoStore/actionCreators";
+
 import InputBox from "./InputBox";
 import {
   uploadLot,
@@ -61,6 +60,7 @@ function CardAdder({ UID }) {
           )
             .then((response) => {
               console.log(response);
+              history.push("/");
             })
             .catch((error) => {
               console.log(error);
@@ -123,7 +123,7 @@ function CardAdder({ UID }) {
                 <input
                   className={
                     props.errors.title && props.touched.title
-                      ? "is-invalid"
+                      ? "title is-invalid"
                       : "title"
                   }
                   name="title"
@@ -134,43 +134,47 @@ function CardAdder({ UID }) {
                   onChange={props.handleChange}
                 />
                 {props.errors.title && props.touched.title && (
-                  <span style={{ color: "red" }}>{props.errors.title}</span>
+                  <span  style={{ color: "red" }}>{props.errors.title}</span>
                 )}
                 <div className="subDivHolder">
                   <div className="subDiv priceDiv">
-                    <span>$</span>
-                    <input
-                      className={
-                        props.errors.soloPrice && props.touched.soloPrice
-                          ? "is-invalid"
-                          : "price"
-                      }
-                      name="soloPrice"
-                      type="number"
-                      value={props.values.soloPrice}
-                      onChange={props.handleChange}
-                    />
+                   <div style={{display:"flex", alignItems:"center"}}>
+                      <span>$</span>
+                      <input
+                        className={
+                          props.errors.soloPrice && props.touched.soloPrice
+                            ? "price is-invalid"
+                            : "price"
+                        }
+                        name="soloPrice"
+                        type="number"
+                        value={props.values.soloPrice}
+                        onChange={props.handleChange}
+                      />
+                   </div>
                     {props.errors.soloPrice && props.touched.soloPrice && (
-                      <span style={{ color: "red" }}>
+                      <span className="error" style={{ color: "red" }}>
                         {props.errors.soloPrice}
                       </span>
                     )}</div>
                   <div className = "subDiv amountDiv">
-                    <span>AMOUNT:</span>
-                    <input
-                      className={
-                        props.errors.amount && props.touched.amount
-                          ? "is-invalid"
-                          : "amount"
-                      }
-                      name="amount"
-                      type="number"
-                      min="0"
-                      value={props.values.amount}
-                      onChange={props.handleChange}
-                    />
+                    <div style={{display:"flex", alignItems:"center"}}>
+                      <span>AMOUNT:</span>
+                      <input
+                        className={
+                          props.errors.amount && props.touched.amount
+                            ? "amount is-invalid"
+                            : "amount"
+                        }
+                        name="amount"
+                        type="number"
+                        min="0"
+                        value={props.values.amount}
+                        onChange={props.handleChange}
+                      />
+                    </div>
                     {props.errors.amount && props.touched.amount && (
-                      <span style={{ color: "red" }}>{props.errors.amount}</span>
+                      <span className="error" style={{ color: "red" }}>{props.errors.amount}</span>
                     )}</div>
                 </div>
               </div>
