@@ -85,4 +85,12 @@
     .SellerLots .btnHolder {
         width: 520px;
     }
+    .SellerLots .mainBtn{
+        width: 70px;
+        font-size:1.2rem;
+    }
+    .SellerLots .divSellerLots{
+        width: 70px;
+        font-size:1.2rem;
+    }
 }

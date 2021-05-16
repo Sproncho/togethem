@@ -130,10 +130,82 @@
 }
 
 @media screen and (max-width: 576px) {
-    .Lots .adaptiveHolder .buttons {
-        min-width: 110px;
+    .Lots {
+        margin: 20px;
+        height: 100px;
+        
+        padding:10px;
     }
-    .Lots .adaptiveHolder .digitInf {
-        min-width: 110px;
+    .Lots .img {
+        margin: 0 5px 0px;
+        width: 80%;
+        display: flex;
+    }
+    .Lots .mainDiv {
+        height:100%;
+        padding:0px;
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .Lots .img {
+       
+    }
+    
+    .Lots .img img {
+       
+    }
+    
+    .Lots .textInf {
+        width:100%;
+        height:50%;
+        border:none;
+    }
+    
+    .Lots .title {
+       
+    }
+    
+    .Lots .digitInf {
+        display:none;
+    }
+    
+    .Lots .price {
+        
+    }
+    
+    .Lots .count {
+      
+    }
+    
+    .Lots .buttons {
+        height: 50%;
+        align-items:center;
+        justify-content:space-evenly;
+        width:100%;
+    }
+    
+    .Lots .button {
+        height: 30px;
+        width: 80%;
+        border: none;
+        font-size: 2rem;
+        margin: 0 auto;
+        margin-top:5px;
+        background-color: #c70000;
+        color: #fff1f1;
+        display: block;
+    }
+    
+    .Lots .adaptiveHolder {
+      
+       width: 100%;
+       flex-wrap: wrap;
+    }
+    
+    
+    .Lots .title{
+        font-size: 1.5rem;;
     }
 }

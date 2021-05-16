@@ -88,3 +88,19 @@
   box-shadow: 0 0 4px 0 rgb(173, 41, 41);
   border: rgb(241, 139, 139);
 }
+
+@media screen and (max-width: 576px) {
+  .RegistrationPage {
+      width:300px;
+      height:550px;
+      margin-top:50px;  
+      padding-top: 60px;
+  }
+
+  .loginPage button {
+      font-size: 1.5rem;
+  }
+  .loginPage .inputs{
+      margin-top:40px;
+  }
+}

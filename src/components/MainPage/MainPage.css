@@ -50,6 +50,22 @@
      margin:0 auto; 
     }
 }
+@media screen and (max-width:576px) {
+    .MainPage{
+        padding: 0px;
+    }
+    .MainPage ul{
+      /* justify-content:space-evenly; */
+      width: 100%;
+    }
+    .MainPage ul li {
+      width:calc(100%);
+      margin:15px auto;
+    }
+    .MainPage .Good{
+     margin:auto; 
+    }
+}
 
 
 /* pagination */

@@ -93,3 +93,21 @@
   }
  
 }
+@media screen and (max-width:576px){
+  .profileBackGround{
+    width:80%;
+    height: 530px;
+    background-image: none;
+    background-color: #d1d1d1;
+    padding:30px;
+   
+  }
+  .Profile .NickName{
+    width:100%;
+  }
+
+  .Profile .Password{
+    width: 100%;
+    margin-left: 0px;
+  }
+}

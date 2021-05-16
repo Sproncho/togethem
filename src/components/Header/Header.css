@@ -49,41 +49,6 @@
     background-color: #fbdd7e;
 }
 
-@media screen and (max-width: 1400px) {
-    .Header {
-        padding-left: 15%;
-        padding-right: 15%;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .Header {
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .Header {
-        padding-left: 7%;
-        padding-right: 7%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .Header {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .Header {
-        padding-left: none;
-        padding-right: none;
-    }
-}
-
 .whiteBox {
     /* width: 55px;
   height: 50px;
@@ -159,4 +124,54 @@
     /* border-top-right-radius: 30px;
   border-bottom-right-radius: 30px; */
     display: none;
+}
+@media screen and (max-width: 1400px) {
+    .Header {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .Header {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .Header {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Header {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .Header {
+        padding-left: none;
+        padding-right: none;
+        width:(100% - 20px);
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    .Header .logo{
+        display:none;
+    }
+    .Header .mainBtn {
+        width: 70px;
+        font-size:1.2rem;
+    }
+    .Header .loginBtn{
+        margin-left:5px
+    }
+    .Searchbox input{
+        font-size: 2rem;
+    }
 }

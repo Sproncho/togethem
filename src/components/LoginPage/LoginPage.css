@@ -72,3 +72,18 @@
     margin-top: 20px;
     align-items: center;
 }
+
+@media screen and (max-width: 576px) {
+    .loginPage {
+        width:300px;
+        height:400px;
+        margin-top:50px;
+    }
+
+    .loginPage button {
+        font-size: 1.5rem;
+    }
+    .loginPage .inputs{
+        margin-top:30px;
+    }
+}

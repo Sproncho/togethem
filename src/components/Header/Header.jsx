@@ -11,7 +11,7 @@ function Header({ setRole, role, location }) {
   console.log("HEader location", location);
   return (
     <div className="Header">
-      <img
+      <img className="logo"
         src={bigLogo}
         alt="photo"
         onClick={() => {
@@ -63,7 +63,7 @@ function Header({ setRole, role, location }) {
         )}
         {!fb.auth().currentUser && (
           <button
-            className="mainBtn"
+            className="mainBtn loginBtn"
             onClick={() => {
               history.push("/login");
             }}
