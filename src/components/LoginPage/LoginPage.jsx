@@ -15,7 +15,7 @@ function LoginPage({ setUID, setRole, setInit }) {
       </div>
       <div className="inputs">
       {errors.error && (
-        <span style={{ color: "red" }}>
+        <span className="error"style={{ color: "red" }}>
           {"Inavlid email or password. Please try again."}
         </span>
       )}

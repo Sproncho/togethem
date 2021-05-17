@@ -10,25 +10,27 @@ function Header({ setRole, role, location }) {
   console.log("HEader location", location);
   return (
     <div className="Header">
-      <img className="logo"
-        src={bigLogo}
-        alt="photo"
-        onClick={() => {
-          history.push("/");
-        }}
-      />
+      <div className="logoHolder">
+        <img
+          className="logo"
+          src={bigLogo}
+          alt="photo"
+          onClick={() => {
+            history.push("/");
+          }}
+        />
+      </div>
       {location.pathname === "/" && (
         <SearchBox
           className="Searchbox"
-          translations={{ placeholder: "Search for goods" }}
+          translations={{ placeholder: "Search..." }}
         />
       )}
       {location.pathname !== "/" && <div className="invisBox" />}
       <div className="btnHolder">
         {fb.auth().currentUser &&
           role === "Consumer" &&
-          (location !== "/register" ||
-          location !== "/login") && (
+          (location !== "/register" || location !== "/login") && (
             <button
               className="mainBtn"
               onClick={() => {

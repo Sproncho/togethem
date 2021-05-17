@@ -136,14 +136,15 @@
 
 @media screen and (max-width: 576px) {
     .Header {
-        padding-left: none;
-        padding-right: none;
+        padding-left: 6px;
+        padding-right: 25px;
         width:(100% - 20px);
         margin-left: 0px;
         margin-top: 10px;
     }
     .Header .logo{
-        display:none;
+        /* display:none; */
+        width: 50px;
     }
     .Header .mainBtn {
         width: 70px;
