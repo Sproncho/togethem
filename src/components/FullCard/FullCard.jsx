@@ -105,7 +105,7 @@ function FullCard({ UID, role }) {
             Login or Register to buy!
           </button>
         )}
-        {!bought && UID.length > 0 && role !== "Seller" && (
+        {!bought && UID.length > 0 && role !== "Seller" && lot.amount !==lot.totalAmount && (
           <Popup
             className="Popup"
             modal
