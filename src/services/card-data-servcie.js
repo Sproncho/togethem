@@ -66,12 +66,21 @@ export async function getLotById(id){
 }
 export async function deleteLotByid(uid,id){
     try{
+        const snap = await fb.firestore().collection("lots").doc(id).collection("buyers").get();
+        const users = snap.docs.map(doc => doc.id);
+        console.log("deletedeeeeeee",users)
+        for(var i = 0; i < users.length;i++){
+            await unsubscribeFromLot(users[i],id);
+        }
+
+     
         const deleted = await fb.firestore().collection("lots").doc(id).delete();
         const ref = fb.firestore().collection("users").doc(uid);
         await ref.update({
             lotsIds:firebase.firestore.FieldValue.arrayRemove(id)
         })
-        return deleted;
+
+        // return deleted;
     }catch(error){
         return Promise.reject(error);
     }
