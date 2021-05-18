@@ -157,6 +157,9 @@ export async function unsubscribeFromLot(uid,id){
 export async function getMyGroups(uid){
     try{
         const lotsIds = (await fb.firestore().collection("users").doc(uid).get()).data().groupIds;
+        if(!lotsIds){
+            return [];
+        }
         var lots = [];
         for(let i = 0; i < lotsIds.length; i++){
            var lot = (await fb.firestore().collection("lots").doc(lotsIds[i]).get()).data();
