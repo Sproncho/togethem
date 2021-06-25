@@ -11,9 +11,9 @@ button{
   outline: none;
 }
 
-@media screen and (min-width: 1400px) {
+/* @media screen and (min-width: 1400px) {
   .App {
       width:1920px;
       margin:0 auto;
   }
-}
+} */
